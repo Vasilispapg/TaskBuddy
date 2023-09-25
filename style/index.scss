@@ -1,0 +1,106 @@
+/* Reset some default styles */
+
+@import './header.scss';
+.search-field {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.search-field img {
+    /* max-width: 230%; */
+    height: 45em;
+    margin: 0 40em;
+}
+
+form.search {
+    margin: 0 auto;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+h1 {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+h4 {
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 50%;
+    margin-right: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    background-color: #0050b3;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #003e92;
+    /* Darker blue on hover */
+}
+
+.search-text {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 40em;
+    padding: 20px;
+    z-index: 12;
+    top: -20em;
+    left: 35%;
+    position: relative;
+    color: #020202
+}
+
+.download_app {
+    padding: 2em;
+    /* margin-top: -2.5em; */
+    background-color: #eaeaea;
+    position: relative;
+    top: -180px;
+}
+
+.download_app div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.download_app a:nth-child(1) {
+    position: relative;
+    left: 79rem;
+}
+
+.download_app a img {
+    height: 50px;
+}
+
+
+/* CARD */
+
+.jobs {
+    position: relative;
+    top: -10em;
+    .title {
+        padding: 1em 18em;
+    }
+}
+
+@import './card.scss';
+@import './taskers.scss';
+// taskers
+@import './footer.scss';

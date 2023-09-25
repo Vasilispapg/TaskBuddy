@@ -1,0 +1,209 @@
+.customSlider {
+  opacity: 0;
+  display: none;
+}
+.customSlider .row {
+  all: unset;
+}
+.customSlider + label {
+  position: relative;
+  top: 35px;
+  left: 15px;
+  cursor: pointer;
+}
+.customSlider + label:before, .customSlider + label:after {
+  background: #FFFFFF;
+  position: absolute;
+  content: "";
+}
+.customSlider + label:before {
+  top: -90px;
+  left: -60px;
+  width: 80px;
+  height: 40px;
+  background: #ccc;
+  border-radius: 20px;
+  transition: background 0.75s;
+}
+.customSlider + label:after {
+  height: 34px;
+  width: 34px;
+  top: -87px;
+  left: -55px;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+.customSlider:checked + label:after {
+  height: 34px;
+  width: 34px;
+  top: -87px;
+  left: -19px;
+  border-radius: 50%;
+}
+.customSlider:checked ~ .wrapper {
+  color: #fff;
+  transition: background 0.6s ease;
+  background: #31394D;
+}
+.customSlider:checked ~ .wrapper .top-icons i {
+  color: #fff;
+}
+.customSlider:checked ~ .wrapper .profile .name {
+  color: #FDFEFF;
+}
+.customSlider:checked ~ .wrapper .profile .title {
+  color: #7C8097;
+}
+.customSlider:checked ~ .wrapper .profile .description {
+  color: #FDFEFF;
+}
+.customSlider:checked ~ .wrapper .icon h4 {
+  color: #FFFFFF;
+}
+.customSlider:checked ~ .wrapper .icon p {
+  color: #666B7D;
+}
+
+.wrapper {
+  width: 320px;
+  height: auto;
+  background: #FDFEFF;
+  transition: background 0.6s ease;
+  border-radius: 10px;
+  padding: 20px 20px 20px 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+}
+.wrapper .top-icons i {
+  color: #080911;
+}
+.wrapper .top-icons i:nth-of-type(1) {
+  float: left;
+}
+.wrapper .top-icons i:nth-of-type(2) {
+  float: right;
+}
+.wrapper .top-icons i:nth-of-type(3) {
+  float: right;
+  padding-right: 0.8em;
+}
+.wrapper .profile {
+  margin-top: 2.2em;
+  position: relative;
+}
+.wrapper .profile:after {
+  width: 100%;
+  height: 1px;
+  content: " ";
+  display: block;
+  margin-top: 1.3em;
+  background: #E9EFF6;
+}
+.wrapper .profile .check {
+  position: absolute;
+  right: 5em;
+  bottom: 21em;
+}
+.wrapper .profile .check i {
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 100%;
+  background: linear-gradient(to bottom right, #064ba0, #1393ba);
+}
+.wrapper .profile .thumbnail {
+  width: 124px;
+  height: 124px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5em;
+  border-radius: 100%;
+  box-shadow: 0 13px 26px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.wrapper .profile .name {
+  color: #2D354A;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+.wrapper .profile .title {
+  color: #7C8097;
+  font-size: 0.75em;
+  font-weight: 300;
+  text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.7em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.wrapper .profile .description {
+  color: #080911;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 1.3em;
+}
+.wrapper .profile .btn {
+  margin-top: 2em;
+  color: #fff;
+  width: 130px;
+  font-size: 1em;
+  height: 42px;
+  outline: none;
+  border: none;
+  display: block;
+  cursor: pointer;
+  font-weight: 300;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 70px;
+  box-shadow: 0 13px 26px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
+  background: linear-gradient(to bottom right, #064ba0, #1393ba);
+}
+.wrapper .profile .tasker-history {
+  position: relative;
+  left: 3em;
+}
+.wrapper .profile .tasker-history .tasker-reviews {
+  margin-bottom: 1em;
+}
+
+.taskers_preview {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 3em;
+}
+.taskers_preview .person {
+  margin-left: 3em;
+}
+.taskers_preview .featured-skills-header {
+  font-size: 13pt;
+  margin: 0 0 0 25px;
+}
+.taskers_preview .tasker-category {
+  margin: 10px 0 0 10px;
+  display: flex;
+  flex-direction: row;
+  font-weight: 600;
+  justify-content: space-between;
+}
+.taskers_preview .tasker-card-center {
+  margin-top: 1em;
+  display: unset !important;
+}
+
+.concept {
+  position: absolute;
+  bottom: 25px;
+  color: #AAB0C4;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+.concept a {
+  color: rgb(172, 25, 102);
+  text-decoration: none;
+}/*# sourceMappingURL=taskers.css.map */
