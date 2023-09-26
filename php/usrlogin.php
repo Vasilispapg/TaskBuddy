@@ -21,6 +21,21 @@ if (!$con) {
             // Verify the entered password against the stored hashed password
             if (password_verify($pass, $storedHashedPassword)) {
 
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Handle other login validations (username, password, etc.)
+
+                    if (isset($_POST["remember_me"])) {
+                        // If "Remember Me" is selected, set a cookie with a long expiration time
+                        $cookie_name = "user";
+                        $cookie_value = $row['id']; // Store a user identifier
+                        $cookie_expiration = time() + 30 * 24 * 60 * 60; // 30 days (adjust as needed)
+                        
+                        setcookie($cookie_name, $cookie_value, $cookie_expiration, "/");
+                    }
+
+                    // Perform the login and redirect the user as needed
+                }
+
                 session_name('user');
                 session_start();
                 $_SESSION['error'] = 0;

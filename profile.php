@@ -1,6 +1,10 @@
 <?php
 session_name('user');
 session_start();
+if (isset($_COOKIE["user"])) {
+    // Look up the user by the identifier stored in the cookie
+    $user_id = $_COOKIE["user"];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

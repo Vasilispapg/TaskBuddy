@@ -1,6 +1,10 @@
 <?php
 session_name('user');
 session_start();
+if (isset($_COOKIE["user"])) {
+    // Look up the user by the identifier stored in the cookie
+    $user_id = $_COOKIE["user"];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,8 +66,8 @@ session_start();
                     </div>
                     <div class="row px-3 mb-4">
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input id="chk1" type="checkbox" name="chk" class="custom-control-input"> 
-                            <label for="chk1" class="custom-control-label text-sm">Remember me</label>
+                            <input id="remember_me" type="checkbox" name="remember_me" class="custom-control-input"> 
+                            <label for="remember_me" class="custom-control-label text-sm">Remember me</label>
                         </div>
                         <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a>
                     </div>
