@@ -57,7 +57,11 @@
                             <label class="mb-1"><h6 class="mb-0 text-sm">Username</h6></label>
                             <input class="mb-4" type="text" id='uname' onkeyup="changeName();" required name="username" placeholder="Enter your username">
                             <p id="errorname"></p>
-
+                        </div>
+                        <div class="row px-3">
+                            <label class="mb-1"><h6 class="mb-0 text-sm">Phone</h6></label>
+                            <input class="mb-4" type="text" id='phone' onkeyup="changePhone();" required name="phone" placeholder="Enter your phone">
+                            <p id="errorphone"></p>
                         </div>
                         <div class="row px-3">
                             <label class="mb-1"><h6 class="mb-0 text-sm">Email Address</h6></label>
@@ -143,5 +147,5 @@
             });
         });
     </script>
-    <script src='scripts/checker.js'></script>
+    <script src='scripts/checker_beforelogin.js'></script>
 </html>
