@@ -1,6 +1,6 @@
 <?php
 
-    $user = $_GET['username'];
+    $user = $_GET['name'];
    
     $con = mysqli_connect("localhost","root","") or die("Could not connect to the database");
     if (mysqli_connect_errno() || !$con){

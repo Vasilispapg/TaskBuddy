@@ -1,0 +1,332 @@
+/* Header styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif !important;
+  background-color: #ffffff;
+  /* White background for the body */
+  overflow-x: hidden;
+}
+
+.menu,
+.navbar-brand {
+  background-color: #064ba0;
+  /* Dark blue header background */
+  color: #ffffff;
+  /* White text color */
+  padding: 20px 17em !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  line-height: 1.5;
+}
+
+.menu ul,
+footer ul {
+  margin-bottom: 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.logo a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  z-index: 2;
+}
+.logo a:hover {
+  text-decoration: none;
+  color: rgba(240, 240, 240, 0.8117647059);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+}
+
+.nav-list li {
+  margin-right: 3em;
+}
+
+.nav-list a {
+  text-decoration: none !important;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+a.actionbutton {
+  padding: 1em;
+  transition: 0.25s;
+  background-color: #064ba0;
+  border: 1px solid white;
+  color: white;
+  border-radius: 0.5em;
+}
+
+a.actionbutton:hover {
+  border: 1px solid #064ba0;
+  background-color: white;
+  color: #064ba0;
+}
+
+/* Style for the footer section */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+.footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer .footer-content .footer-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+.footer .footer-content .footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+.footer .footer-content .footer-links ul li {
+  display: inline;
+  margin-right: 20px;
+}
+.footer .footer-content .footer-links ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+.footer .footer-content .footer-links ul li a:hover {
+  text-decoration: underline;
+}
+.footer .footer-social ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+.footer .footer-social ul li {
+  display: inline;
+  margin-right: 10px;
+}
+.footer .footer-social ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+.footer .footer-social ul li a:hover {
+  color: #007bff;
+  /* Change to your desired hover color */
+}
+
+.block, .button, .form .button, .error, .form .message, .input, .form .customSelect, .form .select, .form .textarea, .form .text-input, .checkbox + label, .form .option-input + label, .form .checkbox-input + label, .label, .form .label {
+  padding: 0.75em 1em;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  line-height: normal;
+  border-radius: 0;
+  border: none;
+  background: none;
+  display: block;
+}
+
+.label, .form .label {
+  font-weight: bold;
+  color: rgb(40, 40, 40);
+  padding: 0;
+  letter-spacing: 0.025em;
+  font-size: 1.125em;
+  line-height: 1.25;
+  position: relative;
+  z-index: 100;
+}
+.label.required:after {
+  content: " *";
+  color: #E8474C;
+  font-weight: normal;
+  font-size: 0.75em;
+  vertical-align: top;
+}
+
+.input, .form .customSelect, .form .select, .form .textarea, .form .text-input, .checkbox + label, .form .option-input + label, .form .checkbox-input + label {
+  font: inherit;
+  line-height: normal;
+  width: 100%;
+  box-sizing: border-box;
+  background: #222222;
+  color: white;
+  position: relative;
+}
+.input::-moz-placeholder, .form .customSelect::-moz-placeholder, .form .select::-moz-placeholder, .form .textarea::-moz-placeholder, .form .text-input::-moz-placeholder, .checkbox + label::-moz-placeholder, .form .option-input + label::-moz-placeholder, .form .checkbox-input + label::-moz-placeholder {
+  color: rgb(40, 40, 40);
+}
+.input::placeholder, .form .customSelect::placeholder, .form .select::placeholder, .form .textarea::placeholder, .form .text-input::placeholder, .checkbox + label::placeholder, .form .option-input + label::placeholder, .form .checkbox-input + label::placeholder {
+  color: rgb(40, 40, 40);
+}
+.input:-webkit-autofill, .form .customSelect:-webkit-autofill, .form .select:-webkit-autofill, .form .textarea:-webkit-autofill, .form .text-input:-webkit-autofill, .checkbox + label:-webkit-autofill, .form .option-input + label:-webkit-autofill, .form .checkbox-input + label:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #111111 inset;
+  -webkit-text-fill-color: white;
+  border-top-color: #111111;
+  border-left-color: #111111;
+  border-right-color: #111111;
+}
+.input.required:not(:focus):not(:active).error, .form .required.customSelect:not(:focus):not(:active).error, .form .required.select:not(:focus):not(:active).error, .form .input.required.message:not(:focus):not(:active), .form .required.message.customSelect:not(:focus):not(:active), .form .required.message.select:not(:focus):not(:active), .form .required.textarea:not(:focus):not(:active).error, .form .required.textarea.message:not(:focus):not(:active), .form .required.text-input:not(:focus):not(:active).error, .form .required.text-input.message:not(:focus):not(:active), .checkbox + label.required:not(:focus):not(:active).error, .form .option-input + label.required:not(:focus):not(:active).error, .form .checkbox-input + label.required:not(:focus):not(:active).error, .form .checkbox + label.required.message:not(:focus):not(:active), .form .option-input + label.required.message:not(:focus):not(:active), .form .checkbox-input + label.required.message:not(:focus):not(:active), .error .input.required:not(:focus):not(:active), .error .form .required.customSelect:not(:focus):not(:active), .form .error .required.customSelect:not(:focus):not(:active), .error .form .required.select:not(:focus):not(:active), .form .error .required.select:not(:focus):not(:active), .form .message .input.required:not(:focus):not(:active), .form .message .required.customSelect:not(:focus):not(:active), .form .message .required.select:not(:focus):not(:active), .error .form .required.textarea:not(:focus):not(:active), .form .error .required.textarea:not(:focus):not(:active), .form .message .required.textarea:not(:focus):not(:active), .error .form .required.text-input:not(:focus):not(:active), .form .error .required.text-input:not(:focus):not(:active), .form .message .required.text-input:not(:focus):not(:active), .error .checkbox + label.required:not(:focus):not(:active), .error .form .option-input + label.required:not(:focus):not(:active), .form .error .option-input + label.required:not(:focus):not(:active), .error .form .checkbox-input + label.required:not(:focus):not(:active), .form .error .checkbox-input + label.required:not(:focus):not(:active), .form .message .checkbox + label.required:not(:focus):not(:active), .form .message .option-input + label.required:not(:focus):not(:active), .form .message .checkbox-input + label.required:not(:focus):not(:active), .input[required]:not(:focus):not(:active).error, .form [required].customSelect:not(:focus):not(:active).error, .form [required].select:not(:focus):not(:active).error, .form .input[required].message:not(:focus):not(:active), .form [required].message.customSelect:not(:focus):not(:active), .form [required].message.select:not(:focus):not(:active), .form [required].textarea:not(:focus):not(:active).error, .form [required].textarea.message:not(:focus):not(:active), .form [required].text-input:not(:focus):not(:active).error, .form [required].text-input.message:not(:focus):not(:active), .checkbox + label[required]:not(:focus):not(:active).error, .form .option-input + label[required]:not(:focus):not(:active).error, .form .checkbox-input + label[required]:not(:focus):not(:active).error, .form .checkbox + label[required].message:not(:focus):not(:active), .form .option-input + label[required].message:not(:focus):not(:active), .form .checkbox-input + label[required].message:not(:focus):not(:active), .error .input[required]:not(:focus):not(:active), .error .form [required].customSelect:not(:focus):not(:active), .form .error [required].customSelect:not(:focus):not(:active), .error .form [required].select:not(:focus):not(:active), .form .error [required].select:not(:focus):not(:active), .form .message .input[required]:not(:focus):not(:active), .form .message [required].customSelect:not(:focus):not(:active), .form .message [required].select:not(:focus):not(:active), .error .form [required].textarea:not(:focus):not(:active), .form .error [required].textarea:not(:focus):not(:active), .form .message [required].textarea:not(:focus):not(:active), .error .form [required].text-input:not(:focus):not(:active), .form .error [required].text-input:not(:focus):not(:active), .form .message [required].text-input:not(:focus):not(:active), .error .checkbox + label[required]:not(:focus):not(:active), .error .form .option-input + label[required]:not(:focus):not(:active), .form .error .option-input + label[required]:not(:focus):not(:active), .error .form .checkbox-input + label[required]:not(:focus):not(:active), .form .error .checkbox-input + label[required]:not(:focus):not(:active), .form .message .checkbox + label[required]:not(:focus):not(:active), .form .message .option-input + label[required]:not(:focus):not(:active), .form .message .checkbox-input + label[required]:not(:focus):not(:active) {
+  background-size: 8px 8px;
+  background-image: linear-gradient(135deg, rgba(232, 71, 76, 0.5), rgba(232, 71, 76, 0.5) 25%, transparent 25%, transparent 50%, rgba(232, 71, 76, 0.5) 50%, rgba(232, 71, 76, 0.5) 75%, transparent 75%, transparent);
+  background-repeat: repeat;
+}
+.form:not(.has-magic-focus) .input-active, .form:not(.has-magic-focus) .form.customSelectFocus, .form:not(.has-magic-focus) .input:active, .form:not(.has-magic-focus) .customSelect:active, .form:not(.has-magic-focus) .select:active, .form:not(.has-magic-focus) .textarea:active, .form:not(.has-magic-focus) .text-input:active, .form:not(.has-magic-focus) .checkbox + label:active, .form:not(.has-magic-focus) .option-input + label:active, .form:not(.has-magic-focus) .checkbox-input + label:active, .form:not(.has-magic-focus) .input:focus, .form:not(.has-magic-focus) .customSelect:focus, .form:not(.has-magic-focus) .select:focus, .form:not(.has-magic-focus) .textarea:focus, .form:not(.has-magic-focus) .text-input:focus, .form:not(.has-magic-focus) .checkbox + label:focus, .form:not(.has-magic-focus) .option-input + label:focus, .form:not(.has-magic-focus) .checkbox-input + label:focus {
+  background: #4E4E4E;
+}
+
+.error, .form .message {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  font-size: 0.625em;
+  color: rgb(40, 40, 40);
+}
+
+.checkbox, .form .option-input, .form .checkbox-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.checkbox + label, .form .option-input + label, .form .checkbox-input + label {
+  display: inline-block;
+  width: auto;
+  color: #4E4E4E;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.checkbox:focus + label, .form .option-input:focus + label, .form .checkbox-input:focus + label, .checkbox:active + label, .form .option-input:active + label, .form .checkbox-input:active + label {
+  color: #4E4E4E;
+}
+.checkbox:checked + label, .form .option-input:checked + label, .form .checkbox-input:checked + label {
+  color: white;
+}
+
+.button, .form .button {
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+  background: #E8474C;
+  color: white;
+  font-weight: bold;
+  width: auto;
+  margin-left: auto;
+  font-weight: bold;
+  padding: 0 2em;
+}
+.button:hover, .button:focus, .button:active {
+  color: white;
+  border-color: white;
+}
+.button:active {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+body {
+  padding: 2em;
+}
+
+.form {
+  max-width: 40em;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.form .field {
+  width: 100%;
+  margin: 0 0 1.5em 0;
+}
+@media screen and (min-width: 40em) {
+  .form .field.half {
+    width: calc(50% - 1px);
+  }
+}
+.form .field.last {
+  margin-left: auto;
+}
+.form .textarea {
+  max-width: 100%;
+}
+.form .select {
+  text-indent: 0.01px;
+  text-overflow: "";
+}
+.form .select::-ms-expand {
+  display: none;
+}
+.form .checkboxes,
+.form .options {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  overflow: hidden;
+}
+.form .checkbox, .form .option-input, .form .checkbox-input,
+.form .option {
+  float: left;
+  margin: 1px;
+}
+.form .customSelect {
+  pointer-events: none;
+}
+.form .customSelect:after {
+  content: "";
+  pointer-events: none;
+  width: 0.5em;
+  height: 0.5em;
+  border-style: solid;
+  border-color: rgb(40, 40, 40);
+  border-width: 0 3px 3px 0;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.625em;
+  right: 1em;
+  transform-origin: 0 0;
+  transform: rotate(45deg);
+}
+.form.customSelectFocus:after {
+  border-color: white;
+}
+.form .magic-focus {
+  position: absolute;
+  z-index: 0;
+  width: 0;
+  background: rgba(255, 255, 255, 0.15);
+  transition: top 0.2s, left 0.2s, width 0.2s;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: top, left, width;
+  transform-origin: 0 0;
+}/*# sourceMappingURL=import_info.css.map */

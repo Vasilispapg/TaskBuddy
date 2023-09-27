@@ -144,6 +144,57 @@ body {
   background-color: #1A237E !important;
 }
 
+.profile-content {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(100% - clamp(8px, 1vw, 12px));
+  justify-content: center;
+  padding: clamp(8px, 1vw, 12px);
+}
+
+.profile-pic {
+  aspect-ratio: 1;
+  border: clamp(3px, 0.4vw, 5px) solid rgb(174, 73, 73);
+  border-radius: 50%;
+  /* Use 50% border-radius to create a circle */
+  overflow: hidden;
+  /* Hide the parts of the image outside the circle */
+  height: 200px;
+  /* Set a fixed height for the circle */
+  width: 200px;
+  /* Set a fixed width for the circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* Scale the image to cover the entire circle */
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* Make sure the image itself is also a circle */
+}
+
+#errorname,
+#erroremail,
+#errorpassword {
+  color: red;
+}
+
+.rounded-circle {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 100% !important;
+  height: calc(100% - clamp(10px, 1.5vw, 20px)) !important;
+  margin: clamp(5px, 0.75vw, 10px) !important;
+  -o-object-fit: cover !important;
+     object-fit: cover !important;
+  width: calc(100% - clamp(10px, 1.5vw, 20px)) !important;
+}
+
 /* Style for the footer section */
 .footer {
   background-color: #333;

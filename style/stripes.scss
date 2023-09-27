@@ -1,0 +1,12 @@
+@mixin stripes($color1, $color2, $angle, $stripe1-width, $stripe2-width: null) {
+    @if $stripe2-width==null {
+        $stripe2-width: $stripe1-width;
+    }
+    $tile-size: ($stripe1-width + $stripe2-width) * 2;
+    $stripe2-start: $stripe1-width / $tile-size * 100%;
+    $stripe3-start: $stripe2-start+$stripe2-width / $tile-size * 100%;
+    $stripe4-start: $stripe3-start+$stripe1-width / $tile-size * 100%;
+    background-size: $tile-size $tile-size;
+    background-image: linear-gradient($angle, $color1, $color1 $stripe2-start, $color2 $stripe2-start, $color2 $stripe3-start, $color1 $stripe3-start, $color1 $stripe4-start, $color2 $stripe4-start, $color2);
+    background-repeat: repeat;
+}

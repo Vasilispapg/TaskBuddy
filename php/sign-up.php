@@ -1,45 +1,84 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Retrieve user input from the form
-    $fullname = $_POST["fullname"];
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
-    if (isset($_POST['checkbox']) && $_POST['checkbox'] == 'buddy') {
-        // The checkbox is checked, set the role to 'taskbuddy'
-        $role = 'taskbuddy';
-    } else {
-        // The checkbox is not checked, set the role to 'user'
-        $role = 'user';
-    }
-    
-    // You can then insert the $role value into your database when registering the user.
-    
-    $created_at = date("Y-m-d H:i:s"); // Current date and time
-
-    // Connect to the database (replace with your database credentials)
+function connectToDatabase() {
     $servername = "localhost";
+    $username = "root";
+    $password = "";
     $dbname = "taskbuddynw";
-    echo "Connected successfully";
 
-    $conn = new mysqli($servername, "root", "", $dbname);
-
+    $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    return $conn;
+}
 
-    // Insert the user data into the "users" table
-    $sql = "INSERT INTO users (username, email, password_hash, role, created_at,fullname)
-            VALUES ('$username', '$email', '$hashedPassword', '$role', '$created_at','$fullname')";
+function uploadImage($username) {
+    $uploadDirectory = '../assets/user_images/'; // Change this to your desired directory
+    $uploadedFileName = $_FILES['image']['name'];
 
-    if ($conn->query($sql) === TRUE) {
-        echo "User registered successfully.";
+    // Generate a unique filename based on the username
+    $username = strtolower($username); // Convert username to lowercase
+    $username = preg_replace('/\s+/', '_', $username); // Replace spaces with underscores
+    $uploadedFileName = $username . '_' . $uploadedFileName;
+
+    $targetFilePath = $uploadDirectory . $uploadedFileName;
+
+    // Move the uploaded file to the desired directory
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
+        // File upload successful, return the file path
+        return $targetFilePath;
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Failed to upload the image
+        return null;
     }
+}
 
-    $conn->close();
-    include 'usrlogin.php'; //ektelei me tin mia to login
+
+function registerUser() {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // Retrieve form data
+        $fullname = $_POST["fullname"];
+        $username = $_POST["username"];
+        $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+        $password = $_POST["password"];
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $bdate = $_POST["birthday_year"] . '-' . $_POST["birthday_month"] . '-' . $_POST["birthday_day"];
+
+        // Check if 'image' was uploaded
+        $imagePath = uploadImage($username);
+
+        if ($imagePath === null) {
+            echo "Failed to upload the image.";
+            return; // Exit registration if image upload fails
+        }
+
+        $conn = connectToDatabase();
+
+        $role = isset($_POST['checkbox']) && $_POST['checkbox'] == 'buddy' ? 'taskbuddy' : 'user';
+        $created_at = date("Y-m-d H:i:s");
+
+        // Define your SQL query here
+        $sql = "INSERT INTO users (username, email, password_hash, bdate, role, created_at, fullname, image_path)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param("ssssssss", $username, $email, $hashedPassword, $bdate, $role, $created_at, $fullname, $imagePath);
+
+        if ($stmt->execute()) {
+            echo "User registered successfully.";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
+        header("location:..\import_info.php");
+
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    registerUser(); // Call the registration function
 }
 ?>

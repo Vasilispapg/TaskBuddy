@@ -213,9 +213,18 @@ body {
   background-color: #000;
   cursor: pointer;
 }
+.container-fluid select {
+  display: inline-flex;
+  width: 7em;
+  height: 2em;
+}
 .container-fluid .bg-blue {
   color: #fff;
   background-color: #1A237E;
+}
+.container-fluid span.birthday {
+  display: block;
+  margin: 4% 0%;
 }
 @media screen and (max-width: 991px) {
   .container-fluid .logo {
@@ -235,7 +244,8 @@ body {
 }
 
 #errorname,
-#erroremail {
+#erroremail,
+#errorpassword {
   color: red;
 }
 
