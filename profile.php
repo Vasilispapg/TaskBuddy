@@ -46,7 +46,7 @@ if (isset($_COOKIE["user"])) {
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo $_SESSION['username'];?></a></li>
+              <li class="breadcrumb-item"><a href="javascript:void(0)"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['username'];?></a></li>
               <li class="breadcrumb-item active" aria-current="page">Profile</li>
             </ol>
           </nav>
@@ -65,13 +65,13 @@ if (isset($_COOKIE["user"])) {
                   <div class="d-flex flex-column align-items-center text-center ">
                   <div class="profile-content">
                       <div class="profile-pic">
-                          <img src="<?php echo ltrim($_SESSION['image_path'], './');?>" alt="Admin" class="rounded-circle">
+                          <img src="<?php if(isset($_SESSION['fullname'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
                       </div>
                   </div>
                     <div class="mt-3">
-                      <h4><?php echo $_SESSION['fullname'];?></h4>
-                      <p class="text-secondary mb-1"><?php echo $_SESSION['job'];?></p>
-                      <p class="text-muted font-size-sm"><?php echo $_SESSION['location'];?></p>
+                      <h4><?php if(isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?></h4>
+                      <p class="text-secondary mb-1"><?php if(isset($_SESSION['job'])) {echo $_SESSION['job'];}?></p>
+                      <p class="text-muted font-size-sm"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['location'];?></p>
                     </div>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ if (isset($_COOKIE["user"])) {
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?php echo $_SESSION['email'];?>
+                    <?php if(isset($_SESSION['fullname'])) echo $_SESSION['email'];?>
                     </div>
                   </div>
                   <hr>
@@ -119,7 +119,7 @@ if (isset($_COOKIE["user"])) {
                       <h6 class="mb-0">Phone</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?php echo $_SESSION['phone'];?>
+                    <?php if(isset($_SESSION['fullname'])) echo $_SESSION['phone'];?>
                     </div>
                   </div>
                   <hr>
@@ -128,7 +128,7 @@ if (isset($_COOKIE["user"])) {
                       <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?php echo $_SESSION['address'];?>
+                    <?php if(isset($_SESSION['fullname'])) echo $_SESSION['address'];?>
                     </div>
                   </div>
                   <hr>
@@ -137,7 +137,7 @@ if (isset($_COOKIE["user"])) {
                       <h6 class="mb-0">Birth Date</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?php echo $_SESSION['bdate'];?>
+                    <?php if(isset($_SESSION['fullname'])) echo $_SESSION['bdate'];?>
                     </div>
                   </div>
                   <hr>
@@ -146,7 +146,7 @@ if (isset($_COOKIE["user"])) {
                       <h6 class="mb-0">About</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?php echo $_SESSION['about'];?>
+                    <?php if(isset($_SESSION['fullname'])) echo $_SESSION['about'];?>
                     </div>
                   </div>
                   <hr>

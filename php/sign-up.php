@@ -66,14 +66,15 @@ function registerUser() {
         $stmt->bind_param("ssssssss", $username, $email, $hashedPassword, $bdate, $role, $created_at, $fullname, $imagePath);
 
         if ($stmt->execute()) {
-            echo "User registered successfully.";
+            $_SESSION['justRegistered'] = true; // Set the flag before redirecting
+            header("location: usrlogin.php"); // Redirect to login page
+            exit();
         } else {
             echo "Error: " . $stmt->error;
         }
 
         $stmt->close();
         $conn->close();
-        header("location:..\import_info.php");
 
     }
 }

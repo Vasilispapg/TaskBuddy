@@ -26,6 +26,33 @@ body {
     border-radius: .25rem;
 }
 
+.overlay {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Gray overlay with transparency */
+    opacity: 0;
+    /* Initially hidden */
+    transition: opacity 0.3s;
+    /* Smooth transition effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.overlay:hover {
+    opacity: 1;
+    /* Show the overlay on hover */
+}
+
+.btn {
+    margin-top: 10px;
+    /* Adjust as needed */
+}
+
 .card-body {
     flex: 1 1 auto;
     min-height: 1px;
