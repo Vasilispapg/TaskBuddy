@@ -33,7 +33,7 @@ document.querySelector('#submit').addEventListener('click', function(e) {
     elementsToShow.forEach(selector => {
         if (not_continue) {
             const element = document.querySelector(selector);
-            element.style.display = 'inherit';
+            element.style.display = 'inline-grid';
             if (element.classList.contains('profileimage')) {
                 element.style.display = 'inline';
             }

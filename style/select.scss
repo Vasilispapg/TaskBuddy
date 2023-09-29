@@ -1,0 +1,43 @@
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    width: 200px;
+    font-size: 16px;
+    cursor: pointer;
+    width: min-content !important;
+    text-align: center;
+}
+
+
+/* Style the dropdown arrow (optional) */
+
+.custom-select::after {
+    content: '\25BC';
+    /* Unicode character for down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+
+/* Style the options (optional) */
+
+.custom-select option {
+    background-color: #fff;
+    color: #333;
+}
+
+
+/* Style the select when it's focused (optional) */
+
+.custom-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

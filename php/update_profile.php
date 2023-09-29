@@ -23,7 +23,7 @@ if (mysqli_num_rows($result) > 0 and $row['id'] != $_SESSION['id']) {
     echo "Error: Another user with the same username, phone, or email already exists.";
     header('location:../profile.php?changed=false');
 } else {
-    $sql = "UPDATE users SET email='$email', phone='$phone',  job='$job', about='$about',
+    $sql = "UPDATE users SET email='$email', phone='$phone', job='$job', about='$about',
         fullname='$fullname', username='$username', location='$location' WHERE id='{$_SESSION['id']}'";
 
     if (mysqli_query($con, $sql)) {

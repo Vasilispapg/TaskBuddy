@@ -13,6 +13,9 @@ body {
 }
 
 .container-fluid {
+    #location-container {
+        display: none;
+    }
     /* Initially hide all elements */
     .phone,
     .bdate,
@@ -202,4 +205,5 @@ body {
 }
 
 @import './buddyButton.scss';
-@import './footer.scss'
+@import './footer.scss';
+@import './select.scss';
