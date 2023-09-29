@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const passwordField = document.getElementById("password");
     const confirmPasswordField = document.getElementById("confirmPassword");
     const passwordError = document.getElementById("passwordError");
-    const registerButton = document.getElementById("registerButton");
+    const registerButton = document.getElementById("submit");
 
-    confirmPasswordField.addEventListener("input", () => {
+    // Function to validate passwords
+    function validatePasswords() {
         const password = passwordField.value;
         const confirmPassword = confirmPasswordField.value;
 
@@ -15,5 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
             passwordError.textContent = "Passwords do not match.";
             registerButton.disabled = true;
         }
-    });
+    }
+
+    // Add input event listeners to both fields
+    passwordField.addEventListener("input", validatePasswords);
+    confirmPasswordField.addEventListener("input", validatePasswords);
 });
