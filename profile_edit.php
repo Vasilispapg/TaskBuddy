@@ -31,7 +31,10 @@ else{
                 if (isset($_SESSION["username"])) {
                     // User is logged in, display their username and a link to their profile or dashboard
                     echo '<li><a href="profile.php">Welcome ' . $_SESSION["username"] . '</a></li>';
+                    if($_SESSION['isBuddy'])
+                        echo '<li><a href="dashboard.php">Dashboard</a></li>';
                     echo '<li><a href="php/logout.php">Logout</a></li>';
+
                 } else {
                     // User is not logged in, display the "Sign Up / Login" link
                     echo '<li><a href="login.php">Sign Up / Login</a></li>';
@@ -137,7 +140,7 @@ else{
                                         <h6 class="mb-0">Phone</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="tel" class="form-control" id='phone' name='phone' value='<?php if(isset($_SESSION['fullname'])) echo $_SESSION['phone'];?>'>
+                                        <input type="tel" class="form-control" id='phone' name='phone' pattern="69[0-9]{8}" value='<?php if(isset($_SESSION['fullname'])) echo $_SESSION['phone'];?>'>
                                         <p id="errorphone"></p>
                                     </div>
                                 </div>
@@ -146,7 +149,7 @@ else{
                                         <h6 class="mb-0">Location</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <select id="city" name="location" currentLoc='<?php if(isset($_SESSION['fullname'])) echo $_SESSION['location'];?>'></select>
+                                        <select id="city" name="location" class='custom-select' currentLoc='<?php if(isset($_SESSION['fullname'])) echo $_SESSION['location'];?>'></select>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
