@@ -23,12 +23,14 @@ body {
     .password,
     .passwordconfirm,
     .buddy,
+    .location,
     .singupwith,
     .ordiv,
     .acc {
         transition: opacity 0.3s ease;
     }
     .phone,
+    .location,
     .bdate,
     .email,
     .profileimage {
@@ -149,8 +151,14 @@ body {
         color: #fff;
         border-radius: 2px;
     }
+    .btn-blue:hover:active {
+        background-color: #1A237E !important;
+        color: white !important;
+        cursor: pointer;
+    }
     .btn-blue:hover {
-        background-color: #000;
+        background-color: #3744da;
+        color: white !important;
         cursor: pointer;
     }
     select {

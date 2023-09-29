@@ -105,12 +105,14 @@ body {
 .container-fluid .password,
 .container-fluid .passwordconfirm,
 .container-fluid .buddy,
+.container-fluid .location,
 .container-fluid .singupwith,
 .container-fluid .ordiv,
 .container-fluid .acc {
   transition: opacity 0.3s ease;
 }
 .container-fluid .phone,
+.container-fluid .location,
 .container-fluid .bdate,
 .container-fluid .email,
 .container-fluid .profileimage {
@@ -231,8 +233,14 @@ body {
   color: #fff;
   border-radius: 2px;
 }
+.container-fluid .btn-blue:hover:active {
+  background-color: #1A237E !important;
+  color: white !important;
+  cursor: pointer;
+}
 .container-fluid .btn-blue:hover {
-  background-color: #000;
+  background-color: #3744da;
+  color: white !important;
   cursor: pointer;
 }
 .container-fluid select {

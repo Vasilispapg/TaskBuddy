@@ -1,4 +1,47 @@
 <?php
+
+function emailExists($email) {
+    $conn = connectToDatabase();
+    $sql = "SELECT COUNT(*) as count FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $count = $row['count'];
+    $stmt->close();
+    $conn->close();
+    return $count > 0;
+}
+
+function phoneExists($phone) {
+    $conn = connectToDatabase();
+    $sql = "SELECT COUNT(*) as count FROM users WHERE phone = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $phone);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $count = $row['count'];
+    $stmt->close();
+    $conn->close();
+    return $count > 0;
+}
+
+function usernameExists($username) {
+    $conn = connectToDatabase();
+    $sql = "SELECT COUNT(*) as count FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $count = $row['count'];
+    $stmt->close();
+    $conn->close();
+    return $count > 0;
+}
+
 function connectToDatabase() {
     $servername = "localhost";
     $username = "root";
@@ -42,14 +85,29 @@ function registerUser() {
         $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
         $password = $_POST["password"];
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $bdate = $_POST["birthday_year"] . '-' . $_POST["birthday_month"] . '-' . $_POST["birthday_day"];
+        $bdate = $_POST["birthday_day"] . '/' . $_POST["birthday_month"] . '/' . $_POST["birthday_year"];
+        $phone = $_POST["phone"];
+        $location = $_POST["location"];
+
+        if (emailExists($email)) {
+            echo "Email already exists. Please choose a different email address.";
+            return;
+        }
+        if (phoneExists($phone)) {
+            echo "Phone number already exists. Please choose a different phone number.";
+            return;
+        }
+        if (usernameExists($username)) {
+            echo "Username already exists. Please choose a different username.";
+            return;
+        }
+
 
         // Check if 'image' was uploaded
         $imagePath = uploadImage($username);
 
         if ($imagePath === null) {
             echo "Failed to upload the image.";
-            return; // Exit registration if image upload fails
         }
 
         $conn = connectToDatabase();
@@ -58,16 +116,16 @@ function registerUser() {
         $created_at = date("Y-m-d H:i:s");
 
         // Define your SQL query here
-        $sql = "INSERT INTO users (username, email, password_hash, bdate, role, created_at, fullname, image_path)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (username, email, password_hash, bdate, role, created_at, fullname, image_path , phone,location)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 
         $stmt = $conn->prepare($sql);
 
-        $stmt->bind_param("ssssssss", $username, $email, $hashedPassword, $bdate, $role, $created_at, $fullname, $imagePath);
+        $stmt->bind_param("ssssssssss", $username, $email, $hashedPassword, $bdate, $role, $created_at, $fullname, $imagePath, $phone,$location);
 
         if ($stmt->execute()) {
             $_SESSION['justRegistered'] = true; // Set the flag before redirecting
-            header("location: usrlogin.php"); // Redirect to login page
+            include "usrlogin.php"; // Redirect to login page
             exit();
         } else {
             echo "Error: " . $stmt->error;

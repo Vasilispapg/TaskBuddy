@@ -38,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["about"] = $row['about']; 
             $_SESSION["email"] = $row['email']; 
             $_SESSION["phone"] = $row['phone']; 
-            $_SESSION["address"] = $row['address']; 
             $_SESSION["created_at"] = $row['created_at']; 
             $_SESSION["job"] = $row['job']; 
             $_SESSION["image_path"] = $row['image_path']; 
@@ -63,7 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set a cookie to remember the user (optional)
             $expire = time() + 86400 * 30; // 30 days
             setcookie("user", $row['id'], $expire, "/");
-            
             header("location:../index.php");
             exit();
         }

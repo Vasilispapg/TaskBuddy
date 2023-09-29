@@ -143,7 +143,6 @@
     </footer>
 </body>
 <script src='scripts/locations.js'></script>
-
 <script src='scripts/checker.js'></script>
 <script src='scripts/showhideElements.js'></script>
 <script src='scripts/passwordSame.js'></script>
