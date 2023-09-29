@@ -1,23 +1,28 @@
 <?php
+$user = $_GET['name'];
 
-    $user = $_GET['name'];
-   
-    $con = mysqli_connect("localhost","root","") or die("Could not connect to the database");
-    if (mysqli_connect_errno() || !$con){
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+$con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
+if (mysqli_connect_errno() || !$con) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+} else {
+    // Use prepared statement to avoid SQL injection
+    $sql = "SELECT username FROM users WHERE username=?";
+    $stmt = mysqli_prepare($con, $sql);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "s", $user);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+
+        if (mysqli_stmt_num_rows($stmt) > 0) {
+            echo "This name already exists";
+        }
+
+        mysqli_stmt_close($stmt);
+    } else {
+        echo "Error preparing the SQL statement: " . mysqli_error($con);
     }
-    else{
-        
-        mysqli_select_db($con,"taskbuddynw");
-        
-        $sql="SELECT username FROM users WHERE username='".$user."'";
-        $result=mysqli_query($con,$sql);
-        if($result)
-            if(mysqli_num_rows($result)>0)
-                echo "This name already exists";
-                
-        mysqli_close($con);
-    }
 
-
+    mysqli_close($con);
+}
 ?>
