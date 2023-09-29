@@ -1,9 +1,12 @@
 <?php
 session_name('user');
 session_start();
-if (isset($_COOKIE["user"])) {
+if (isset($_COOKIE["user"]) && !empty($_SESSION["fullname"])) {
     // Look up the user by the identifier stored in the cookie
     $user_id = $_COOKIE["user"];
+}
+else{
+    header("location: login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -12,11 +15,18 @@ if (isset($_COOKIE["user"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    
     <link rel="stylesheet" href="web_stuff/css/profile.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 <header class="header">
@@ -53,10 +63,9 @@ if (isset($_COOKIE["user"])) {
           <!-- /Breadcrumb -->
 
           <!-- TODO
-        confirmation email
-      location by google
-      address by google
-    phone verification -->
+            confirmation email
+            phone verification
+          -->
     
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
@@ -113,22 +122,12 @@ if (isset($_COOKIE["user"])) {
                     </div>
                   </div>
                   <hr>
-
                   <div class="row">
                     <div class="col-sm-3">
                       <h6 class="mb-0">Phone</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                     <?php if(isset($_SESSION['fullname'])) echo $_SESSION['phone'];?>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                    <?php if(isset($_SESSION['fullname'])) echo $_SESSION['address'];?>
                     </div>
                   </div>
                   <hr>
@@ -150,10 +149,15 @@ if (isset($_COOKIE["user"])) {
                     </div>
                   </div>
                   <hr>
+                   
                   <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-2">
                       <a class="btn btn-info " target="__blank" href="profile_edit.php">Edit</a>
                     </div>
+                    <div class="col-sm-10">
+                      <a class="btn btn-info " target="__blank" href="change_password.php">Change Password</a>
+                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -162,6 +166,47 @@ if (isset($_COOKIE["user"])) {
 
         </div>
     </div>
+   
+    <!-- Modal HTML -->
+    <a href="#myModalTrue" class="trigger-btn" data-toggle="modal"  disabled id='modalToggleTrue'></a>
+    <a href="#myModalFalse" class="trigger-btn" data-toggle="modal"  disabled id='modalToggleFalse'></a>
+    <div id="myModalTrue" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="icon-box">
+              <i class="material-icons">&#xE876;</i>
+            </div>				
+            <h4 class="modal-title w-100">Τέλεια!</h4>	
+          </div>
+          <div class="modal-body">
+            <p class="text-center">Τα στοιχεία σου άλλαξανε επιτυχώς.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>     
+    <div id="myModalFalse" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="icon-box" style='background-color:#f44336'>
+              <i class="material-icons">close</i>
+            </div>				
+            <h4 class="modal-title w-100">Κρίμα!</h4>	
+          </div>
+          <div class="modal-body">
+            <p class="text-center">Τα στοιχεία σου δεν αλλάξανε.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success btn-block" data-dismiss="modal" style='background-color:#f44336'>OK</button>
+          </div>
+        </div>
+      </div>
+    </div>     
+
 
 <footer class="footer">
     <div class="footer-content">
@@ -184,4 +229,22 @@ if (isset($_COOKIE["user"])) {
     </div>
 </footer>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+// Add this script to trigger the modal on page load
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if the password was successfully changed and the query parameter is present
+    if (window.location.href.includes('?changed=true')) {
+        document.getElementById('modalToggleTrue').click(); // Click on the button to trigger the modal
+    }
+    else if(window.location.href.includes('?changed=false')){
+        document.getElementById('modalToggleFalse').click(); // Click on the button to trigger the modal
+    }
+    else{
+
+    }
+
+});
+</script>
 </html>

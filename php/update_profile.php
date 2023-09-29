@@ -8,8 +8,6 @@ mysqli_select_db($con, "taskbuddynw");
 $phone = $_POST['phone'];
 $email = $_POST['email'];
 $fullname = $_POST['fullname'];
-$address = $_POST['address'];
-$password = $_POST['password'];
 $username = $_POST['uname'];
 $location = $_POST['location'];
 $job = $_POST['job'];
@@ -19,21 +17,14 @@ $about = $_POST['about'];
 $checkSql = "SELECT id FROM users WHERE username = '$username' OR phone = '$phone' OR email = '$email'";
 
 $result = mysqli_query($con, $checkSql);
-
-if (mysqli_num_rows($result) > 0) {
+$row = mysqli_fetch_assoc($result);
+if (mysqli_num_rows($result) > 0 and $row['id'] != $_SESSION['id']) {
     // A user with the same username, phone, or email already exists
     echo "Error: Another user with the same username, phone, or email already exists.";
+    header('location:../profile.php?changed=false');
 } else {
-    // No duplicate found, proceed with the update
-    if (empty($password)) {
-        $sql = "UPDATE users SET email='$email', phone='$phone', address='$address',
-         fullname='$fullname', username='$username', location='$location' WHERE id='{$_SESSION['id']}'";
-    } else {
-        $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
-
-        $sql = "UPDATE users SET password_hash='$hashedPassword', email='$email', phone='$phone',
-        address='$address', fullname='$fullname', username='$username', location='$location' WHERE id='{$_SESSION['id']}'";
-    }
+    $sql = "UPDATE users SET email='$email', phone='$phone',  job='$job', about='$about',
+        fullname='$fullname', username='$username', location='$location' WHERE id='{$_SESSION['id']}'";
 
     if (mysqli_query($con, $sql)) {
         echo "Record updated successfully";
@@ -44,14 +35,15 @@ if (mysqli_num_rows($result) > 0) {
         $_SESSION["about"] = $about;
         $_SESSION["email"] = $email;
         $_SESSION["phone"] = $phone;
-        $_SESSION["address"] = $address;
         $_SESSION["job"] = $job;
+        header('location:../profile.php?changed=true');
+
     } else {
         echo "Error updating record: " . mysqli_error($con);
+        header('location:../profile.php?changed=false');
     }
 }
 
 mysqli_close($con);
 
-header('location:../profile.php');
 ?>

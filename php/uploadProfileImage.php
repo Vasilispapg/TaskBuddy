@@ -17,6 +17,8 @@ function connectToDatabase() {
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
+        header('location:../profile.php?changed=false');
+
     }
     return $conn;
 }
@@ -51,9 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->execute()) {
                 // Update successful
                 echo "Profile picture updated successfully.";
-                header('location:../profile.php');
+                header('location:../profile.php?changed=true');
             } else {
                 echo "Error updating profile picture: " . $stmt->error;
+                header('location:../profile.php?changed=false');
             }
 
             $stmt->close();
