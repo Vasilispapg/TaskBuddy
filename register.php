@@ -87,6 +87,10 @@
                         <div class="row mb-3 px-3">
                             <span id="passwordError" class="text-danger"></span>
                         </div>
+                        <div class='row px-3 location' id="location-container">
+                            <label lass="mb-1" for="city"><h6 class="mb-0 text-sm">City</h6></label>
+                            <select id="city" name="location"></select>
+                        </div>
                         <div class="form-group profileimage">
                             <label class="mb-1" for='image'><h6 class="mb-0 text-sm">Profile Image</h6></label>
                             <input type="file" class="form-control-file" id="image" name="image">
@@ -138,7 +142,8 @@
         </div>
     </footer>
 </body>
-    
+<script src='scripts/locations.js'></script>
+
 <script src='scripts/checker.js'></script>
 <script src='scripts/showhideElements.js'></script>
 <script src='scripts/passwordSame.js'></script>

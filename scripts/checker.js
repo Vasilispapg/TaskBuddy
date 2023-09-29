@@ -11,7 +11,6 @@
                  if (fieldValue !== sessionValue) {
                      const errorElement = document.getElementById('error' + fieldName);
                      errorElement.innerHTML = xmlhttp.responseText;
-                     console.log(errorElement.innerHTML)
                      const validationPassed = xmlhttp.responseText === checkMessage;
                      resolve(validationPassed);
                  } else {
