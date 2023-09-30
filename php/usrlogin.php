@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["image_path"] = $row['image_path']; 
             $_SESSION["bdate"] = $row['bdate']; 
             $_SESSION["isBuddy"] = $row['role'] == 'taskbuddy' ? true : false; 
+            $_SESSION["wallet"] = $row['wallet'];
 
             // Fetch user's skills
             $sql_skills = "SELECT skills.name FROM user_skills, skills WHERE user_skills.user_id={$row['id']} AND user_skills.skill_id=skills.id";

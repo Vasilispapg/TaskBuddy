@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+.main {
+    min-height: 85%;
+}
+
 :root {
     --app-bg: #101827;
     --sidebar: rgba(21, 30, 47, 1);
@@ -32,8 +36,8 @@
     --filter-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-$font-small: 14px;
-$font-medium: 16px;
+$font-small: 15px;
+$font-medium: 18px;
 $font-large: 24px;
 body,
 html {
@@ -49,6 +53,10 @@ body {
     background-color: var(--app-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.main {
+    background-color: var(--app-bg) !important;
 }
 
 .app-container {
@@ -521,11 +529,18 @@ body {
             background-color: #2ba972;
         }
     }
+    &.pending {
+        color: #ec861a;
+        background-color: rgba(200, 116, 27, 0.2);
+        &:before {
+            background-color: rgb(237, 176, 112);
+        }
+    }
     &.disabled {
-        color: #59719d;
+        color: #6780b0;
         background-color: rgba(89, 113, 157, 0.2);
         &:before {
-            background-color: #59719d;
+            background-color: #637dad;
         }
     }
 }
