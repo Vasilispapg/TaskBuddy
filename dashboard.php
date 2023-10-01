@@ -211,79 +211,79 @@ else{
                 mysqli_close($con);
                 ?>
 
-<div class="products-area-wrapper tableView" id='inbox' style='display:none'>
-                <div class="products-header">
-                    <div class="product-cell image">
-                    Post
-                    <button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button>
-                    </div>
-                    <div class="product-cell category">Description<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                    <div class="product-cell category">Category<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                    <div class="product-cell category">Location<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                    <div class="product-cell status-cell">Status<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                    <div class="product-cell price">Price<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                </div> 
-                <?php
-                // Assuming you have a database connection established
-                $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-                if (mysqli_connect_errno() || !$con) {
-                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                } else {
-                    // Fetch products data from the database (modify this query according to your database structure)
-                    $query = 'SELECT * FROM posts where user_id ='. $_SESSION["id"]-1 ;
-                    $queryImages = 'SELECT post_images.image_url FROM posts,post_images WHERE posts.user_id ='. $_SESSION["id"] . " AND posts.id = post_images.post_id" ;
-                    $result = mysqli_query($con, $query);
-                    $resultImages = mysqli_query($con, $queryImages);
-                    $rowImages=mysqli_fetch_assoc($resultImages);
-                    if(!$rowImages)
-                        $rowImages="assets/user_images/user_icon_df.png";
-                    else
-                        $rowImages=$rowImages['image_url'];
 
-                    // Check if there are any products in the database
-                    if (mysqli_num_rows($result) > 0) {
-                        // Loop through the products and generate rows
+                <div class="products-area-wrapper tableView" id='inbox' style='display:none'>
+                    <div class='spliter'>
+                        <div class="products-header">
+                            <div class="product-cell image">
+                                Messages
+                            </div>
+                        </div>
+                        <?php
+                        // Assuming you have a database connection established
+                        $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
+                        if (mysqli_connect_errno() || !$con) {
+                            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                        } else {
+                            // Fetch products data from the database (modify this query according to your database structure)
+                            $query = 'SELECT
+                            m.id AS message_id,
+                            m.sender_id as sender_id,
+                            m.receiver_id as receiver_id,
+                            m.message as message,
+                            m.created_at AS message_created_at,
+                            pim.id AS post_id_messages_id,
+                            pim.host_id,
+                            pim.post_id,
+                            pim.buddy_id,
+                            p.title AS post_title,
+                            p.description AS post_description,
+                            p.user_id AS post_user_id,
+                            m.created_at AS created_at,
+                            post_images.image_url AS image_url
+                        FROM
+                            messages AS m
+                        INNER JOIN
+                            post_id_messages AS pim ON m.sender_id = pim.host_id AND m.receiver_id = pim.buddy_id
+                        INNER JOIN
+                            posts AS p ON pim.post_id = p.id
+                        LEFT JOIN
+                            post_images ON p.id = post_images.post_id
+                        WHERE
+                            (pim.host_id = 29 AND pim.buddy_id = 28)
+                            OR
+                            (pim.host_id = 28 AND pim.buddy_id = 29)
+                        ORDER BY
+                            message_created_at ASC;
+                        ';
                         
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<div class="products-row">';
-                            echo '<div class="product-cell image"> <img src='.$rowImages.' alt="post"><span>' . ucfirst($row['title']) . '</span></div>'; 
-                            echo '<div class="product-cell category">' . ucfirst($row['description']) . '</div>';
-                            echo '<div class="product-cell category">' . ucfirst($row['category']) . '</div>';
-                            echo '<div class="product-cell category">' . ucfirst($row['location']) . '</div>';
-                            if(strcmp($row['status'],'active')==0) 
-                                echo '<div class="product-cell status-cell active"><div class="product status active ">' . ucfirst($row['status']) . '</div></div>';
-                            else if($row['status']==='disabled')
-                                echo '<div class="product-cell status-cell disabled"><div class="product status disabled ">' . ucfirst($row['status']) . '</div></div>';
-                            else if($row['status']==='pending')
-                                echo '<div class="product-cell status-cell disabled"><div class="product status pending ">' . ucfirst($row['status']) . '</div></div>';
-                            // echo '<div class="product-cell sales">' . $row['sales'] . '</div>';
-                            // echo '<div class="product-cell stock">' . $row['stock'] . '</div>';
-                            echo '<div class="product-cell price">€' . $row['price'] . '</div>';
-                            echo '</div>';
+                            $result = mysqli_query($con, $query);
+                            $row = mysqli_fetch_assoc($result);
+                            if (!$row['image_url'])
+                                $row['image_url'] = "assets/user_images/user_icon_df.png";
+
+                            // Check if there are any products in the database
+                            if (mysqli_num_rows($result) > 0) {
+                                // Loop through the products and generate rows
+                                
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    // Add a unique identifier (e.g., user ID) to each product-cell
+                                    echo '<div class="products-row chat active sender" id=sender' . $row['sender_id'] . ' senderID="' . $row['sender_id'] . '">';
+                                    echo '<div class="product-cell image"> <img src=' . $row['image_url'] . ' alt="post"><span class="user-name">' . ucfirst($row['message']) . '</span></div></div>';
+                                }
+                            }
                         }
+                        ?>
+                    </div>
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chat-messages"></div>
+                        <div class="chat-input">
+                            <input type="text" id="message-input" placeholder="Type your message">
+                            <button id="send-button">Send</button>
+                        </div>
 
-                        echo '</div>';
-                        
-                    } else {
-                        echo '<div style="color:white">No products found.</div>';
-                    }
-                }
-                // Close the database connection
-                mysqli_close($con);
-                ?>
-
+                    </div>
+                </div>
                 
 </div>
     </div>
@@ -311,7 +311,7 @@ else{
         </div>
     </footer>
 </body>
-
+<script src='scripts/chat.js'></script>
 <script>
     // Get references to sidebar buttons and content sections
     const dashboard = document.getElementById("Dashboard");
@@ -332,7 +332,7 @@ else{
     inboxButton.addEventListener("click", () => {
         // Hide all content sections
         dashboard.style.display = "none";
-        inbox.style.display = "block";
+        inbox.style.display = "flex";
 
         dashboardButton.classList.remove("active");
         inboxButton.classList.add("active");
