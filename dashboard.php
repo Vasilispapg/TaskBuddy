@@ -118,6 +118,7 @@ else{
                     <select>
                     <option>All Status</option>
                     <option>Active</option>
+                    <option>Pending</option>
                     <option>Disabled</option>
                     </select>
                     <div class="filter-menu-buttons">
@@ -212,9 +213,9 @@ else{
                 ?>
 
 
-                <div class="products-area-wrapper tableView" id='inbox' style='display:none'>
-                    <div class='spliter'>
-                        <div class="products-header">
+                <!-- <div class="products-area-wrapper tableView tablechat" id='inbox' style='display:none'> -->
+                    <!-- <div class='spliter'>
+                        <div class="products-header" style="width:30vh">
                             <div class="product-cell image">
                                 Messages
                             </div>
@@ -227,24 +228,31 @@ else{
                         } else {
                             // Fetch products data from the database (modify this query according to your database structure)
                             $query = 'SELECT
-                            m.id AS message_id,
-                            m.sender_id as sender_id,
-                            m.receiver_id as receiver_id,
-                            m.message as message,
-                            m.created_at AS message_created_at,
+                            m.msg_id ,
+                            m.incoming_msg_id ,
+                            m.outgoing_msg_id,
+                            m.msg ,
+                            m.created_at,
+
                             pim.id AS post_id_messages_id,
                             pim.host_id,
                             pim.post_id,
                             pim.buddy_id,
+
+                            u.status,
+
                             p.title AS post_title,
                             p.description AS post_description,
                             p.user_id AS post_user_id,
-                            m.created_at AS created_at,
+
+                           
                             post_images.image_url AS image_url
                         FROM
                             messages AS m
                         INNER JOIN
-                            post_id_messages AS pim ON m.sender_id = pim.host_id AND m.receiver_id = pim.buddy_id
+                            users AS u ON u.id=m.incoming_msg_id
+                        INNER JOIN
+                            post_id_messages AS pim ON m.incoming_msg_id = pim.host_id AND m.outgoing_msg_id = pim.buddy_id
                         INNER JOIN
                             posts AS p ON pim.post_id = p.id
                         LEFT JOIN
@@ -254,13 +262,16 @@ else{
                             OR
                             (pim.host_id = 28 AND pim.buddy_id = 29)
                         ORDER BY
-                            message_created_at ASC;
+                            created_at ASC;
                         ';
                         
                             $result = mysqli_query($con, $query);
                             $row = mysqli_fetch_assoc($result);
-                            if (!$row['image_url'])
-                                $row['image_url'] = "assets/user_images/user_icon_df.png";
+                            
+                            if(!$row['image_url'])
+                                $rowImages="assets/user_images/user_icon_df.png";
+                            else
+                                $rowImages=$row['image_url'];
 
                             // Check if there are any products in the database
                             if (mysqli_num_rows($result) > 0) {
@@ -268,13 +279,17 @@ else{
                                 
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     // Add a unique identifier (e.g., user ID) to each product-cell
-                                    echo '<div class="products-row chat active sender" id=sender' . $row['sender_id'] . ' senderID="' . $row['sender_id'] . '">';
-                                    echo '<div class="product-cell image"> <img src=' . $row['image_url'] . ' alt="post"><span class="user-name">' . ucfirst($row['message']) . '</span></div></div>';
+                                    echo '<div class="products-row chat active sender" id=sender' . $row['incoming_msg_id'] . ' senderID="' . $row['incoming_msg_id'] . '">';
+                                    echo '<div class="product-cell image"> <img src=' . $rowImages . ' alt="post"><span class="user-name">' . ucfirst($row['msg']) . '</span></div>';
+                                    if(strcmp($row['status'],'active')==0) 
+                                        echo '<div class="product-cell status-cell active"><div class="product status active ">  Active Now </div></div>';
+                                    else
+                                        echo '<div class="product-cell status-cell disabled"><div class="product status disabled "> Offline </div></div></div>';
                                 }
                             }
                         }
                         ?>
-                    </div>
+                    </div> -->
                     <div class="chat-container">
                         <div class="chat-messages" id="chat-messages"></div>
                         <div class="chat-input">
@@ -338,4 +353,6 @@ else{
         inboxButton.classList.add("active");
     });
 </script>
+
+<script src='scripts/chat2.js'></script>
 </html>

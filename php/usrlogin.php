@@ -44,6 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["bdate"] = $row['bdate']; 
             $_SESSION["isBuddy"] = $row['role'] == 'taskbuddy' ? true : false; 
             $_SESSION["wallet"] = $row['wallet'];
+            $_SESSION["status"] = 'Active Now';
+
+            //active user
+            $sql_active="UPDATE users set status='active' where id={$_SESSION['id']}";
+            $result_active = mysqli_query($con, $sql_active);
+            if ($result_active) {
+                echo "Error executing the query: " . mysqli_error($con);
+                mysqli_close($con);
+                header("location:../login.php");
+                exit();
+            }
 
             // Fetch user's skills
             $sql_skills = "SELECT skills.name FROM user_skills, skills WHERE user_skills.user_id={$row['id']} AND user_skills.skill_id=skills.id";
