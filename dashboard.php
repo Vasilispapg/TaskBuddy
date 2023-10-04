@@ -1,7 +1,7 @@
 <?php
 session_name('user');
 session_start();
-if (isset($_COOKIE["user"]) && !empty($_SESSION["fullname"])) {
+if (isset($_COOKIE["user"]) && !empty($_COOKIE["fullname"])) {
     // Look up the user by the identifier stored in the cookie
     $user_id = $_COOKIE["user"];
 }
@@ -20,32 +20,10 @@ else{
     <link rel="stylesheet" href="web_stuff/css/dashboard.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+
 </head>
 <body>
-<header class="header">
-
-    <menu class="menu">
-    <div class="logo"><a class="logo" href="index.php">TaskBuddy</a></div>
-    <ul class="nav-list">
-        <li><a href="#">Browse Tasks</a></li>
-        <?php
-        if (isset($_SESSION["username"])) {
-            // User is logged in, display their username and a link to their profile or dashboard
-            echo '<li><a href="profile.php">Welcome ' . $_SESSION["username"] . '</a></li>';
-            if($_SESSION['isBuddy'])
-                echo '<li><a href="dashboard.php">Dashboard</a></li>';
-            echo '<li><a href="php/logout.php">Logout</a></li>';
-
-        } else {
-            // User is not logged in, display the "Sign Up / Login" link
-            echo '<li><a href="login.php">Sign Up / Login</a></li>';
-            echo '<li><a class="actionbutton" href="#">Become a Buddy</a></li>';
-            }
-            ?>
-        </ul>
-    </menu>
-</header>
+<?php include_once('./header.php');?>
 
 <main class="main">
     <div class="app-container">
@@ -83,61 +61,61 @@ else{
             </ul>
             <div class="account-info">
             <div class="account-info-picture">
-                <img src="<?php if(isset($_SESSION['fullname'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
+                <img src="<?php if(isset($_COOKIE['fullname'])) echo ltrim($_COOKIE['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
             </div>
-            <div class="account-info-name"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['username']?></div>
+            <div class="account-info-name"><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['username']?></div>
 
         </div>
     </div>
         <div class="app-content">
-            <div class="app-content-header">
-            <h1 class="app-content-headerText">Dashboard</h1>
-            <button class="mode-switch" title="Switch Theme">
-                <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-                <defs></defs>
-                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                </svg>
-            </button>
-            <h1 class="app-content-headerButton style='font-size:18pt;display:inherit'">Wallet <?php echo $_SESSION['wallet'];?>€</h1>
+            <div class="app-content-header" >
+                <h1 class="app-content-headerText">Dashboard</h1>
+                <button class="mode-switch" title="Switch Theme">
+                    <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+                </button>
+                <h1 class="app-content-headerButton style='font-size:18pt;display:inherit'">Wallet <?php echo $_COOKIE['wallet'];?>€</h1>
             </div>
             <div class="app-content-actions">
-            <input class="search-bar" placeholder="Search..." type="text">
-            <div class="app-content-actions-wrapper">
-                <div class="filter-button-wrapper">
-                <button class="action-button filter jsFilter"><span>Filter</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
-                <div class="filter-menu">
-                    <label>Category</label>
-                    <select>
-                    <option>All Categories</option>
-                    <option>Furniture</option>                     
-                    <option>Decoration</option>
-                    <option>Kitchen</option>
-                    <option>Bathroom</option>
-                    </select>
-                    <label>Status</label>
-                    <select>
-                    <option>All Status</option>
-                    <option>Active</option>
-                    <option>Pending</option>
-                    <option>Disabled</option>
-                    </select>
-                    <div class="filter-menu-buttons">
-                    <button class="filter-button reset">
-                        Reset
-                    </button>
-                    <button class="filter-button apply">
-                        Apply
-                    </button>
+                <input class="search-bar" placeholder="Search..." type="text">
+                <div class="app-content-actions-wrapper">
+                    <div class="filter-button-wrapper">
+                    <button class="action-button filter jsFilter"><span>Filter</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
+                    <div class="filter-menu">
+                        <label>Category</label>
+                        <select>
+                        <option>All Categories</option>
+                        <option>Furniture</option>                     
+                        <option>Decoration</option>
+                        <option>Kitchen</option>
+                        <option>Bathroom</option>
+                        </select>
+                        <label>Status</label>
+                        <select>
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>Pending</option>
+                        <option>Disabled</option>
+                        </select>
+                        <div class="filter-menu-buttons">
+                        <button class="filter-button reset">
+                            Reset
+                        </button>
+                        <button class="filter-button apply">
+                            Apply
+                        </button>
+                        </div>
                     </div>
+                    </div>
+                    <button class="action-button list active" title="List View">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    </button>
+                    <button class="action-button grid" title="Grid View">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </button>
                 </div>
-                </div>
-                <button class="action-button list active" title="List View">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                </button>
-                <button class="action-button grid" title="Grid View">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                </button>
-            </div>
             </div>
             <div class="products-area-wrapper tableView" id='Dashboard'>
                 <div class="products-header">
@@ -164,195 +142,156 @@ else{
                     </button></div>
                 </div> 
                 <?php
-                // Assuming you have a database connection established
-                $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-                if (mysqli_connect_errno() || !$con) {
-                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                } else {
-                    // Fetch products data from the database (modify this query according to your database structure)
-                    $query = 'SELECT * FROM posts where user_id ='. $_SESSION["id"] ;
-                    $queryImages = 'SELECT post_images.image_url FROM posts,post_images WHERE posts.user_id ='. $_SESSION["id"] . " AND posts.id = post_images.post_id" ;
-                    $result = mysqli_query($con, $query);
-                    $resultImages = mysqli_query($con, $queryImages);
-                    $rowImages=mysqli_fetch_assoc($resultImages);
-                    if(!$rowImages)
-                        $rowImages="assets/user_images/user_icon_df.png";
-                    else
-                        $rowImages=$rowImages['image_url'];
-
-                    // Check if there are any products in the database
-                    if (mysqli_num_rows($result) > 0) {
-                        // Loop through the products and generate rows
-                        
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<div class="products-row">';
-                            echo '<div class="product-cell image"> <img src='.$rowImages.' alt="post"><span>' . ucfirst($row['title']) . '</span></div>'; 
-                            echo '<div class="product-cell category">' . ucfirst($row['description']) . '</div>';
-                            echo '<div class="product-cell category">' . ucfirst($row['category']) . '</div>';
-                            echo '<div class="product-cell category">' . ucfirst($row['location']) . '</div>';
-                            if(strcmp($row['status'],'active')==0) 
-                                echo '<div class="product-cell status-cell active"><div class="product status active ">' . ucfirst($row['status']) . '</div></div>';
-                            else if($row['status']==='disabled')
-                                echo '<div class="product-cell status-cell disabled"><div class="product status disabled ">' . ucfirst($row['status']) . '</div></div>';
-                            else if($row['status']==='pending')
-                                echo '<div class="product-cell status-cell disabled"><div class="product status pending ">' . ucfirst($row['status']) . '</div></div>';
-                            // echo '<div class="product-cell sales">' . $row['sales'] . '</div>';
-                            // echo '<div class="product-cell stock">' . $row['stock'] . '</div>';
-                            echo '<div class="product-cell price">€' . $row['price'] . '</div>';
-                            echo '</div>';
-                        }
-
-                        echo '</div>';
-                        
+                    // Assuming you have a database connection established
+                    $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
+                    if (mysqli_connect_errno() || !$con) {
+                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
                     } else {
-                        echo '<div style="color:white">No products found.</div>';
+                        // Fetch products data from the database (modify this query according to your database structure)
+                        $data = array();
+                        $query = 'SELECT * FROM posts where user_id ='. $_COOKIE["id"] ;
+                        $queryImages = 'SELECT post_images.image_url FROM posts,post_images WHERE posts.user_id ='. $_COOKIE["id"] . " AND posts.id = post_images.post_id" ;
+                        $result = mysqli_query($con, $query);
+                        $resultImages = mysqli_query($con, $queryImages);
+                        $rowImages=mysqli_fetch_assoc($resultImages);
+                        if(!$rowImages)
+                            $rowImages="assets/user_images/user_icon_df.png";
+                        else
+                            $rowImages=$rowImages['image_url'];
+
+                        // Check if there are any products in the database
+                        if (mysqli_num_rows($result) > 0) {
+                            // Loop through the products and generate rows
+                            
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $data[] = $row;
+                                echo '<div class="products-row">';
+                                echo '<div class="product-cell image"> <img src='.$rowImages.' alt="post"><span>' . ucfirst($row['title']) . '</span></div>'; 
+                                echo '<div class="product-cell category">' . ucfirst($row['description']) . '</div>';
+                                echo '<div class="product-cell category">' . ucfirst($row['category']) . '</div>';
+                                echo '<div class="product-cell category">' . ucfirst($row['location']) . '</div>';
+                                if(strcmp($row['status'],'active')==0) 
+                                    echo '<div class="product-cell status-cell active"><div class="product status active ">' . ucfirst($row['status']) . '</div></div>';
+                                else if($row['status']==='disabled')
+                                    echo '<div class="product-cell status-cell disabled"><div class="product status disabled ">' . ucfirst($row['status']) . '</div></div>';
+                                else if($row['status']==='pending')
+                                    echo '<div class="product-cell status-cell disabled"><div class="product status pending ">' . ucfirst($row['status']) . '</div></div>';
+                                // echo '<div class="product-cell sales">' . $row['sales'] . '</div>';
+                                // echo '<div class="product-cell stock">' . $row['stock'] . '</div>';
+                                echo '<div class="product-cell price">€' . $row['price'] . '</div>';
+                                echo '</div>';
+                            }    
+                            
+                            // Convert the PHP array to JSON
+                            $jsonData = json_encode($data);
+
+                            // Store the JSON data in a session variable
+                            $_COOKIE['json_data'] = $jsonData;
+
+                            echo '</div>';
+                            
+                        } else {
+                            echo '<div style="color:white">No products found.</div>';
+                        }
                     }
-                }
-                // Close the database connection
-                mysqli_close($con);
+                    // Close the database connection
+                    mysqli_close($con);
                 ?>
+           
+                <div class="products-area-wrapper tableView tablechat" id='inbox' style='display:none'>
 
-
-                <!-- <div class="products-area-wrapper tableView tablechat" id='inbox' style='display:none'> -->
-                    <!-- <div class='spliter'>
-                        <div class="products-header" style="width:30vh">
-                            <div class="product-cell image">
-                                Messages
-                            </div>
-                        </div>
-                        <?php
+                    <?php
                         // Assuming you have a database connection established
                         $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
                         if (mysqli_connect_errno() || !$con) {
                             echo "Failed to connect to MySQL: " . mysqli_connect_error();
                         } else {
-                            // Fetch products data from the database (modify this query according to your database structure)
-                            $query = 'SELECT
-                            m.msg_id ,
-                            m.incoming_msg_id ,
-                            m.outgoing_msg_id,
-                            m.msg ,
-                            m.created_at,
-
-                            pim.id AS post_id_messages_id,
-                            pim.host_id,
-                            pim.post_id,
-                            pim.buddy_id,
-
-                            u.status,
-
-                            p.title AS post_title,
-                            p.description AS post_description,
-                            p.user_id AS post_user_id,
-
-                           
-                            post_images.image_url AS image_url
-                        FROM
-                            messages AS m
-                        INNER JOIN
-                            users AS u ON u.id=m.incoming_msg_id
-                        INNER JOIN
-                            post_id_messages AS pim ON m.incoming_msg_id = pim.host_id AND m.outgoing_msg_id = pim.buddy_id
-                        INNER JOIN
-                            posts AS p ON pim.post_id = p.id
-                        LEFT JOIN
-                            post_images ON p.id = post_images.post_id
-                        WHERE
-                            (pim.host_id = 29 AND pim.buddy_id = 28)
-                            OR
-                            (pim.host_id = 28 AND pim.buddy_id = 29)
-                        ORDER BY
-                            created_at ASC;
-                        ';
-                        
-                            $result = mysqli_query($con, $query);
-                            $row = mysqli_fetch_assoc($result);
-                            
-                            if(!$row['image_url'])
-                                $rowImages="assets/user_images/user_icon_df.png";
-                            else
-                                $rowImages=$row['image_url'];
-
-                            // Check if there are any products in the database
-                            if (mysqli_num_rows($result) > 0) {
-                                // Loop through the products and generate rows
                                 
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    // Add a unique identifier (e.g., user ID) to each product-cell
-                                    echo '<div class="products-row chat active sender" id=sender' . $row['incoming_msg_id'] . ' senderID="' . $row['incoming_msg_id'] . '">';
-                                    echo '<div class="product-cell image"> <img src=' . $rowImages . ' alt="post"><span class="user-name">' . ucfirst($row['msg']) . '</span></div>';
-                                    if(strcmp($row['status'],'active')==0) 
-                                        echo '<div class="product-cell status-cell active"><div class="product status active ">  Active Now </div></div>';
-                                    else
-                                        echo '<div class="product-cell status-cell disabled"><div class="product status disabled "> Offline </div></div></div>';
+                                $sql = "SELECT DISTINCT pi.image_url AS image_url,
+                                m.msg AS message,
+                                m.created_at AS created_at,
+                                pim.post_id AS post_id,
+                                pim.host_id AS user_id
+                         FROM post_id_messages AS pim
+                         INNER JOIN posts AS p ON pim.post_id = p.id
+                         LEFT JOIN post_images AS pi ON p.id = pi.post_id
+                         LEFT JOIN messages AS m ON (
+                             (m.incoming_msg_id = pim.host_id AND m.outgoing_msg_id = pim.buddy_id)
+                             OR
+                             (m.incoming_msg_id = pim.buddy_id AND m.outgoing_msg_id = pim.host_id)
+                         )
+                         WHERE p.id = pi.post_id
+                           AND pim.buddy_id = ?
+                           AND m.created_at = (
+                               SELECT MAX(m2.created_at)
+                               FROM messages AS m2
+                               WHERE (
+                                   (m2.incoming_msg_id = pim.host_id AND m2.outgoing_msg_id = pim.buddy_id)
+                                   OR
+                                   (m2.incoming_msg_id = pim.buddy_id AND m2.outgoing_msg_id = pim.host_id)
+                               )
+                           )
+                         ORDER BY m.created_at ASC;
+                         
+                                ";
+
+                                // Create a prepared statement
+                            $stmt = $con->prepare($sql);
+
+                            if ($stmt) {
+                                // Bind the parameter (user ID from the cookie)
+                                $stmt->bind_param("i", $_COOKIE['id']);
+
+                                // Execute the statement
+                                $stmt->execute();
+
+                                // Get the result set
+                                $result = $stmt->get_result();
+                                                              
+
+                                // Check if there are any products in the database
+                                if (mysqli_num_rows($result) > 0) {
+                                    // Loop through the products and generate rows
+                                    $i=0;
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        if (!$row['image_url'])
+                                            $img_path = "assets/user_images/user_icon_df.png";
+                                        else
+                                            $img_path= $row['image_url'];  
+                           
+                                        // Add a unique identifier (e.g., user ID) to each product-cell
+                                        if($i==0)
+                                            echo '<div class="products-row active chat" id=senderUser user='.$row['user_id'].' post='.$row['post_id'].' </div>';
+                                        else
+                                            echo '<div class="products-row chat" id=senderUser user='.$row['user_id'].' post='.$row['post_id'].' </div>';
+                                        $i+=1;
+                                        echo '<div class="product-cell image"> <img src=' . $img_path . ' alt="post"><span class="user-name">' . ucfirst($row['message']) . '</span></div></div>';
+                                    }
                                 }
                             }
                         }
-                        ?>
-                    </div> -->
+                    ?>
                     <div class="chat-container">
                         <div class="chat-messages" id="chat-messages"></div>
                         <div class="chat-input">
                             <input type="text" id="message-input" placeholder="Type your message">
                             <button id="send-button">Send</button>
                         </div>
-
                     </div>
                 </div>
-                
-</div>
-    </div>
-
-</main>
-
-<footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">TaskBuddy</div>
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
             </div>
         </div>
-        <div class="footer-social">
-            <ul>
-                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-            </ul>
-        </div>
-    </footer>
+    </div>
+</main>
+
+    <?php include_once('./footer.php');?>
+
 </body>
+
 <script src='scripts/chat.js'></script>
-<script>
-    // Get references to sidebar buttons and content sections
-    const dashboard = document.getElementById("Dashboard");
-    const dashboardButton = document.getElementById("dashboardButton");
-    const inbox = document.getElementById("inbox");
-    const inboxButton = document.getElementById("inboxButton");
+<script src='scripts/dashboardChange.js'></script>
+<script src='scripts/dashboard.js'></script>
 
-    // Add click event listeners to sidebar buttons
-    dashboardButton.addEventListener("click", () => {
-        // Hide all content sections
-        dashboard.style.display = "block";
-        inbox.style.display = "none";
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->
 
-        inboxButton.classList.remove("active");
-        dashboardButton.classList.add("active");
-    });
-
-    inboxButton.addEventListener("click", () => {
-        // Hide all content sections
-        dashboard.style.display = "none";
-        inbox.style.display = "flex";
-
-        dashboardButton.classList.remove("active");
-        inboxButton.classList.add("active");
-    });
-</script>
-
-<script src='scripts/chat2.js'></script>
 </html>

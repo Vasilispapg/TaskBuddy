@@ -69,7 +69,8 @@ div.chat-input {
   float: right;
 }
 
-div.active {
+#inbox .active {
+  box-shadow: var(--filter-shadow);
   background-color: var(--app-content-secondary-color);
 }
 

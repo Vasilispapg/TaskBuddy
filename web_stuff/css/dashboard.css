@@ -439,6 +439,8 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 6px;
+  -o-object-fit: cover;
+     object-fit: cover;
   margin-right: 6px;
 }
 @media screen and (max-width: 780px) {
@@ -824,6 +826,11 @@ div.chat-input {
   float: right;
 }
 
-.products-row .active {
-  background-color: --app-content-secondary-color;
+#inbox .active {
+  box-shadow: var(--filter-shadow);
+  background-color: var(--app-content-secondary-color);
+}
+
+.sender {
+  cursor: pointer;
 }/*# sourceMappingURL=dashboard.css.map */
