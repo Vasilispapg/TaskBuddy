@@ -4,13 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const messageInput = document.getElementById("message-input");
     const sendButton = document.getElementById("send-button");
 
-    // const senders = document.querySelectorAll('[id^=sender]')
-    // senders.map((sender) => {
-    // if(sender.getAttribute('senderID') == ){
-
-
-
-
+    const userID = document.getElementById("profile").getAttribute("pass");
     // Function to display a message
     function displayMessage(message, sender) {
         const messageDiv = document.createElement("div");
@@ -21,21 +15,21 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Function to send a message to the server
-    function sendMessage(receiverId) {
+    function sendMessage(userID) {
         const message = messageInput.value.trim();
         if (message !== "") {
             // Send the message to the server (you need to implement this part)
             // For now, just display the sent message on the client-side
 
             // Check if there's an active chat window for the receiver
-            if (chatWindows[receiverId]) {
+            if (chatWindows[userID]) {
                 displayMessage(message, "You");
                 // Send the message to the server with receiverId
                 // Update chatWindows[receiverId] with the received response
                 // Example: chatWindows[receiverId].push({ sender: "You", message: message });
             } else {
                 // Create a new chat window
-                chatWindows[receiverId] = [];
+                chatWindows[userID] = [];
                 displayMessage(message, "You");
                 // Send the message to the server with receiverId
                 // Update chatWindows[receiverId] with the received response
@@ -50,8 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     sendButton.addEventListener("click", function() {
         const activeCell = document.querySelector(".product-cell.active");
         if (activeCell) {
-            const receiverId = activeCell.closest(".chat").getAttribute("data-user-id");
-            sendMessage(receiverId);
+            sendMessage(userID);
         }
     });
 
@@ -60,21 +53,20 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.key === "Enter") {
             const activeCell = document.querySelector(".product-cell.active");
             if (activeCell) {
-                const receiverId = activeCell.closest(".chat").getAttribute("data-user-id");
-                sendMessage(receiverId);
+                sendMessage(userID);
             }
         }
     });
 
-    function retrieveMessages(receiverId) {
+    function retrieveMessages(receiverId, postID) {
         // Make an AJAX request to retrieve chat messages
-        fetch(`../php/get_message.php?sender_id=${senderID}&receiver_id=${receiverId}`)
+        fetch(`php/getMessages.php?receiverID=${receiverId}&postID=${postID}`)
             .then(response => response.json())
             .then(data => {
                 // Display the retrieved messages
                 chatMessages.innerHTML = ""; // Clear previous messages
                 data.forEach(messageObj => {
-                    displayMessage(messageObj.message, messageObj.sender);
+                    displayMessage(messageObj.msg, messageObj.sender_username);
                 });
             })
             .catch(error => {
@@ -83,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Add a click event listener to product-cells
-    const productCells = document.querySelectorAll(".product-cell");
+    const productCells = document.querySelectorAll(".products-row.chat");
     productCells.forEach((cell) => {
         cell.addEventListener("click", function() {
             // Remove the "active" class from all product-cells
@@ -94,30 +86,31 @@ document.addEventListener("DOMContentLoaded", function() {
             // Add the "active" class to the clicked product-cell
             cell.classList.add("active");
 
-            // Get the user ID (unique identifier) from the clicked product-cell
-            const userId = cell.closest(".chat").getAttribute("data-user-id");
-
             // Retrieve and display chat messages for the selected user
-            retrieveMessages(userId);
+            senderUserID = cell.getAttribute("user");
+            postID = cell.getAttribute("post");
+            retrieveMessages(senderUserID, postID);
         });
     });
 
     // Retrieve and display chat messages for the initially active user (if any)
-    const initiallyActiveCell = document.querySelector(".product-cell.active");
+    const initiallyActiveCell = document.querySelector("#inbox .active");
     if (initiallyActiveCell) {
         const userId = initiallyActiveCell.closest(".chat");
         if (userId) {
-            const receiverId = userId.getAttribute("data-user-id");
-            retrieveMessages(receiverId);
+            senderUserID = document.querySelector('#senderUser').getAttribute("user");
+            postID = document.querySelector('#senderUser').getAttribute("post");
+            retrieveMessages(senderUserID, postID);
         }
     }
 
     // Poll for new messages at regular intervals (e.g., every 5 seconds)
     setInterval(() => {
-        const activeCell = document.querySelector(".product-cell.active");
+        const activeCell = document.querySelector("#inbox .active");
         if (activeCell) {
-            const receiverId = activeCell.closest(".chat").getAttribute("data-user-id");
-            retrieveMessages(receiverId);
+            senderUserID = activeCell.getAttribute("user");
+            postID = activeCell.getAttribute("post");
+            retrieveMessages(senderUserID, postID);
         }
     }, 5000); // Adjust the interval as needed
 });
