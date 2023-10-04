@@ -66,7 +66,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Display the retrieved messages
                 chatMessages.innerHTML = ""; // Clear previous messages
                 data.forEach(messageObj => {
-                    displayMessage(messageObj.msg, messageObj.sender_username);
+                    if (messageObj.sender_id === userID) {
+                        displayMessage(messageObj.msg, messageObj.sender_username);
+                    } else {
+                        displayMessage(messageObj.msg, messageObj.receiver_username);
+                    }
                 });
             })
             .catch(error => {
