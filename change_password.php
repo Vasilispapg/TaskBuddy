@@ -1,7 +1,7 @@
 <?php
 session_name('user');
 session_start();
-if (isset($_COOKIE["user"]) && !empty($_SESSION["fullname"])) {
+if (isset($_COOKIE["user"]) && !empty($_COOKIE["fullname"])) {
     // Look up the user by the identifier stored in the cookie
     $user_id = $_COOKIE["user"];
 }
@@ -21,36 +21,15 @@ else{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
 </head>
 <body>
-    <header class="header">
+    <?php include_once('./header.php');?>
 
-    <menu class="menu">
-        <div class="logo"><a class="logo" href="index.php">TaskBuddy</a></div>
-        <ul class="nav-list">
-            <li><a href="#">Browse Tasks</a></li>
-            <?php
-            if (isset($_SESSION["username"])) {
-                // User is logged in, display their username and a link to their profile or dashboard
-                echo '<li><a href="profile.php">Welcome ' . $_SESSION["username"] . '</a></li>';
-                if($_SESSION['isBuddy'])
-                    echo '<li><a href="dashboard.php">Dashboard</a></li>';
-                echo '<li><a href="php/logout.php">Logout</a></li>';
-
-            } else {
-                // User is not logged in, display the "Sign Up / Login" link
-                echo '<li><a href="login.php">Sign Up / Login</a></li>';
-                echo '<li><a class="actionbutton" href="#">Become a Buddy</a></li>';
-            }
-            ?>
-        </ul>
-    </menu>
-    </header>
     <div class="container">
         <div class="main-body">
             <!-- Breadcrumb -->
             <nav aria-label="breadcrumb" class="main-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['username'];?></a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)"><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['username'];?></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Change Password</li>
                 </ol>
             </nav>
@@ -62,14 +41,14 @@ else{
                         <div class="d-flex flex-column align-items-center text-center ">
                             <div class="profile-content">
                                 <div class="profile-pic">
-                                    <img src="<?php if(isset($_SESSION['fullname'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
+                                    <img src="<?php if(isset($_COOKIE['fullname'])) echo ltrim($_COOKIE['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
                                 </div>
                             </div>
                                                             
                         <div class="mt-3">
-                            <h4><?php if(isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?></h4>
-                            <p class="text-secondary mb-1"><?php if(isset($_SESSION['job'])) {echo $_SESSION['job'];}?></p>
-                            <p class="text-muted font-size-sm"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['location'];?></p>
+                            <h4><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['fullname'];?></h4>
+                            <p class="text-secondary mb-1"><?php if(isset($_COOKIE['job'])) {echo $_COOKIE['job'];}?></p>
+                            <p class="text-muted font-size-sm"><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['location'];?></p>
                             </div>
                         </div>
                         </div>
@@ -146,26 +125,9 @@ else{
                 </form>
             </div>
             </div>
-        </div><footer class="footer">
-            <div class="footer-content">
-                <div class="footer-logo">TaskBuddy</div>
-                <div class="footer-links">
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-social">
-            <ul>
-                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-            </ul>
         </div>
-    </footer>
+        <?php include_once('./footer.php');?>
+
 </body>
 <script src='scripts/passwordSame.js'></script>
 

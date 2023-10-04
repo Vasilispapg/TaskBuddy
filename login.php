@@ -20,16 +20,8 @@ if (isset($_COOKIE["user"])) {
 <body>
         <!-- edw kane na ginei logout ama jana erthei edw -->
 
-    <header class="header">
-        <menu class="menu">
-            <div class="logo"><a class="logo" href="index.php">TaskBuddy</a></div>
-            <ul class="nav-list">
-                <li><a href="#">Browse Tasks</a></li>
-                <li><a href="login.php">Sign Up / Login</a></li>
-                <li><a class='actionbutton' href="#">Become a Buddy</a></li>
-            </ul>
-        </menu>
-    </header>
+    <?php include_once('./header.php');?>
+
     <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
     <div class="card card0 border-0">
         <div class="row d-flex">
@@ -93,26 +85,8 @@ if (isset($_COOKIE["user"])) {
         </div>
     </div>
     </div>
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">TaskBuddy</div>
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-social">
-            <ul style='display:flex;flex-direction:row;justify-content:center'>
-                <div class="facebook text-center mr-3"><a class="fa fa-facebook"></a></div>
-                <div class="twitter text-center mr-3"><a class="fa fa-twitter"></a></div>
-                <div class="linkedin text-center mr-3"><a class="fa fa-linkedin"></a></div>
-            </ul>
-        </div>
-    </footer>
+    <?php include_once('./footer.php');?>
+
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <?php
 session_name('user');
 session_start();
-if (isset($_COOKIE["user"]) && !empty($_SESSION["fullname"])) {
+if (isset($_COOKIE["user"]) && !empty($_COOKIE["fullname"])) {
     // Look up the user by the identifier stored in the cookie
     $user_id = $_COOKIE["user"];
 }
@@ -29,29 +29,8 @@ else{
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <header class="header">
+  <?php include_once('./header.php');?>
 
-  <menu class="menu">
-      <div class="logo"><a class="logo" href="index.php">TaskBuddy</a></div>
-      <ul class="nav-list">
-          <li><a href="#">Browse Tasks</a></li>
-          <?php
-          if (isset($_SESSION["username"])) {
-              // User is logged in, display their username and a link to their profile or dashboard
-              echo '<li><a href="profile.php">Welcome ' . $_SESSION["username"] . '</a></li>';
-              if($_SESSION['isBuddy'])
-                  echo '<li><a href="dashboard.php">Dashboard</a></li>';
-              echo '<li><a href="php/logout.php">Logout</a></li>';
-
-          } else {
-              // User is not logged in, display the "Sign Up / Login" link
-              echo '<li><a href="login.php">Sign Up / Login</a></li>';
-              echo '<li><a class="actionbutton" href="#">Become a Buddy</a></li>';
-          }
-          ?>
-      </ul>
-  </menu>
-  </header>
   <div class="container">
       <div class="main-body">
       
@@ -59,7 +38,7 @@ else{
             <nav aria-label="breadcrumb" class="main-breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['username'];?></a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)"><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['username'];?></a></li>
                 <li class="breadcrumb-item active" aria-current="page">Profile</li>
               </ol>
             </nav>
@@ -77,13 +56,13 @@ else{
                     <div class="d-flex flex-column align-items-center text-center ">
                     <div class="profile-content">
                         <div class="profile-pic">
-                            <img src="<?php if(isset($_SESSION['fullname'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
+                            <img src="<?php if(isset($_COOKIE['fullname'])) echo ltrim($_COOKIE['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
                         </div>
                     </div>
                       <div class="mt-3">
-                        <h4><?php if(isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?></h4>
-                        <p class="text-secondary mb-1"><?php if(isset($_SESSION['job'])) {echo $_SESSION['job'];}?></p>
-                        <p class="text-muted font-size-sm"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['location'];?></p>
+                        <h4><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['fullname'];?></h4>
+                        <p class="text-secondary mb-1"><?php if(isset($_COOKIE['job'])) {echo $_COOKIE['job'];}?></p>
+                        <p class="text-muted font-size-sm"><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['location'];?></p>
                       </div>
                     </div>
                   </div>
@@ -121,7 +100,7 @@ else{
                         <h6 class="mb-0">Email</h6>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                      <?php if(isset($_SESSION['fullname'])) echo $_SESSION['email'];?>
+                      <?php if(isset($_COOKIE['email'])) echo $_COOKIE['email'];?>
                       </div>
                     </div>
                     <hr>
@@ -130,7 +109,7 @@ else{
                         <h6 class="mb-0">Phone</h6>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                      <?php if(isset($_SESSION['fullname'])) echo $_SESSION['phone'];?>
+                      <?php if(isset($_COOKIE['phone'])) echo $_COOKIE['phone'];?>
                       </div>
                     </div>
                     <hr>
@@ -139,7 +118,7 @@ else{
                         <h6 class="mb-0">Birth Date</h6>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                      <?php if(isset($_SESSION['fullname'])) echo $_SESSION['bdate'];?>
+                      <?php if(isset($_COOKIE['bdate'])) echo $_COOKIE['bdate'];?>
                       </div>
                     </div>
                     <hr>
@@ -148,11 +127,10 @@ else{
                         <h6 class="mb-0">About</h6>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                      <?php if(isset($_SESSION['fullname'])) echo $_SESSION['about'];?>
+                      <?php if(isset($_COOKIE['about'])) echo $_COOKIE['about'];?>
                       </div>
                     </div>
                     <hr>
-                    
                     <div class="row">
                       <div class="col-sm-2">
                         <a class="btn btn-info " target="__blank" href="profile_edit.php">Edit</a>
@@ -169,68 +147,12 @@ else{
 
           </div>
       </div>
-    
-      <!-- Modal HTML -->
-      <a href="#myModalTrue" class="trigger-btn" data-toggle="modal"  disabled id='modalToggleTrue'></a>
-      <a href="#myModalFalse" class="trigger-btn" data-toggle="modal"  disabled id='modalToggleFalse'></a>
-      <div id="myModalTrue" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <div class="icon-box">
-                <i class="material-icons">&#xE876;</i>
-              </div>				
-              <h4 class="modal-title w-100">Τέλεια!</h4>	
-            </div>
-            <div class="modal-body">
-              <p class="text-center">Τα στοιχεία σου άλλαξανε επιτυχώς.</p>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
-            </div>
-          </div>
-        </div>
-      </div>     
-      <div id="myModalFalse" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <div class="icon-box" style='background-color:#f44336'>
-                <i class="material-icons">close</i>
-              </div>				
-              <h4 class="modal-title w-100">Κρίμα!</h4>	
-            </div>
-            <div class="modal-body">
-              <p class="text-center">Τα στοιχεία σου δεν αλλάξανε.</p>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-success btn-block" data-dismiss="modal" style='background-color:#f44336'>OK</button>
-            </div>
-          </div>
-        </div>
-      </div>     
 
+    <?php 
+      include_once('./modal.php');
+      include_once('./footer.php');
+    ?>
 
-  <footer class="footer">
-      <div class="footer-content">
-          <div class="footer-logo">TaskBuddy</div>
-          <div class="footer-links">
-              <ul>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Contact</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Terms of Service</a></li>
-              </ul>
-          </div>
-      </div>
-      <div class="footer-social">
-          <ul>
-              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          </ul>
-      </div>
-  </footer>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

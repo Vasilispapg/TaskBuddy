@@ -18,7 +18,7 @@ if ($justRegistered) {
           </script>';
     
     // Reset the session flag
-    $_SESSION['justRegistered'] = false;
+    $_COOKIE['justRegistered'] = false;
 }
 ?>
 
@@ -30,34 +30,12 @@ if ($justRegistered) {
     <link rel="stylesheet" href="web_stuff/css/index.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
     <title>TaskBuddy</title>
 </head>
 
 <body>
-<header class="header">
+<?php include_once('./header.php');?>
 
-<menu class="menu">
-    <div class="logo"><a class="logo" href="index.php">TaskBuddy</a></div>
-    <ul class="nav-list">
-        <li><a href="#">Browse Tasks</a></li>
-        <?php
-        if (isset($_SESSION["username"])) {
-            // User is logged in, display their username and a link to their profile or dashboard
-            echo '<li><a href="profile.php">Welcome ' . $_SESSION["username"] . '</a></li>';
-            if($_SESSION['isBuddy'])
-                echo '<li><a href="dashboard.php">Dashboard</a></li>';
-            echo '<li><a href="php/logout.php">Logout</a></li>';
-
-        } else {
-            // User is not logged in, display the "Sign Up / Login" link
-            echo '<li><a href="login.php">Sign Up / Login</a></li>';
-            echo '<li><a class="actionbutton" href="#">Become a Buddy</a></li>';
-            }
-            ?>
-        </ul>
-    </menu>
-</header>
     <main>
         <section class="search-field">
             <img src="assets/work3.jpg" alt="">
@@ -390,26 +368,8 @@ if ($justRegistered) {
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">TaskBuddy</div>
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-social">
-            <ul>
-                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-            </ul>
-        </div>
-    </footer>
+    <?php include_once('./footer.php');?>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
