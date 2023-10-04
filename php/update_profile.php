@@ -18,25 +18,27 @@ $checkSql = "SELECT id FROM users WHERE username = '$username' OR phone = '$phon
 
 $result = mysqli_query($con, $checkSql);
 $row = mysqli_fetch_assoc($result);
-if (mysqli_num_rows($result) > 0 and $row['id'] != $_SESSION['id']) {
+if (mysqli_num_rows($result) > 0 and $row['id'] != $_COOKIE['id']) {
     // A user with the same username, phone, or email already exists
     echo "Error: Another user with the same username, phone, or email already exists.";
     header('location:../profile.php?changed=false');
 } else {
     $sql = "UPDATE users SET email='$email', phone='$phone', job='$job', about='$about',
-        fullname='$fullname', username='$username', location='$location' WHERE id='{$_SESSION['id']}'";
+        fullname='$fullname', username='$username', location='$location' WHERE id='{$_COOKIE['id']}'";
 
     if (mysqli_query($con, $sql)) {
+        
+        $expire = time() + 86400 * 30; // 30 days
         echo "Record updated successfully";
         // Update session variables with the updated data
-        $_SESSION["location"] = $location;
-        $_SESSION["fullname"] = $fullname;
-        $_SESSION["username"] = $username;
-        $_SESSION["about"] = $about;
-        $_SESSION["email"] = $email;
-        $_SESSION["phone"] = $phone;
-        $_SESSION["job"] = $job;
+        setcookie("location", $_POST["location"], $expire, "/");
+        setcookie("fullname", $_POST["fullname"], $expire, "/");
+        setcookie("about", $_POST["about"], $expire, "/");
+        setcookie("email", $_POST["email"], $expire, "/");
+        setcookie("phone", $_POST["phone"], $expire, "/");
+        setcookie("job", $_POST["job"], $expire, "/");
         header('location:../profile.php?changed=true');
+
 
     } else {
         echo "Error updating record: " . mysqli_error($con);

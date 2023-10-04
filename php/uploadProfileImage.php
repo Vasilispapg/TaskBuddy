@@ -2,7 +2,7 @@
 session_name('user');
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_COOKIE['username'])) {
     // Redirect to login page or handle unauthorized access
     header("location:../login.php");
     exit();
@@ -38,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $targetFilePath = $uploadDirectory . $uploadedFileName;
 
-        $_SESSION['image_path'] = $targetFilePath;
+        $expire = time() + 86400 * 30; // 30 days
+        setcookie("image_path", $targetFilePath, $expire, "/");
 
         // Move the uploaded file to the desired directory
         if (move_uploaded_file($_FILES['new_image']['tmp_name'], $targetFilePath)) {
