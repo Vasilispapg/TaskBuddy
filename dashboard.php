@@ -1,9 +1,9 @@
 <?php
 session_name('user');
 session_start();
-if (isset($_SESSION["user"]) && !empty($_SESSION["fullname"])) {
+if (isset($_COOKIE["user"]) && !empty($_SESSION["fullname"])) {
     // Look up the user by the identifier stored in the session
-    $user_id = $_SESSION["user"];
+    $user_id = $_COOKIE["user"];
 }
 else{
     header("location: login.php");
@@ -61,9 +61,9 @@ else{
             </ul>
             <div class="account-info">
             <div class="account-info-picture">
-                <img src="<?php if(isset($_SESSION['fullname'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
+                <img src="<?php if(isset($_SESSION['image_path'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
             </div>
-            <div class="account-info-name"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['username']?></div>
+            <div class="account-info-name" id='username'><?php if(isset($_SESSION['username'])) echo $_SESSION['username']?></div>
 
         </div>
     </div>
@@ -199,7 +199,9 @@ else{
                 ?>
            
                 <div class="products-area-wrapper tableView tablechat" id='inbox' style='display:none'>
+                    <div class="spliter">
 
+                   
                     <?php
                         // Assuming you have a database connection established
                         $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
@@ -211,8 +213,10 @@ else{
                                 m.msg AS message,
                                 m.created_at AS created_at,
                                 pim.post_id AS post_id,
-                                pim.host_id AS user_id
+                                pim.host_id AS user_id,
+                                u.username AS host_username
                          FROM post_id_messages AS pim
+                         INNER JOIN users as u on u.id=pim.host_id
                          INNER JOIN posts AS p ON pim.post_id = p.id
                          LEFT JOIN post_images AS pi ON p.id = pi.post_id
                          LEFT JOIN messages AS m ON (
@@ -254,7 +258,7 @@ else{
                                     // Loop through the products and generate rows
                                     $i=0;
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        if (!$row['image_url'])
+                                        if (empty($row['image_url']))
                                             $img_path = "assets/user_images/user_icon_df.png";
                                         else
                                             $img_path= $row['image_url'];  
@@ -264,6 +268,7 @@ else{
                                             echo '<div class="products-row active chat" id=senderUser user='.$row['user_id'].' post='.$row['post_id'].' </div>';
                                         else
                                             echo '<div class="products-row chat" id=senderUser user='.$row['user_id'].' post='.$row['post_id'].' </div>';
+                                        echo '<h5>'.ucfirst($row['host_username']).'</h5>';
                                         $i+=1;
                                         echo '<div class="product-cell image"> <img src=' . $img_path . ' alt="post"><span class="user-name">' . ucfirst($row['message']) . '</span></div></div>';
                                     }
@@ -271,6 +276,7 @@ else{
                             }
                         }
                     ?>
+                    </div>
                     <div class="chat-container">
                         <div class="chat-messages" id="chat-messages"></div>
                         <div class="chat-input">
@@ -278,6 +284,7 @@ else{
                             <button id="send-button">Send</button>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

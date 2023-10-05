@@ -812,6 +812,15 @@ body {
   flex-grow: 1;
 }
 
+.spliter {
+  display: flex;
+  color: rgb(214, 214, 214);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: space-between;
+  align-items: stretch;
+}
+
 div.chat-input {
   position: absolute;
   left: 0;
@@ -829,6 +838,10 @@ div.chat-input {
 #inbox .active {
   box-shadow: var(--filter-shadow);
   background-color: var(--app-content-secondary-color);
+}
+
+.product-row.chat {
+  height: 5em;
 }
 
 .sender {
