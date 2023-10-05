@@ -1,9 +1,9 @@
 <?php
 session_name('user');
 session_start();
-if (isset($_SESSION["user"]) && !empty($_SESSION["fullname"])) {
+if (isset($_COOKIE["user"]) && !empty($_SESSION["fullname"])) {
     // Look up the user by the identifier stored in the session
-    $user_id = $_SESSION["user"];
+    $user_id = $_COOKIE["user"];
 }
 else{
     header("location: login.php");
