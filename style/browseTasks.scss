@@ -1,0 +1,29 @@
+@import './components/header.scss';
+@import './components/taskCard.scss';
+@import './components/footer.scss';
+.taskCard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(34em, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
+    width: 70%;
+    left: 15%;
+    position: relative;
+}
+
+.taskCard .container {
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: left;
+    /* Add any other styling for the task card here */
+}
+
+@media screen and (max-width: 768px) {
+    .taskCard {
+        width: 100%;
+        left: 0;
+        grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    }
+}

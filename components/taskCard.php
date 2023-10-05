@@ -28,7 +28,7 @@
 
                 </div>
                 <div class="card-footer" style="background: inherit; border-color: inherit;">
-                  <a href="<?php echo $row['user_id']?>" class="btn btn-primary">Message</a>
+                  <a href="<?php echo '../taskbuddynw/dashboard.php?receiverID='.$row['user_id'].'&postID='.$row['id']?>" class="btn btn-primary">Message</a>
                   <a href="<?php echo $row['id']?>" class="btn btn-outline-primary">Read More</a>
                 </div>
               </div>

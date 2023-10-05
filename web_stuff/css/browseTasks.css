@@ -1,0 +1,206 @@
+/* Header styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif !important;
+  background-color: #ffffff;
+  /* White background for the body */
+  overflow-x: hidden;
+}
+
+.menu,
+.navbar-brand {
+  background-color: #064ba0;
+  /* Dark blue header background */
+  color: #ffffff;
+  /* White text color */
+  padding: 20px 17em !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  line-height: 1.5;
+}
+
+.menu ul,
+footer ul {
+  margin-bottom: 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.logo a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  z-index: 2;
+}
+.logo a:hover {
+  text-decoration: none;
+  color: rgba(240, 240, 240, 0.8117647059);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+}
+
+.nav-list li {
+  margin-right: 3em;
+}
+
+.nav-list a {
+  text-decoration: none !important;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+a.actionbutton {
+  padding: 1em;
+  transition: 0.25s;
+  background-color: #064ba0;
+  border: 1px solid white;
+  color: white;
+  border-radius: 0.5em;
+}
+
+a.actionbutton:hover {
+  border: 1px solid #064ba0;
+  background-color: white;
+  color: #064ba0;
+}
+
+.card-custom {
+  overflow: hidden;
+  min-height: 450px;
+  box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+}
+
+.card-custom-img {
+  height: 200px;
+  min-height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-color: inherit;
+}
+
+/* First border-left-width setting is a fallback */
+.card-custom-img::after {
+  position: absolute;
+  content: "";
+  top: 161px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-top-width: 40px;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  border-left-width: 545px;
+  border-left-width: calc(575px - 5vw);
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: inherit;
+}
+
+.card-custom-avatar img {
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+  position: absolute;
+  top: 100px;
+  left: 1.25rem;
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Style for the footer section */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+.footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer .footer-content .footer-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+.footer .footer-content .footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+.footer .footer-content .footer-links ul li {
+  display: inline;
+  margin-right: 20px;
+}
+.footer .footer-content .footer-links ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+.footer .footer-content .footer-links ul li a:hover {
+  text-decoration: underline;
+}
+.footer .footer-social ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+.footer .footer-social ul li {
+  display: inline;
+  margin-right: 10px;
+}
+.footer .footer-social ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+.footer .footer-social ul li a:hover {
+  color: #007bff;
+  /* Change to your desired hover color */
+}
+
+.taskCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(34em, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+  width: 70%;
+  left: 15%;
+  position: relative;
+}
+
+.taskCard .container {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: left;
+  /* Add any other styling for the task card here */
+}
+
+@media screen and (max-width: 768px) {
+  .taskCard {
+    width: 100%;
+    left: 0;
+    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+  }
+}/*# sourceMappingURL=browseTasks.css.map */
