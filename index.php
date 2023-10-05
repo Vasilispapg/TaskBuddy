@@ -34,7 +34,7 @@ if ($justRegistered) {
 </head>
 
 <body>
-<?php include_once('./header.php');?>
+<?php include_once('./components/header.php');?>
 
     <main>
         <section class="search-field">
@@ -347,28 +347,8 @@ if ($justRegistered) {
 
 
     </main>
-    <!-- Modal -->
-    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="messageModalLabel">Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Display your message here -->
-                    <p>Your registration was successful.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <?php include_once('./footer.php');?>
+    <?php include_once('./components/footer.php');?>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

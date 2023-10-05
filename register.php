@@ -13,7 +13,7 @@
 </head>
 <body>
     <!-- edw kane na ginei logout ama jana erthei edw -->
-    <?php include_once('./header.php');?>
+    <?php include_once('./components/header.php');?>
 
     <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto" >
         <div class="card card0 border-0">
@@ -113,7 +113,7 @@
             </div>
         </div>
     </div>
-    <?php include_once('./footer.php');?>
+    <?php include_once('./components/footer.php');?>
 </body>
 <script src='scripts/locations.js'></script>
 <script src='scripts/checker.js'></script>

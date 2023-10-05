@@ -1,6 +1,6 @@
 /* Reset some default styles */
 
-@import './header.scss';
+@import './components/header.scss';
 .search-field {
     text-align: center;
     margin: 0 auto;
@@ -100,7 +100,7 @@ button[type="submit"]:hover {
     }
 }
 
-@import './card.scss';
-@import './taskers.scss';
+@import './components/card.scss';
+@import './components/taskers.scss';
 // taskers
-@import './footer.scss';
+@import './components/footer.scss';

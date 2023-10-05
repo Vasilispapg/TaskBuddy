@@ -1,4 +1,4 @@
-@import './header.scss';
+@import './components/header.scss';
 * {
     margin: 0;
     padding: 0;
@@ -204,6 +204,6 @@ body {
     color: red;
 }
 
-@import './buddyButton.scss';
-@import './footer.scss';
-@import './select.scss';
+@import './components/buddyButton.scss';
+@import './components/footer.scss';
+@import './components/select.scss';

@@ -21,7 +21,7 @@ else{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
 </head>
 <body>
-    <?php include_once('./header.php');?>
+    <?php include_once('./components/header.php');?>
 
     <div class="container">
             <div class="main-body">
@@ -168,7 +168,7 @@ else{
                 </div>
             </div>
         </div>
-    <?php include_once('./footer.php');?>
+    <?php include_once('./components/footer.php');?>
 
 </body>
 

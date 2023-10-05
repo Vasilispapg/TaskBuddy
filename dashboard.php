@@ -23,7 +23,7 @@ else{
 
 </head>
 <body>
-<?php include_once('./header.php');?>
+<?php include_once('./components/header.php');?>
 
 <main class="main">
     <div class="app-container">
@@ -78,7 +78,7 @@ else{
                 </button>
                 <h1 class="app-content-headerButton style='font-size:18pt;display:inherit'">Wallet <?php echo $_SESSION['wallet'];?>€</h1>
             </div>
-            <div class="app-content-actions">
+            <!-- <div class="app-content-actions">
                 <input class="search-bar" placeholder="Search..." type="text">
                 <div class="app-content-actions-wrapper">
                     <div class="filter-button-wrapper">
@@ -116,7 +116,7 @@ else{
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                     </button>
                 </div>
-            </div>
+            </div> -->
             <div class="products-area-wrapper tableView" id='Dashboard'>
                 <div class="products-header">
                     <div class="product-cell image">
@@ -291,7 +291,7 @@ else{
     </div>
 </main>
 
-    <?php include_once('./footer.php');?>
+    <?php include_once('./components/footer.php');?>
 
 </body>
 

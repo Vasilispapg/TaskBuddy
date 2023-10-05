@@ -766,7 +766,8 @@ body {
   max-width: 85vh;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--app-content-secondary-color);
+  color: var(--app-content-main-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -814,7 +815,7 @@ body {
 
 .spliter {
   display: flex;
-  color: rgb(214, 214, 214);
+  color: var(--app-content-main-color);
   flex-direction: column;
   flex-wrap: nowrap;
   align-content: space-between;

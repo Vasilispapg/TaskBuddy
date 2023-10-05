@@ -24,12 +24,9 @@ else{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <?php include_once('./header.php');?>
+  <?php include_once('./components/header.php');?>
 
   <div class="container">
       <div class="main-body">
@@ -56,13 +53,13 @@ else{
                     <div class="d-flex flex-column align-items-center text-center ">
                     <div class="profile-content">
                         <div class="profile-pic">
-                            <img src="<?php if(isset($_SESSION['fullname'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
+                            <img src="<?php if(isset($_SESSION['image_path'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
                         </div>
                     </div>
                       <div class="mt-3">
                         <h4><?php if(isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?></h4>
                         <p class="text-secondary mb-1"><?php if(isset($_SESSION['job'])) {echo $_SESSION['job'];}?></p>
-                        <p class="text-muted font-size-sm"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['location'];?></p>
+                        <p class="text-muted font-size-sm"><?php if(isset($_SESSION['location'])) echo $_SESSION['location'];?></p>
                       </div>
                     </div>
                   </div>
@@ -149,13 +146,16 @@ else{
       </div>
 
     <?php 
-      include_once('./modal.php');
-      include_once('./footer.php');
+      include_once('./components/modal.php');
+      include_once('./components/footer.php');
     ?>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
 // Add this script to trigger the modal on page load
 document.addEventListener("DOMContentLoaded", function() {
@@ -166,10 +166,6 @@ document.addEventListener("DOMContentLoaded", function() {
     else if(window.location.href.includes('?changed=false')){
         document.getElementById('modalToggleFalse').click(); // Click on the button to trigger the modal
     }
-    else{
-
-    }
-
 });
 </script>
 </html>

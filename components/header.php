@@ -2,7 +2,7 @@
     <menu class="menu">
     <div class="logo"><a class="logo" href="index.php">TaskBuddy</a></div>
     <ul class="nav-list">
-        <li><a href="#">Browse Tasks</a></li>
+        <li><a href="browseTasks.php">Browse Tasks</a></li>
         <?php
         if (isset($_SESSION["username"])) {
             // User is logged in, display their username and a link to their profile or dashboard

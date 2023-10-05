@@ -1,5 +1,5 @@
-@import './header.scss';
-@import './modal.scss';
+@import './components/header.scss';
+@import './components/modal.scss';
 body {
     margin-top: 20px;
     color: #1a202c;
@@ -143,5 +143,5 @@ body {
     width: calc(100% - clamp(10px, 1.5vw, 20px)) !important;
 }
 
-@import './footer.scss';
-@import './select.scss';
+@import './components/footer.scss';
+@import './components/select.scss';
