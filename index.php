@@ -1,9 +1,9 @@
 <?php
 session_name('user');
 session_start();
-if (isset($_COOKIE["user"])) {
-    // Look up the user by the identifier stored in the cookie
-    $user_id = $_COOKIE["user"];
+if (isset($_SESSION["user"])) {
+    // Look up the user by the identifier stored in the session
+    $user_id = $_SESSION["user"];
 }
 
 // Check if the user was just registered (you can set a flag after successful registration)
@@ -18,7 +18,7 @@ if ($justRegistered) {
           </script>';
     
     // Reset the session flag
-    $_COOKIE['justRegistered'] = false;
+    $_SESSION['justRegistered'] = false;
 }
 ?>
 

@@ -9,7 +9,7 @@ if ($mysqli->connect_error) {
 }
 
 // Get data from the GET request
-$userID = $_COOKIE['id']; // ID of the logged-in user
+$userID = $_SESSION['id']; // ID of the logged-in user
 $receiverID = $_GET['receiverID']; // ID of the user you clicked on
 $postID = $_GET['postID']; // ID of the post for which you want to retrieve messages
 

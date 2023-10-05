@@ -4,10 +4,10 @@
     <ul class="nav-list">
         <li><a href="#">Browse Tasks</a></li>
         <?php
-        if (isset($_COOKIE["username"])) {
+        if (isset($_SESSION["username"])) {
             // User is logged in, display their username and a link to their profile or dashboard
-            echo '<li><a href="profile.php" id="profile" pass=' . $_COOKIE["id"] .' >Welcome ' . $_COOKIE["username"] . '</a></li>';
-            if($_COOKIE['isBuddy']=='true')
+            echo '<li><a href="profile.php" id="profile" pass=' . $_SESSION["id"] .' >Welcome ' . $_SESSION["username"] . '</a></li>';
+            if($_SESSION['isBuddy']=='true')
                 echo '<li><a href="dashboard.php">Dashboard</a></li>';
             echo '<li><a href="php/logout.php">Logout</a></li>';
 

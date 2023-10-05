@@ -9,7 +9,7 @@ $password = $_POST['password'];
 $confpassword = $_POST['confirmpassowrd'];
 $currentpassword = $_POST['currentpassword'];
 
-$sql= "SELECT password_hash FROM users WHERE id = '{$_COOKIE['id']}'";
+$sql= "SELECT password_hash FROM users WHERE id = '{$_SESSION['id']}'";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result);
 $hash = $row['password_hash'];
@@ -30,7 +30,7 @@ if($password == $confpassword) {
 
 $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
 
-$sql = "UPDATE users SET password_hash='$hashedPassword' WHERE id='{$_COOKIE['id']}'";
+$sql = "UPDATE users SET password_hash='$hashedPassword' WHERE id='{$_SESSION['id']}'";
 
 if (mysqli_query($con, $sql)) {
     header('location:../profile.php?changed=true'); // Pass a query parameter to indicate password change success

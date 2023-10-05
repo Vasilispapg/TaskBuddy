@@ -31,23 +31,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Successful login
             $_SESSION['error'] = 0;
             $_SESSION["status"] = 'Active Now';
-
+            $_SESSION["username"] = $row['username']; 
+            $_SESSION["id"] = $row['id']; 
+            $_SESSION["location"] = $row['location']; 
+            $_SESSION["fullname"] = $row['fullname']; 
+            $_SESSION["role"] = $row['role']; 
+            $_SESSION["about"] = $row['about']; 
+            $_SESSION["email"] = $row['email']; 
+            $_SESSION["phone"] = $row['phone']; 
+            $_SESSION["created_at"] = $row['created_at']; 
+            $_SESSION["job"] = $row['job']; 
+            $_SESSION["image_path"] = $row['image_path']; 
+            $_SESSION["bdate"] = $row['bdate']; 
+            $_SESSION["isBuddy"] = $row['role'] == 'taskbuddy' ? true : false; 
+            $_SESSION["wallet"] = $row['wallet'];
+                    
             $expire = time() + 86400 * 30; // 30 days
 
-            setcookie("username", $row["username"], $expire, "/");
             setcookie("id", $row["id"], $expire, "/");
-            setcookie("location", $row["location"], $expire, "/");
-            setcookie("fullname", $row["fullname"], $expire, "/");
-            setcookie("role", $row["role"], $expire, "/");
-            setcookie("about", $row["about"], $expire, "/");
-            setcookie("email", $row["email"], $expire, "/");
-            setcookie("phone", $row["phone"], $expire, "/");
-            setcookie("created_at", $row["created_at"], $expire, "/");
-            setcookie("job", $row["job"], $expire, "/");
-            setcookie("image_path", $row["image_path"], $expire, "/");
-            setcookie("bdate", $row["bdate"], $expire, "/");
-            setcookie("isBuddy", $row["role"]=='taskbuddy' ? 'true' : 'false', $expire, "/");
-            setcookie("wallet", $row["wallet"], $expire, "/");
 
             //active user
             $sql_active="UPDATE users set status='active' where id={$row['id']}";

@@ -1,9 +1,9 @@
 <?php
 session_name('user');
 session_start();
-if (isset($_COOKIE["user"]) && !empty($_COOKIE["fullname"])) {
-    // Look up the user by the identifier stored in the cookie
-    $user_id = $_COOKIE["user"];
+if (isset($_SESSION["user"]) && !empty($_SESSION["fullname"])) {
+    // Look up the user by the identifier stored in the session
+    $user_id = $_SESSION["user"];
 }
 else{
     header("location: login.php");
@@ -61,9 +61,9 @@ else{
             </ul>
             <div class="account-info">
             <div class="account-info-picture">
-                <img src="<?php if(isset($_COOKIE['fullname'])) echo ltrim($_COOKIE['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
+                <img src="<?php if(isset($_SESSION['fullname'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
             </div>
-            <div class="account-info-name"><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['username']?></div>
+            <div class="account-info-name"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['username']?></div>
 
         </div>
     </div>
@@ -76,7 +76,7 @@ else{
                     <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
                     </svg>
                 </button>
-                <h1 class="app-content-headerButton style='font-size:18pt;display:inherit'">Wallet <?php echo $_COOKIE['wallet'];?>€</h1>
+                <h1 class="app-content-headerButton style='font-size:18pt;display:inherit'">Wallet <?php echo $_SESSION['wallet'];?>€</h1>
             </div>
             <div class="app-content-actions">
                 <input class="search-bar" placeholder="Search..." type="text">
@@ -149,8 +149,8 @@ else{
                     } else {
                         // Fetch products data from the database (modify this query according to your database structure)
                         $data = array();
-                        $query = 'SELECT * FROM posts where user_id ='. $_COOKIE["id"] ;
-                        $queryImages = 'SELECT post_images.image_url FROM posts,post_images WHERE posts.user_id ='. $_COOKIE["id"] . " AND posts.id = post_images.post_id" ;
+                        $query = 'SELECT * FROM posts where user_id ='. $_SESSION["id"] ;
+                        $queryImages = 'SELECT post_images.image_url FROM posts,post_images WHERE posts.user_id ='. $_SESSION["id"] . " AND posts.id = post_images.post_id" ;
                         $result = mysqli_query($con, $query);
                         $resultImages = mysqli_query($con, $queryImages);
                         $rowImages=mysqli_fetch_assoc($resultImages);
@@ -186,7 +186,7 @@ else{
                             $jsonData = json_encode($data);
 
                             // Store the JSON data in a session variable
-                            $_COOKIE['json_data'] = $jsonData;
+                            $_SESSION['json_data'] = $jsonData;
 
                             echo '</div>';
                             
@@ -239,8 +239,8 @@ else{
                             $stmt = $con->prepare($sql);
 
                             if ($stmt) {
-                                // Bind the parameter (user ID from the cookie)
-                                $stmt->bind_param("i", $_COOKIE['id']);
+                                // Bind the parameter (user ID from the session)
+                                $stmt->bind_param("i", $_SESSION['id']);
 
                                 // Execute the statement
                                 $stmt->execute();

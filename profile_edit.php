@@ -1,9 +1,9 @@
 <?php
 session_name('user');
 session_start();
-if (isset($_COOKIE["user"]) && !empty($_COOKIE["fullname"])) {
-    // Look up the user by the identifier stored in the cookie
-    $user_id = $_COOKIE["user"];
+if (isset($_SESSION["user"]) && !empty($_SESSION["fullname"])) {
+    // Look up the user by the identifier stored in the session
+    $user_id = $_SESSION["user"];
 }
 else{
     header("location: login.php");
@@ -29,7 +29,7 @@ else{
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item"><a href="javascript:void(0)"><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['username'];?></a></li>
+              <li class="breadcrumb-item"><a href="javascript:void(0)"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['username'];?></a></li>
               <li class="breadcrumb-item active" aria-current="page">Edit Profile</li>
             </ol>
           </nav>
@@ -41,7 +41,7 @@ else{
                             <div class="d-flex flex-column align-items-center text-center ">
                                 <div class="profile-content">
                                     <div class="profile-pic">
-                                        <img src="<?php if(isset($_COOKIE['fullname'])) echo ltrim($_COOKIE['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
+                                        <img src="<?php if(isset($_SESSION['fullname'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
                                         <div class="overlay">
                                         <form enctype="multipart/form-data" method="post" action="php/uploadProfileImage.php" id="imageUploadForm">
                                             <label for="fileInput" class="btn btn-info">Pick Photo</label>
@@ -53,9 +53,9 @@ else{
                                 </div>
                                                              
                             <div class="mt-3">
-                                <h4><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['fullname'];?></h4>
-                                <p class="text-secondary mb-1"><?php if(isset($_COOKIE['job'])) {echo $_COOKIE['job'];}?></p>
-                                <p class="text-muted font-size-sm"><?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['location'];?></p>
+                                <h4><?php if(isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?></h4>
+                                <p class="text-secondary mb-1"><?php if(isset($_SESSION['job'])) {echo $_SESSION['job'];}?></p>
+                                <p class="text-muted font-size-sm"><?php if(isset($_SESSION['fullname'])) echo $_SESSION['location'];?></p>
                                 </div>
                             </div>
                             </div>
@@ -93,7 +93,7 @@ else{
                                         <h6 class="mb-0">Full Name</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" name='fullname' value='<?php if(isset($_COOKIE['fullname'])) echo $_COOKIE['fullname'];?>'>
+                                        <input type="text" class="form-control" name='fullname' value='<?php if(isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?>'>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -101,7 +101,7 @@ else{
                                         <h6 class="mb-0">Email</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="email" class="form-control" id='email' name='email' value='<?php if(isset($_COOKIE['email'])) echo $_COOKIE['email'];?>'>
+                                        <input type="email" class="form-control" id='email' name='email' value='<?php if(isset($_SESSION['email'])) echo $_SESSION['email'];?>'>
                                         <div id="erroremail"></div>
                                     </div>
                                 </div>
@@ -110,7 +110,7 @@ else{
                                         <h6 class="mb-0">Username</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" id='uname' name='uname' value='<?php if(isset($_COOKIE['username'])) echo $_COOKIE['username'];?>'>
+                                        <input type="text" class="form-control" id='uname' name='uname' value='<?php if(isset($_SESSION['username'])) echo $_SESSION['username'];?>'>
                                         <div id="errorname"></div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@ else{
                                         <h6 class="mb-0">Phone</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="tel" class="form-control" id='phone' name='phone' pattern="69[0-9]{8}" value='<?php if(isset($_COOKIE['phone'])) echo $_COOKIE['phone'];?>'>
+                                        <input type="tel" class="form-control" id='phone' name='phone' pattern="69[0-9]{8}" value='<?php if(isset($_SESSION['phone'])) echo $_SESSION['phone'];?>'>
                                         <p id="errorphone"></p>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@ else{
                                         <h6 class="mb-0">Location</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <select id="city" name="location" class='custom-select' currentLoc='<?php if(isset($_COOKIE['location'])) echo $_COOKIE['location'];?>'></select>
+                                        <select id="city" name="location" class='custom-select' currentLoc='<?php if(isset($_SESSION['location'])) echo $_SESSION['location'];?>'></select>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -136,7 +136,7 @@ else{
                                         <h6 class="mb-0">Job</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" name='job' value='<?php if(isset($_COOKIE['job'])) echo $_COOKIE['job'];?>'>
+                                        <input type="text" class="form-control" name='job' value='<?php if(isset($_SESSION['job'])) echo $_SESSION['job'];?>'>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -144,7 +144,7 @@ else{
                                         <h6 class="mb-0">About</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" style='height:calc(3.5em + .75rem + 2px)' class="form-control" name='about' value='<?php if(isset($_COOKIE['about'])) echo $_COOKIE['about'];?>'>
+                                        <input type="text" style='height:calc(3.5em + .75rem + 2px)' class="form-control" name='about' value='<?php if(isset($_SESSION['about'])) echo $_SESSION['about'];?>'>
                                     </div>
                                 </div>
                                 <div class="row" style='margin-left:30%'>

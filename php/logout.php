@@ -9,9 +9,9 @@ if (!$con) {
 }
 
 // Check if the user is logged in
-if (isset($_COOKIE['id'])) {
+if (isset($_SESSION['id'])) {
     // Mark the user as 'offline' in the database
-    $userId = $_COOKIE['id'];
+    $userId = $_SESSION['id'];
     $sql = "UPDATE users SET status='offline' WHERE id=$userId";
     mysqli_query($con, $sql);
 

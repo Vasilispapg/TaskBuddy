@@ -2,7 +2,7 @@
 session_name('user');
 session_start();
 
-if (!isset($_COOKIE['username'])) {
+if (!isset($_SESSION['username'])) {
     // Redirect to login page or handle unauthorized access
     header("location:../login.php");
     exit();
