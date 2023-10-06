@@ -78,9 +78,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    function retrieveMessages(receiverId, postID) {
+    function retrieveMessages(receiverID, postID) {
         // Make an AJAX request to retrieve chat messages
-        fetch(`php/getMessages.php?receiverID=${receiverId}&postID=${postID}`)
+        fetch(`php/getMessages.php?receiverID=${receiverID}&postID=${postID}`)
             .then(response => response.json())
             .then(data => {
                 // Display the retrieved messages
@@ -132,9 +132,9 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(() => {
         const activeCell = document.querySelector("#inbox .active");
         if (activeCell) {
-            senderUserID = activeCell.getAttribute("user");
+            receiverID = activeCell.getAttribute("user");
             postID = activeCell.getAttribute("post");
-            retrieveMessages(senderUserID, postID);
+            retrieveMessages(receiverID, postID);
         }
     }, 5000); // Adjust the interval as needed
 });

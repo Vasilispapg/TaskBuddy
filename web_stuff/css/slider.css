@@ -1,0 +1,37 @@
+.price-slider {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.price-slider .slider-label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.price-slider .slider-label label {
+  font-weight: bold;
+}
+.price-slider input[type=range] {
+  width: 100%;
+  -webkit-appearance: none;
+  background: linear-gradient(to right, #2994b2 0%, #91157e 100%);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 10px;
+  outline: none;
+}
+.price-slider input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #343434;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.price-slider input[type=range]:hover::-webkit-slider-thumb {
+  background-color: #2994b2;
+}/*# sourceMappingURL=slider.css.map */

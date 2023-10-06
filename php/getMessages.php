@@ -15,15 +15,15 @@ $postID = $_GET['postID']; // ID of the post for which you want to retrieve mess
 
 // Query to retrieve messages for the post from the identified user
 $query = "SELECT DISTINCT m.*, 
-            u_receiver.username AS receiver_username,
-            u_sender.username AS sender_username
-            FROM messages AS m
-            INNER JOIN users AS u_receiver ON u_receiver.id = m.incoming_msg_id
-            INNER JOIN users AS u_sender ON u_sender.id = m.outgoing_msg_id
-            WHERE ((m.incoming_msg_id = '$userID' AND m.outgoing_msg_id = '$receiverID')
-            OR (m.incoming_msg_id = '$receiverID' AND m.outgoing_msg_id = '$userID'))
-            AND m.post_id = '$postID'
-            ORDER BY m.created_at ASC";
+u_receiver.fullname AS receiver_username,
+u_sender.fullname AS sender_username
+FROM messages AS m
+INNER JOIN users AS u_receiver ON u_receiver.id = m.outgoing_msg_id
+INNER JOIN users AS u_sender ON u_sender.id = m.incoming_msg_id
+WHERE ((m.incoming_msg_id = '$userID' AND m.outgoing_msg_id = '$receiverID')
+OR (m.incoming_msg_id = '$receiverID' AND m.outgoing_msg_id = '$userID'))
+AND m.post_id = '$postID'
+ORDER BY m.created_at ASC";
 
 $result = mysqli_query($mysqli, $query);
 

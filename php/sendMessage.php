@@ -38,6 +38,7 @@ if ($inputData) {
     // Use prepared statements to prevent SQL injection
     $stmt->bind_param("sssss", $incomingMsgId, $senderID, $message, $postID, $formattedDate);
 
+    date_default_timezone_set('Europe/Athens');
     $currentTimestamp = time();
     $formattedDate = date('Y-m-d H:i:s', $currentTimestamp);
 
