@@ -7,7 +7,6 @@
     grid-gap: 20px;
     justify-items: center;
     width: 70%;
-    left: 15%;
     position: relative;
 }
 
@@ -204,7 +203,7 @@ $shadow: #060509;
 .categoryCont {
     margin: 2em 6em;
     display: flex;
-    width: auto;
+    width: 16em;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
@@ -217,17 +216,17 @@ $shadow: #060509;
     background-size: contain;
     background-position: 70% 50%;
     box-shadow: 0 10px 60px $shadow;
+    padding: 2em;
+    height: 100%;
     .tags {
         margin: 0;
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         span {
-            margin-right: 1em;
             padding: 1em;
             text-transform: uppercase;
-            transform: rotate(180deg);
-            writing-mode: vertical-rl;
             border-left: 3px solid $border;
             background: linear-gradient(to right, #e9e8e6, #213453);
             -webkit-background-clip: text;
@@ -355,4 +354,21 @@ $shadow: #060509;
     position: absolute;
     top: 1em;
     left: 1em;
+}
+
+.main {
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        flex-direction: column;
+    }
+    .categoryCont {
+        display: none;
+    }
+}
+
+.filter {
+    display: none !important;
 }

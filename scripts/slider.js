@@ -12,6 +12,16 @@ minPriceSlider.addEventListener("input", updateSliders);
 maxPriceSlider.addEventListener("input", updateSliders);
 
 function updateSliders() {
+    // Ensure that the min value doesn't exceed the max value
+    if (parseFloat(minPriceSlider.value) > parseFloat(maxPriceSlider.value)) {
+        minPriceSlider.value = maxPriceSlider.value;
+    }
+
+    // Ensure that the max value doesn't go below the min value
+    if (parseFloat(maxPriceSlider.value) < parseFloat(minPriceSlider.value)) {
+        maxPriceSlider.value = minPriceSlider.value;
+    }
+
     minPriceValue.textContent = `$${minPriceSlider.value}`;
     maxPriceValue.textContent = `$${maxPriceSlider.value}`;
     filterPosts();
@@ -25,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cards.forEach(card => {
         if (card.querySelector("#price") != null) {
-            const value = parseFloat(card.querySelector("#price").textContent.split("€")[0].split(' ')[1]);
+            const value = parseFloat(card.querySelector("#price").textContent);
 
             if (value > max) {
                 max = parseInt(value + 1);
@@ -39,15 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     minPriceSlider.value = min;
     maxPriceSlider.value = max + 1;
-    console.log(min, max);
+
     minPriceSlider.setAttribute('min', min);
     minPriceSlider.setAttribute('max', max);
+    minPriceSlider.setAttribute('value', min);
+
     maxPriceSlider.setAttribute('min', min);
     maxPriceSlider.setAttribute('max', max);
-
-
     maxPriceSlider.setAttribute('value', max);
-    minPriceSlider.setAttribute('value', min);
 
     updateSliders();
 });
@@ -63,13 +72,17 @@ function filterPosts() {
 
 function updateDisplay() {
     post_prices.forEach(post => {
-        if (visiblePosts.includes(post)) {
-            post.card.style.display = "block";
-        } else {
-            post.card.style.display = "none";
+
+        if (!post.card.className.includes("filter")) {
+            if (visiblePosts.includes(post)) {
+                post.card.style.display = "block";
+            } else {
+                post.card.style.display = "none";
+            }
         }
     });
 }
+
 
 // Initial filtering
 filterPosts();
