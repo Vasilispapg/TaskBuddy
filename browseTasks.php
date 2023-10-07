@@ -20,6 +20,7 @@ else{
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+    
 </head>
 <style>
   
@@ -32,7 +33,7 @@ else{
 <body>
 
 <?php include 'components/header.php';?>
-
+<div class="main">
 <div class="categoryCont">
 <?php 
           $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
@@ -47,9 +48,9 @@ else{
 
       <p class="tags status">
           <span>Status</span>
-            <a href="#" class="tag">Active</a>
-            <a href="#" class="tag">Pending</a>
-            <a href="#" class="tag">Disabled</a>
+            <a href="#" data-filter-type='status' data-filter-value='active' class="tag">Active</a>
+            <a href="#" data-filter-type='status' data-filter-value='pending' class="tag">Pending</a>
+            <a href="#" data-filter-type='status' data-filter-value='disabled' class="tag">Disabled</a>
       </p>
       <p class="tags">
         
@@ -66,7 +67,7 @@ else{
 
             while($row=mysqli_fetch_assoc($result)){
               $category = $row['category'];
-              echo "<a href='#' class='tag'>$category</a>";
+              echo "<a href='#' data-filter-type='category' data-filter-value='$category' class='tag'>$category</a>";
             }
           ?>
       </p>
@@ -82,7 +83,7 @@ else{
                 else {
                     $query = 'SELECT posts.*,
                                 post_images.image_url,
-                                users.username AS user,
+                                users.fullname AS user,
                                 users.id AS user_id
                                 FROM users,posts,post_images 
                                 WHERE posts.status!="disabled" 
@@ -102,6 +103,7 @@ else{
                             while ($row = mysqli_fetch_assoc($result)) {
                                 include 'components/taskCard.php';
                                 include 'product.php';
+
                             }
                             echo '</div>';
                         }
@@ -110,10 +112,14 @@ else{
             ?>
 </div>
 
+</div>
+
+
 <?php include 'components/footer.php';?>
     
 </body>
 <script src='scripts/slider.js'></script>
+<script src='scripts/taskFilter.js'></script>
 
 <script>
   // Get the modal elements and buttons
@@ -144,12 +150,7 @@ else{
     });
   });
 
-  var tags = document.querySelectorAll(".tag");
-  tags.forEach(function (tag) {
-    tag.addEventListener("click", function () {
-      tag.classList.toggle("active");
-    });
-  });
+
 
 
 </script>

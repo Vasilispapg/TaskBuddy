@@ -1,9 +1,11 @@
 /* Header styles */
 
+@import url(https://db.onlinewebfonts.com/c/0c5e6f133b0b25edfed47aca4ab57676?family=Segoe+UI+Historic);
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Segoe UI Historic", Arial, Helvetica, sans-serif !important;
 }
 
 body {

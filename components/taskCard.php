@@ -10,10 +10,13 @@
                 </div>
                 <div class="card-body" style="overflow-y: auto">
                   <h5 class="card-subtitle text-muted" id='username'><?php if($row['user']) echo $row['user']; else echo "No Username"?></h5>
-                  <h3 class="card-title" id='title'><?php if($row['title']) echo $row['title'];?></h3>
-                  <h6 class="card-subtitle text" id='location'>Περιοχή: <?php if($row['location']) echo $row['location']; else echo "No Location"?></h6>
-                  <h6 class="card-subtitle text-muted" id='category'>Κατηγορία: <?php if($row['category']) echo $row['category']; else echo "No Category"?></h6>
-                  <h4 class="card-subtitle text-muted" id='price'>Ποσό: <?php if($row['price']) echo $row['price'].'€'; else echo "No Price"?></h4>
+                  <h6 class="card-subtitle text" id='location'><?php if($row['location']) echo $row['location']; else echo "No Location"?></h6>
+                  <h2 class="card-title" id='title'><?php if($row['title']) echo $row['title'];?></h2>
+                  <h5 class="card-subtitle text-muted" id='category'><?php if($row['category']) echo $row['category']; else echo "No Category"?></h5>
+                  <h5 class="card-subtitle text-muted" id='created_at'><?php if($row['created_at']) echo $row['created_at'];?></h5>
+
+                  <h6 class="card-subtitle text-muted status-circle <?php echo $row['status'];?>" value='<?php echo $row['status'];?>' id='status'></h6>
+                  
 
                   <?php
                     if ($row['description']) {
@@ -30,9 +33,12 @@
 
 
                 </div>
-                <div class="card-footer" style="background: inherit; border-color: inherit;">
-                  <a id='messageBtn' href="<?php echo '../taskbuddynw/dashboard.php?receiverID='.$row['user_id'].'&postID='.$row['id']?>" class="btn btn-primary">Message</a>
-                  <button id='readMoreBtn' class="btn btn-outline-primary">Read More</button>
+                <div class="card-footer" >
+                    <div>
+                    <a id='messageBtn' href="<?php echo '../taskbuddynw/dashboard.php?receiverID='.$row['user_id'].'&postID='.$row['id']?>" class="btn btn-primary">Message</a>
+                    <button id='readMoreBtn' class="btn btn-outline-primary">Read More</button>
+                    </div>
+                  <h4 class="card-subtitle text-muted" id='price'><?php if($row['price']) echo $row['price'].'€'; else echo "No Price"?></h4>
                 </div>
               </div>
             </div>

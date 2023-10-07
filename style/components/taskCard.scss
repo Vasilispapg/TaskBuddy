@@ -45,3 +45,33 @@
     height: 100px;
     object-fit: cover;
 }
+
+.card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-color: inherit;
+}
+
+.card-subtitle {
+    margin: 0.1em !important;
+}
+
+h6#category {
+    align-self: flex-start;
+    padding: 0.25em 0.75em;
+    border-radius: 1em;
+    font-size: 0.75rem;
+    background-color: #F2F2F2;
+    /* Background color for the category tag */
+    color: #333;
+    /* Text color for the category tag */
+    font-weight: bold;
+    /* Make the text bold */
+    text-transform: uppercase;
+    /* Convert the text to uppercase */
+}
+
+.card-body p {
+    font-size: 1.2rem;
+}

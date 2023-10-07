@@ -20,7 +20,7 @@ else{
     <link rel="stylesheet" href="web_stuff/css/dashboard.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+    
 </head>
 <body>
 <?php include_once('./components/header.php');?>
