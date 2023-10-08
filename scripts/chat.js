@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const messageDiv = document.createElement("div");
         messageDiv.classList.add("message");
         messageDiv.classList.add("row_s");
+        if ((sender.split(' ')).length > 1) {
+            sender = sender.split(' ')[1];
+        }
         messageDiv.textContent = `${sender}: ${message}`;
         chatMessages.appendChild(messageDiv);
     }
@@ -36,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then(response => response.json())
                 .then(data => {
                     // Handle the response from the server (e.g., display a confirmation message)
-                    console.log('Message sent:', data);
+                    // console.log('Message sent:', data);
 
                     // Check if there's an active chat window for the receiver
                     if (chatWindows[receiverID]) {

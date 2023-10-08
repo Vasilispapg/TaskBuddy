@@ -435,6 +435,7 @@ div.location_category {
   display: flex;
   flex-direction: column;
   padding: 2em;
+  margin-left: 9%;
 }
 .categoryCont .tags {
   margin-top: 1em;

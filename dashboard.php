@@ -27,20 +27,109 @@ else{
 
 if (isset($_GET['message']) && $_GET['message'] === 'true') {
     $displayMessage = true;
+    $post_id=$_GET['postID'];
+    $user_id=$_GET['receiverID'];
+
+    $con = mysqli_connect("localhost", "root", "", "taskbuddynw");
+
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $query="SELECT post_images.image_url,
+    users.fullname,
+    posts.title
+    FROM users,post_images,posts
+    WHERE users.id = $user_id 
+    AND posts.id=$post_id
+    AND post_images.post_id = $post_id";
+    $result=mysqli_query($con, $query);
+    if(mysqli_num_rows($result) > 0){
+        $row = mysqli_fetch_assoc($result);
+        if($row){
+            $post_image=$row['image_url'];
+            $post_title=$row['title'];
+            $userFullname=$row['fullname'];
+        }
+    }
+
+    
+    
 } else {
     $displayMessage = false;
 }
 
 ?>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        <?php if ($displayMessage): ?>
-        dashboard.style.display = "none";
-        inbox.style.display = "flex";
 
-        dashboardButton.classList.remove("active");
-        inboxButton.classList.add("active");
-    <?php endif; ?>
+
+<script>
+    function createChatElement(userId, postId, userName, imageUrl,post_title) {
+        // Create a new div element
+        var chatDiv = document.createElement("div");
+        
+        // Set the class and attributes
+        chatDiv.className = "products-row active chat";
+        chatDiv.id = "senderUser";
+        chatDiv.setAttribute("user", userId);
+        chatDiv.setAttribute("post", postId);
+        
+        // Create an <h5> element with the text "12"
+        var h5Element = document.createElement("h6");
+        h5Element.textContent = userName;
+        
+        // Create a product cell div with an image and user name
+        var productCellDiv = document.createElement("div");
+        productCellDiv.className = "product-cell image";
+        
+        // Create an <img> element with the provided image URL
+        var imgElement = document.createElement("img");
+        imgElement.src = imageUrl;
+        imgElement.alt = "post";
+        
+        // Create a <span> element for the user name
+        var spanElement = document.createElement("span");
+        spanElement.className = "user-name";
+        spanElement.textContent = post_title;
+        
+        // Append elements to the product cell div
+        productCellDiv.appendChild(imgElement);
+        productCellDiv.appendChild(spanElement);
+        
+        // Append elements to the chat div
+        chatDiv.appendChild(h5Element);
+        chatDiv.appendChild(productCellDiv);
+        
+        return chatDiv;
+    }
+    /* The above code is written in JavaScript and it is creating a chat element dynamically based on the
+provided parameters. */
+    document.addEventListener("DOMContentLoaded", function() {
+    
+        <?php if ($displayMessage): ?>
+            var post_id = <?php if($post_id) echo $post_id; ?>;
+            var user_id = <?php if($post_id) echo $user_id; ?>;
+            var userFullname = '<?php if($post_id) echo $userFullname; ?>';
+            var post_image = '<?php if($post_id) echo $post_image; ?>';
+            var post_title = '<?php if($post_id) echo $post_title; ?>';
+            dashboard.style.display = "none";
+            inbox.style.display = "flex";
+
+            dashboardButton.classList.remove("active");
+            inboxButton.classList.add("active");
+            chat_box=document.querySelector('.spliter');
+            var customChatElement = createChatElement(user_id, post_id, userFullname, post_image,post_title);
+
+            // Get the first child element (if it exists)
+            var firstChild = chat_box.firstChild;
+
+            // Append the new element as the first child
+            chat_box.insertBefore(customChatElement, firstChild);
+        <?php endif; ?>
+        <?php if (!$displayMessage): ?>
+            chat_box=document.querySelector('.spliter');
+            firstChild=chat_box.firstChild;
+            firstChild.nextSibling.classList.add('active');
+        <?php endif; ?>
     });
 </script>
     
@@ -82,7 +171,7 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
             <div class="account-info-picture">
                 <img src="<?php if(isset($_SESSION['image_path'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
             </div>
-            <div class="account-info-name" id='username'><?php if(isset($_SESSION['username'])) echo $_SESSION['username']?></div>
+            <div class="account-info-name" id='username'><?php if(isset($_SESSION['fullname'])) echo $_SESSION['fullname']?></div>
 
         </div>
     </div>
@@ -239,7 +328,8 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
                                 m.created_at AS created_at,
                                 pim.post_id AS post_id,
                                 pim.host_id AS user_id,
-                                u.username AS host_username
+                                u.fullname AS host_username,
+                                p.title as post_title
                          FROM post_id_messages AS pim
                          INNER JOIN users as u on u.id=pim.host_id
                          INNER JOIN posts AS p ON pim.post_id = p.id
@@ -260,9 +350,11 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
                                    (m2.incoming_msg_id = pim.buddy_id AND m2.outgoing_msg_id = pim.host_id)
                                )
                            )
-                         ORDER BY m.created_at ASC;
+                         ORDER BY m.created_at DESC;
                          
                                 ";
+
+                                //pata ston PANAGIWTA col=3o row=1o kai des ena error poy dn krataei to chatbox
 
                                 // Create a prepared statement
                             $stmt = $con->prepare($sql);
@@ -281,7 +373,6 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
                                 // Check if there are any products in the database
                                 if (mysqli_num_rows($result) > 0) {
                                     // Loop through the products and generate rows
-                                    $i=0;
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         if (empty($row['image_url']))
                                             $img_path = "assets/user_images/user_icon_df.png";
@@ -289,13 +380,9 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
                                             $img_path= $row['image_url'];  
                            
                                         // Add a unique identifier (e.g., user ID) to each product-cell
-                                        if($i==0)
-                                            echo '<div class="products-row active chat" id=senderUser user='.$row['user_id'].' post='.$row['post_id'].' </div>';
-                                        else
-                                            echo '<div class="products-row chat" id=senderUser user='.$row['user_id'].' post='.$row['post_id'].' </div>';
-                                        echo '<h5>'.ucfirst($row['host_username']).'</h5>';
-                                        $i+=1;
-                                        echo '<div class="product-cell image"> <img src=' . $img_path . ' alt="post"><span class="user-name">' . ucfirst($row['message']) . '</span></div></div>';
+                                        echo '<div class="products-row chat" id=senderUser user='.$row['user_id'].' post='.$row['post_id'].' </div>';
+                                        echo '<h6>'.ucfirst($row['host_username']).'</h6>';
+                                        echo '<div class="product-cell image"> <img src=' . $img_path . ' alt="post"><span class="user-name">' . ucfirst($row['post_title']) . '</span></div></div>';
                                     }
                                 }
                             }
