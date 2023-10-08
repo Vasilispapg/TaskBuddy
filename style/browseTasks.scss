@@ -110,9 +110,9 @@
         /* Use 50% border-radius to create a circle */
         overflow: hidden;
         /* Hide the parts of the image outside the circle */
-        height: 200px;
+        height: 140px;
         /* Set a fixed height for the circle */
-        width: 200px;
+        width: 140px;
         /* Set a fixed width for the circle */
         display: flex;
         justify-content: center;
@@ -159,8 +159,9 @@
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
+    width: 60% !important;
+    height: 50%;
+    // max-width: 600px;
     border-radius: 10px;
     position: relative;
 }
@@ -188,168 +189,48 @@
     cursor: pointer;
 }
 
-
-/* Additional styles for your content go here */
-
-$gcolor: #17141d; // global color
-$color_: #a1a1af; // text
-$border: #31384d;
-$blocks: #19233b;
-$shadow: #060509;
-@mixin font-size($sizeValue: 1.6) {
-    font-size: $sizeValue + rem;
-}
-
-.categoryCont {
-    margin: 2em 6em;
-    display: flex;
-    width: 16em;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    @include font-size(1);
-    color: $color_;
-    border: 1px solid $border;
-    border-radius: 0.35em;
-    background-color: $blocks;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: 70% 50%;
-    box-shadow: 0 10px 60px $shadow;
-    padding: 2em;
-    height: 100%;
-    .tags {
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        span {
-            padding: 1em;
-            text-transform: uppercase;
-            border-left: 3px solid $border;
-            background: linear-gradient(to right, #e9e8e6, #213453);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        a:last-child {
-            margin-left: 0.5em;
-            &:hover {
-                color: white;
-            }
-        }
-    }
-    // search
-    label {
-        position: relative;
-        white-space: nowrap;
-        display: flex;
-        width: 48px;
-        height: 48px;
-        align-items: center;
-        justify-content: flex-end;
-        border: 3px solid transparent;
-        border-radius: 2em;
-        background-color: $gcolor;
-        background-image: radial-gradient(circle at 50%, #ff8a00, #da1b60);
-        transition: all 250ms ease-in-out;
-        &::before {
-            position: absolute;
-            right: 0;
-            bottom: -20px;
-            z-index: 0;
-            transform: rotate(-35deg);
-            width: 4px;
-            height: 25px;
-            content: "";
-            border-radius: 2px;
-            background: linear-gradient(to right, #e9e8e6, #213453);
-            transition: all 250ms ease-in-out;
-        }
-        .tag_search {
-            position: relative;
-            z-index: 1;
-            display: block;
-            padding-left: 1.75em;
-            width: 42px;
-            height: 42px;
-            @include font-size(1);
-            border: 0;
-            border-radius: inherit;
-            background-color: $gcolor;
-            color: white;
-            transition: width 250ms ease-in-out;
-            &:focus {
-                outline: none;
-            }
-        }
-        &:hover {
-            width: 20%;
-            &::before {
-                height: 30px;
-                transform: rotate(-90deg) translate(28px, 15px);
-            }
-            .tag_search {
-                width: 100%;
-                padding-right: 1em;
-                padding-left: 1em;
-            }
-        }
-    }
-    a {
-        text-decoration: none;
-        white-space: nowrap;
-        @include font-size(1);
-        color: $color_;
-        &.tag {
-            display: block;
-            padding: 0.3em 0.85em;
-            margin: 0.5em;
-            text-transform: uppercase;
-            border: 2px solid $border;
-            border-radius: 2em;
-            transition: transform 0.2s;
-            transition-timing-function: cubic-bezier(0.45, -0.85, 0.55, -0.45);
-            &:hover,
-            &.active {
-                transform: scale(1.1);
-                background: linear-gradient(to right, #9eace2, #206fef);
-                text-decoration: none;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-        }
-    }
-}
-
-@media (max-width: 991px) {
-    .container {
-        background-image: none;
-        label {
-            pointer-events: none;
-            visibility: hidden;
-            opacity: 0;
-        }
-    }
-}
-
-.text-circle {
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(10deg);
-    z-index: -1;
-    width: 400px;
-    path {
-        opacity: 0;
-    }
-    text {
-        fill: $color_;
-        opacity: 0.1;
-    }
-}
-
 @import './components/slider.scss';
+.categoryCont {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    .tags {
+        margin-top: 1em;
+        display: flex;
+        flex-direction: column;
+        padding: 0.1em;
+        a.tag {
+            text-decoration: none;
+            color: inherit;
+            color: #363636;
+            margin-top: 0.2em;
+            &:hover {
+                color: #1c7ece;
+                text-decoration: none;
+            }
+            &.active {
+                color: #1c7ece !important;
+                text-decoration: none !important;
+            }
+            &.active::before {
+                background-color: #0069d9;
+            }
+            &::before {
+                content: "";
+                display: inline-block;
+                width: 1em;
+                height: 1em;
+                margin-right: 0.5em;
+                border-radius: 23%;
+                border: 1px solid #bbb;
+                background-color: inherit;
+                position: relative;
+                top: 2px
+            }
+        }
+    }
+}
+
 .dribbble {
     position: absolute;
     top: 1em;
@@ -372,3 +253,5 @@ $shadow: #060509;
 .filter {
     display: none !important;
 }
+
+.slider--container {}

@@ -120,7 +120,7 @@ a.actionbutton:hover {
   border-radius: 50%;
   box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
   position: absolute;
-  top: 100px;
+  top: 120px;
   left: 1.25rem;
   width: 100px;
   height: 100px;
@@ -139,23 +139,28 @@ a.actionbutton:hover {
   margin: 0.1em !important;
 }
 
-h6#category {
-  align-self: flex-start;
-  padding: 0.25em 0.75em;
-  border-radius: 1em;
-  font-size: 0.75rem;
-  background-color: #F2F2F2;
-  /* Background color for the category tag */
-  color: #333;
-  /* Text color for the category tag */
-  font-weight: bold;
-  /* Make the text bold */
-  text-transform: uppercase;
-  /* Convert the text to uppercase */
-}
-
 .card-body p {
   font-size: 1.2rem;
+}
+
+#created_at {
+  margin-top: -2.5% !important;
+}
+
+#category {
+  margin-left: 0.23em !important;
+}
+
+#location {
+  margin-right: 0.2em !important;
+}
+
+div.location_category {
+  display: flex;
+}
+
+#description {
+  margin-top: 0.3em;
 }
 
 /* Style for the footer section */
@@ -317,9 +322,9 @@ h6#category {
   /* Use 50% border-radius to create a circle */
   overflow: hidden;
   /* Hide the parts of the image outside the circle */
-  height: 200px;
+  height: 140px;
   /* Set a fixed height for the circle */
-  width: 200px;
+  width: 140px;
   /* Set a fixed width for the circle */
   display: flex;
   justify-content: center;
@@ -363,8 +368,8 @@ h6#category {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
-  max-width: 600px;
+  width: 60% !important;
+  height: 50%;
   border-radius: 10px;
   position: relative;
 }
@@ -388,153 +393,6 @@ h6#category {
   cursor: pointer;
 }
 
-/* Additional styles for your content go here */
-.categoryCont {
-  margin: 2em 6em;
-  display: flex;
-  width: 16em;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  font-size: 1rem;
-  color: #a1a1af;
-  border: 1px solid #31384d;
-  border-radius: 0.35em;
-  background-color: #19233b;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: 70% 50%;
-  box-shadow: 0 10px 60px #060509;
-  padding: 2em;
-  height: 100%;
-}
-.categoryCont .tags {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.categoryCont .tags span {
-  padding: 1em;
-  text-transform: uppercase;
-  border-left: 3px solid #31384d;
-  background: linear-gradient(to right, #e9e8e6, #213453);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.categoryCont .tags a:last-child {
-  margin-left: 0.5em;
-}
-.categoryCont .tags a:last-child:hover {
-  color: white;
-}
-.categoryCont label {
-  position: relative;
-  white-space: nowrap;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  align-items: center;
-  justify-content: flex-end;
-  border: 3px solid transparent;
-  border-radius: 2em;
-  background-color: #17141d;
-  background-image: radial-gradient(circle at 50%, #ff8a00, #da1b60);
-  transition: all 250ms ease-in-out;
-}
-.categoryCont label::before {
-  position: absolute;
-  right: 0;
-  bottom: -20px;
-  z-index: 0;
-  transform: rotate(-35deg);
-  width: 4px;
-  height: 25px;
-  content: "";
-  border-radius: 2px;
-  background: linear-gradient(to right, #e9e8e6, #213453);
-  transition: all 250ms ease-in-out;
-}
-.categoryCont label .tag_search {
-  position: relative;
-  z-index: 1;
-  display: block;
-  padding-left: 1.75em;
-  width: 42px;
-  height: 42px;
-  font-size: 1rem;
-  border: 0;
-  border-radius: inherit;
-  background-color: #17141d;
-  color: white;
-  transition: width 250ms ease-in-out;
-}
-.categoryCont label .tag_search:focus {
-  outline: none;
-}
-.categoryCont label:hover {
-  width: 20%;
-}
-.categoryCont label:hover::before {
-  height: 30px;
-  transform: rotate(-90deg) translate(28px, 15px);
-}
-.categoryCont label:hover .tag_search {
-  width: 100%;
-  padding-right: 1em;
-  padding-left: 1em;
-}
-.categoryCont a {
-  text-decoration: none;
-  white-space: nowrap;
-  font-size: 1rem;
-  color: #a1a1af;
-}
-.categoryCont a.tag {
-  display: block;
-  padding: 0.3em 0.85em;
-  margin: 0.5em;
-  text-transform: uppercase;
-  border: 2px solid #31384d;
-  border-radius: 2em;
-  transition: transform 0.2s;
-  transition-timing-function: cubic-bezier(0.45, -0.85, 0.55, -0.45);
-}
-.categoryCont a.tag:hover, .categoryCont a.tag.active {
-  transform: scale(1.1);
-  background: linear-gradient(to right, #9eace2, #206fef);
-  text-decoration: none;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@media (max-width: 991px) {
-  .container {
-    background-image: none;
-  }
-  .container label {
-    pointer-events: none;
-    visibility: hidden;
-    opacity: 0;
-  }
-}
-.text-circle {
-  position: absolute;
-  top: 75%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(10deg);
-  z-index: -1;
-  width: 400px;
-}
-.text-circle path {
-  opacity: 0;
-}
-.text-circle text {
-  fill: #a1a1af;
-  opacity: 0.1;
-}
-
 .price-slider {
   margin: 20px 0;
   display: flex;
@@ -552,7 +410,7 @@ h6#category {
 .price-slider input[type=range] {
   width: 100%;
   -webkit-appearance: none;
-  background: linear-gradient(to right, #2994b2 0%, #91157e 100%);
+  background: linear-gradient(to right, #bbb 0%, #d1e6fd 50%, #007BFF 100%);
   border: 1px solid #ccc;
   border-radius: 5px;
   height: 10px;
@@ -571,6 +429,47 @@ h6#category {
 }
 .price-slider input[type=range]:hover::-webkit-slider-thumb {
   background-color: #2994b2;
+}
+
+.categoryCont {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}
+.categoryCont .tags {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  padding: 0.1em;
+}
+.categoryCont .tags a.tag {
+  text-decoration: none;
+  color: inherit;
+  color: #363636;
+  margin-top: 0.2em;
+}
+.categoryCont .tags a.tag:hover {
+  color: #1c7ece;
+  text-decoration: none;
+}
+.categoryCont .tags a.tag.active {
+  color: #1c7ece !important;
+  text-decoration: none !important;
+}
+.categoryCont .tags a.tag.active::before {
+  background-color: #0069d9;
+}
+.categoryCont .tags a.tag::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+  border-radius: 23%;
+  border: 1px solid #bbb;
+  background-color: inherit;
+  position: relative;
+  top: 2px;
 }
 
 .dribbble {

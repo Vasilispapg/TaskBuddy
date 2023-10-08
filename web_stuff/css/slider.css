@@ -15,7 +15,7 @@
 .price-slider input[type=range] {
   width: 100%;
   -webkit-appearance: none;
-  background: linear-gradient(to right, #2994b2 0%, #91157e 100%);
+  background: linear-gradient(to right, #bbb 0%, #d1e6fd 50%, #007BFF 100%);
   border: 1px solid #ccc;
   border-radius: 5px;
   height: 10px;

@@ -21,6 +21,7 @@ else{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
     
+    
 </head>
 <style>
   
@@ -41,23 +42,25 @@ else{
               echo "Failed to connect to MySQL: " . mysqli_connect_error();
           } 
   ?>
-      <p class="tags price">
-          <span>Price</span>
+      <div class="tags price">
+          <h5>Price</h5>
           <?php include('./components/slider.php');?>
-      </p>
+      </div>
 
-      <p class="tags status">
-          <span>Status</span>
+      <div class="tags status">
+          <h5>Status</h5>
             <a href="#" data-filter-type='status' data-filter-value='active' class="tag">Active</a>
             <a href="#" data-filter-type='status' data-filter-value='pending' class="tag">Pending</a>
-            <a href="#" data-filter-type='status' data-filter-value='disabled' class="tag">Disabled</a>
-      </p>
-      <p class="tags">
+            <!-- <a href="#" data-filter-type='status' data-filter-value='disabled' class="tag">Disabled</a> -->
+      </div>
+      <div class="tags">
         
-          <span>Category</span>
+          <h5>Job Type</h5>
           <?php 
-            $query = 'SELECT DISTINCT posts.category
-            FROM posts;';
+            $query = 'SELECT DISTINCT posts.category,COUNT(posts.category) AS count
+            FROM posts
+            where posts.status!="disabled"
+            GROUP BY category';
 
             $result = mysqli_query($con, $query);
             if (!$result) {
@@ -67,10 +70,11 @@ else{
 
             while($row=mysqli_fetch_assoc($result)){
               $category = $row['category'];
-              echo "<a href='#' data-filter-type='category' data-filter-value='$category' class='tag'>$category</a>";
+              $count=$row['count'];
+              echo "<a href='#' data-filter-type='category' data-filter-value='$category' class='tag'>$category ($count)</a>";
             }
           ?>
-      </p>
+      </div>
         
 </div>
 
@@ -81,9 +85,32 @@ else{
                     echo "Failed to connect to MySQL: " . mysqli_connect_error();
                 } 
                 else {
+                      function timeAgo($timestamp) {
+                        $currentTimestamp = time();
+                        $timestamp = strtotime($timestamp);
+                        $timestampDiff = $currentTimestamp - $timestamp;
+
+                        if ($timestampDiff < 60) {
+                            return "Πριν " . $timestampDiff . " δευτερόλεπτα";
+                        } elseif ($timestampDiff < 3600) {
+                            $minutes = floor($timestampDiff / 60);
+                            return "Πριν " . $minutes . " λεπτά";
+                        } elseif ($timestampDiff < 86400) {
+                            $hours = floor($timestampDiff / 3600);
+                            return "Πριν " . $hours . " ώρες";
+                        } elseif ($timestampDiff < 604800) {
+                            $days = floor($timestampDiff / 86400);
+                            return "Πριν " . $days . " μέρες";
+                        } else {
+                            $weeks = floor($timestampDiff / 604800);
+                            return "Πριν " . $weeks . " εβδ.";
+                        }
+                      }
+                    
                     $query = 'SELECT posts.*,
                                 post_images.image_url,
                                 users.fullname AS user,
+                                users.image_path AS user_image,
                                 users.id AS user_id
                                 FROM users,posts,post_images 
                                 WHERE posts.status!="disabled" 
@@ -120,6 +147,8 @@ else{
 </body>
 <script src='scripts/slider.js'></script>
 <script src='scripts/taskFilter.js'></script>
+<script src='scripts/imageSlider.js'></script>
+
 
 <script>
   // Get the modal elements and buttons

@@ -3,7 +3,7 @@ session_name('user');
 session_start();
 
 // Check if the user is already logged in with a valid session
-if (isset($_SESSION["username"])) {
+if (isset($_SESSION["id"])) {
     // User is already logged in, redirect them to the index page or their dashboard
     header("location:../index.php");
     exit();
@@ -44,11 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["image_path"] = $row['image_path']; 
             $_SESSION["bdate"] = $row['bdate']; 
             $_SESSION["isBuddy"] = $row['role'] == 'taskbuddy' ? true : false; 
+            $_SESSION["isAdmin"] = $row['role'] == 'admin' ? true : false; 
             $_SESSION["wallet"] = $row['wallet'];
-                    
+            
             $expire = time() + 86400 * 30; // 30 days
-
-            setcookie("id", $row["id"], $expire, "/");
+            
+            setcookie("user", $row['role'], $expire, "/");
 
             //active user
             $sql_active="UPDATE users set status='active' where id={$row['id']}";
@@ -87,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If login is not successful, set an error session variable
     $_SESSION['error'] = "Invalid username or password";
     mysqli_close($con);
-    // header("location:../login.php");
+    header("location:../login.php");
     exit();
 }
 

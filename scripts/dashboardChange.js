@@ -4,7 +4,15 @@
  const inbox = document.getElementById("inbox");
  const inboxButton = document.getElementById("inboxButton");
 
- // Add click event listeners to sidebar buttons
+
+ if (document.getElementById("message") !== null) {
+     dashboard.style.display = "none";
+     inbox.style.display = "flex";
+
+     dashboardButton.classList.remove("active");
+     inboxButton.classList.add("active");
+ }
+
  dashboardButton.addEventListener("click", () => {
      // Hide all content sections
      dashboard.style.display = "block";

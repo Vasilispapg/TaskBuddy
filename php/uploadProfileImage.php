@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Define the upload directory and file path
         $uploadDirectory = '../assets/user_images/';
         $uploadedFileName = $_FILES['new_image']['name'];
+        $username = $_SESSION['username'];
 
         // Generate a unique filename based on the username
         $username = strtolower($username); // Convert username to lowercase
@@ -38,8 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $targetFilePath = $uploadDirectory . $uploadedFileName;
 
-        $expire = time() + 86400 * 30; // 30 days
-        setcookie("image_path", $targetFilePath, $expire, "/");
+        $_SESSION['image_path'] = $targetFilePath;
 
         // Move the uploaded file to the desired directory
         if (move_uploaded_file($_FILES['new_image']['tmp_name'], $targetFilePath)) {

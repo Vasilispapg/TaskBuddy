@@ -7,7 +7,7 @@
         if (isset($_SESSION["username"])) {
             // User is logged in, display their username and a link to their profile or dashboard
             echo '<li><a href="profile.php" id="profile" >Welcome ' . $_SESSION["username"] . '</a></li>';
-            if($_SESSION['isBuddy']=='true')
+            if($_SESSION['isBuddy'] || $_SESSION['isAdmin'])
                 echo '<li><a href="dashboard.php">Dashboard</a></li>';
             echo '<li><a href="php/logout.php">Logout</a></li>';
 

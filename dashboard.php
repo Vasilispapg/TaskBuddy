@@ -23,8 +23,27 @@ else{
     
 </head>
 <body>
-<?php include_once('./components/header.php');?>
+<?php include_once('./components/header.php');
 
+if (isset($_GET['message']) && $_GET['message'] === 'true') {
+    $displayMessage = true;
+} else {
+    $displayMessage = false;
+}
+
+?>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php if ($displayMessage): ?>
+        dashboard.style.display = "none";
+        inbox.style.display = "flex";
+
+        dashboardButton.classList.remove("active");
+        inboxButton.classList.add("active");
+    <?php endif; ?>
+    });
+</script>
+    
 <main class="main">
     <div class="app-container">
         <div class="sidebar">
@@ -40,24 +59,24 @@ else{
                     <span>Posts</span>
                     </a>
                 </li>
-                <li class="sidebar-list-item" id='statisticsButton'>
+                <!-- <li class="sidebar-list-item" id='statisticsButton'>
                     <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
                     <span>Statistics</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="sidebar-list-item" id='inboxButton' >
                     <a href="#" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
                     <span>Inbox</span>
                     </a>
                 </li>
-                <li class="sidebar-list-item" id='notificationsButton'>
+                <!-- <li class="sidebar-list-item" id='notificationsButton'>
                     <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                     <span>Notifications</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
             <div class="account-info">
             <div class="account-info-picture">
@@ -165,9 +184,17 @@ else{
                             
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $data[] = $row;
+                                $description=$row['description'];
+                                if (strlen($description) > 95) {
+                                    // If it's longer, truncate it and add "..."
+                                    $shortDescription = substr($description, 0, 95) . "...";
+                                } else {
+                                    // If it's shorter, use the original description
+                                    $shortDescription = $description;
+                                }
                                 echo '<div class="products-row">';
                                 echo '<div class="product-cell image"> <img src='.$rowImages.' alt="post"><span>' . ucfirst($row['title']) . '</span></div>'; 
-                                echo '<div class="product-cell category">' . ucfirst($row['description']) . '</div>';
+                                echo '<div class="product-cell category">' . ucfirst($shortDescription) . '</div>';
                                 echo '<div class="product-cell category">' . ucfirst($row['category']) . '</div>';
                                 echo '<div class="product-cell category">' . ucfirst($row['location']) . '</div>';
                                 if(strcmp($row['status'],'active')==0) 
@@ -200,8 +227,6 @@ else{
            
                 <div class="products-area-wrapper tableView tablechat" id='inbox' style='display:none'>
                     <div class="spliter">
-
-                   
                     <?php
                         // Assuming you have a database connection established
                         $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");

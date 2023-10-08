@@ -154,12 +154,8 @@ else{
                                         </div>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        
                                         <input id="submit" type="submit" class="btn btn-primary px-4" value="Save Changes">
                                     </div>
-                                </div>
-                                <div class="row mb-3 px-3">
-                                    <span id="passwordError" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -174,8 +170,6 @@ else{
 
 <script src='scripts/checker.js'></script>
 <script src='scripts/locations.js'></script>
-
-<script src='scripts/passwordSame.js'></script>
 <script>
     document.getElementById("fileInput").addEventListener("change", function() {
     // When a file is selected, show the "Upload New Picture" button and submit the form
