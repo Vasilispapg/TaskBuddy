@@ -53,8 +53,6 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
         }
     }
 
-    
-    
 } else {
     $displayMessage = false;
 }
@@ -62,76 +60,6 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
 ?>
 
 
-<script>
-    function createChatElement(userId, postId, userName, imageUrl,post_title) {
-        // Create a new div element
-        var chatDiv = document.createElement("div");
-        
-        // Set the class and attributes
-        chatDiv.className = "products-row active chat";
-        chatDiv.id = "senderUser";
-        chatDiv.setAttribute("user", userId);
-        chatDiv.setAttribute("post", postId);
-        
-        // Create an <h5> element with the text "12"
-        var h5Element = document.createElement("h6");
-        h5Element.textContent = userName;
-        
-        // Create a product cell div with an image and user name
-        var productCellDiv = document.createElement("div");
-        productCellDiv.className = "product-cell image";
-        
-        // Create an <img> element with the provided image URL
-        var imgElement = document.createElement("img");
-        imgElement.src = imageUrl;
-        imgElement.alt = "post";
-        
-        // Create a <span> element for the user name
-        var spanElement = document.createElement("span");
-        spanElement.className = "user-name";
-        spanElement.textContent = post_title;
-        
-        // Append elements to the product cell div
-        productCellDiv.appendChild(imgElement);
-        productCellDiv.appendChild(spanElement);
-        
-        // Append elements to the chat div
-        chatDiv.appendChild(h5Element);
-        chatDiv.appendChild(productCellDiv);
-        
-        return chatDiv;
-    }
-    /* The above code is written in JavaScript and it is creating a chat element dynamically based on the
-provided parameters. */
-    document.addEventListener("DOMContentLoaded", function() {
-    
-        <?php if ($displayMessage): ?>
-            var post_id = <?php if($post_id) echo $post_id; ?>;
-            var user_id = <?php if($post_id) echo $user_id; ?>;
-            var userFullname = '<?php if($post_id) echo $userFullname; ?>';
-            var post_image = '<?php if($post_id) echo $post_image; ?>';
-            var post_title = '<?php if($post_id) echo $post_title; ?>';
-            dashboard.style.display = "none";
-            inbox.style.display = "flex";
-
-            dashboardButton.classList.remove("active");
-            inboxButton.classList.add("active");
-            chat_box=document.querySelector('.spliter');
-            var customChatElement = createChatElement(user_id, post_id, userFullname, post_image,post_title);
-
-            // Get the first child element (if it exists)
-            var firstChild = chat_box.firstChild;
-
-            // Append the new element as the first child
-            chat_box.insertBefore(customChatElement, firstChild);
-        <?php endif; ?>
-        <?php if (!$displayMessage): ?>
-            chat_box=document.querySelector('.spliter');
-            firstChild=chat_box.firstChild;
-            firstChild.nextSibling.classList.add('active');
-        <?php endif; ?>
-    });
-</script>
     
 <main class="main">
     <div class="app-container">
@@ -323,35 +251,39 @@ provided parameters. */
                             echo "Failed to connect to MySQL: " . mysqli_connect_error();
                         } else {
                                 
-                                $sql = "SELECT DISTINCT pi.image_url AS image_url,
-                                m.msg AS message,
-                                m.created_at AS created_at,
+                                $sql = "SELECT
+                                MAX(pi.image_url) AS image_url,
+                                MAX(m.msg) AS message,
+                                MAX(m.created_at) AS created_at,
                                 pim.post_id AS post_id,
-                                pim.host_id AS user_id,
-                                u.fullname AS host_username,
-                                p.title as post_title
-                         FROM post_id_messages AS pim
-                         INNER JOIN users as u on u.id=pim.host_id
-                         INNER JOIN posts AS p ON pim.post_id = p.id
-                         LEFT JOIN post_images AS pi ON p.id = pi.post_id
-                         LEFT JOIN messages AS m ON (
-                             (m.incoming_msg_id = pim.host_id AND m.outgoing_msg_id = pim.buddy_id)
-                             OR
-                             (m.incoming_msg_id = pim.buddy_id AND m.outgoing_msg_id = pim.host_id)
-                         )
-                         WHERE p.id = pi.post_id
-                           AND pim.buddy_id = ?
-                           AND m.created_at = (
-                               SELECT MAX(m2.created_at)
-                               FROM messages AS m2
-                               WHERE (
-                                   (m2.incoming_msg_id = pim.host_id AND m2.outgoing_msg_id = pim.buddy_id)
-                                   OR
-                                   (m2.incoming_msg_id = pim.buddy_id AND m2.outgoing_msg_id = pim.host_id)
-                               )
-                           )
-                         ORDER BY m.created_at DESC;
-                         
+                                MAX(pim.outgoing_id) AS user_id1,
+                                MAX(pim.incoming_id) AS user_id2,
+                                MAX(u.fullname) AS username1,
+                                MAX(u2.fullname) AS username2,
+                                MAX(p.title) AS post_title
+                            FROM
+                                post_id_messages AS pim
+                            
+                            INNER JOIN
+                                posts AS p ON pim.post_id = p.id
+                            LEFT JOIN
+                                post_images AS pi ON p.id = pi.post_id
+                            LEFT JOIN
+                                messages AS m ON (
+                                    (m.incoming_msg_id = pim.incoming_id AND m.outgoing_msg_id = pim.outgoing_id)
+                                    OR
+                                    (m.incoming_msg_id = pim.outgoing_id AND m.outgoing_msg_id = pim.incoming_id)
+                                )
+                            INNER JOIN
+                                users AS u ON u.id =pim.outgoing_id
+                            INNER JOIN
+                                users AS u2 ON u2.id =pim.incoming_id
+                            WHERE
+                                (pim.outgoing_id = ? OR pim.incoming_id = ?)
+                            GROUP BY
+                                pim.post_id
+                            ORDER BY
+                                MAX(m.created_at) DESC;
                                 ";
 
                                 //pata ston PANAGIWTA col=3o row=1o kai des ena error poy dn krataei to chatbox
@@ -361,7 +293,7 @@ provided parameters. */
 
                             if ($stmt) {
                                 // Bind the parameter (user ID from the session)
-                                $stmt->bind_param("i", $_SESSION['id']);
+                                $stmt->bind_param("ii", $_SESSION['id'], $_SESSION['id']);
 
                                 // Execute the statement
                                 $stmt->execute();
@@ -380,8 +312,16 @@ provided parameters. */
                                             $img_path= $row['image_url'];  
                            
                                         // Add a unique identifier (e.g., user ID) to each product-cell
-                                        echo '<div class="products-row chat" id=senderUser user='.$row['user_id'].' post='.$row['post_id'].' </div>';
-                                        echo '<h6>'.ucfirst($row['host_username']).'</h6>';
+                                        if($_SESSION['id']==$row['user_id1'] && $_SESSION['username']!=$row['username1']){
+                                            echo '<div class="products-row chat" id="senderUser" user="'.$row['user_id2'].'" post="'.$row['post_id'].'" >';
+                                            echo '<h6>'.ucfirst($row['username2']).'</h6>';
+                                        }
+                                        else{
+                                            echo '<div class="products-row chat" id="senderUser" user="'.$row['user_id1'].'" post="'.$row['post_id'].'" >';
+                                            echo '<h6>'.ucfirst($row['username1']).'</h6>';
+                                        }
+
+
                                         echo '<div class="product-cell image"> <img src=' . $img_path . ' alt="post"><span class="user-name">' . ucfirst($row['post_title']) . '</span></div></div>';
                                     }
                                 }
@@ -411,6 +351,96 @@ provided parameters. */
 <script src='scripts/dashboardChange.js'></script>
 <script src='scripts/dashboard.js'></script>
 
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->
+
+<script>
+    function createChatElement(userId, postId, userName, imageUrl,post_title) {
+        // Create a new div element
+        var chatDiv = document.createElement("div");
+        
+        // Set the class and attributes
+        chatDiv.className = "products-row active chat";
+        chatDiv.id = "senderUser";
+        chatDiv.setAttribute("user", userId);
+        chatDiv.setAttribute("post", postId);
+        
+        // Create an <h5> element with the text "12"
+        var h5Element = document.createElement("h6");
+        h5Element.textContent = userName;
+        
+        // Create a product cell div with an image and user name
+        var productCellDiv = document.createElement("div");
+        productCellDiv.className = "product-cell image";
+        
+        // Create an <img> element with the provided image URL
+        var imgElement = document.createElement("img");
+        imgElement.src = imageUrl;
+        imgElement.alt = "post";
+        
+        // Create a <span> element for the user name
+        var spanElement = document.createElement("span");
+        spanElement.className = "user-name";
+        spanElement.textContent = post_title;
+        
+        // Append elements to the product cell div
+        productCellDiv.appendChild(imgElement);
+        productCellDiv.appendChild(spanElement);
+        
+        // Append elements to the chat div
+        chatDiv.appendChild(h5Element);
+        chatDiv.appendChild(productCellDiv);
+        
+        return chatDiv;
+    }
+    /* The above code is written in JavaScript and it is creating a chat element dynamically based on the
+provided parameters. */
+    document.addEventListener("DOMContentLoaded", function() {
+    
+        <?php if ($displayMessage): ?>
+
+            var post_id = <?php if($post_id) echo $post_id; ?>;
+            var user_id = <?php if($post_id) echo $user_id; ?>;
+            var userFullname = '<?php if($post_id) echo $userFullname; ?>';
+            var post_image = '<?php if($post_id) echo $post_image; ?>';
+            var post_title = '<?php if($post_id) echo $post_title; ?>';
+
+            chats=document.querySelectorAll('.chat')
+
+            flag_create_new=true
+            last_one=chats[chats.length-1]
+            its_last_one=false
+
+            chats.forEach(chat => {
+                flag_create_new=chat.getAttribute('user') == user_id && chat.getAttribute('post') == post_id ? true : false
+                if(flag_create_new){
+                    chat.classList.add('active') 
+                    chat.click()
+                    its_last_one = chat == last_one ? true : false
+                }
+            });
+
+            if(flag_create_new && !its_last_one){
+
+                chat_box=document.querySelector('.spliter');
+                var customChatElement = createChatElement(user_id, post_id, userFullname, post_image,post_title);
+
+                // Get the first child element (if it exists)
+                var firstChild = chat_box.firstChild;
+
+                // Append the new element as the first child
+                chat_box.insertBefore(customChatElement, firstChild);
+                <?php endif; ?>
+                <?php if (!$displayMessage): ?>
+                chat_box=document.querySelector('.spliter');
+                firstChild=chat_box.firstChild;
+                firstChild.nextSibling.classList.add('active');
+                <?php endif; ?>
+            }
+
+            dashboard.style.display = "none";
+            inbox.style.display = "flex";
+            dashboardButton.classList.remove("active");
+            inboxButton.classList.add("active");
+    });
+</script>
 
 </html>

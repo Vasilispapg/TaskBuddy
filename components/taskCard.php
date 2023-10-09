@@ -19,7 +19,7 @@
 
                   </div>
                   <h4 class="card-title text-primary" id='title'><?php if($row['title']) echo $row['title'];?></h4>
-                  <h6 class="card-subtitle text-muted" id='created_at'><?php if($row['created_at']) echo timeAgo($row['created_at']);?></h6>
+                  <h6 class="card-subtitle text-muted" id='created_at' value='<?php echo $row['created_at']?>'><?php if($row['created_at']) echo timeAgo($row['created_at']);?></h6>
 
                   <h6 class="card-subtitle text-dark status-circle <?php echo $row['status'];?>" value='<?php echo $row['status'];?>' id='status'></h6>
                 
@@ -39,8 +39,10 @@
                 </div>
                 <div class="card-footer" >
                     <div>
-                    <a id='messageBtn' href="<?php echo '../taskbuddynw/dashboard.php?message=true&receiverID='.$row['user_id'].'&postID='.$row['id']?>" class="btn btn-primary">Message</a>
-                    <!-- <button id='readMoreBtn' class="btn btn-outline-primary">Read More</button>  ΦΤΙΑΞΕ ΤΟ ΚΑΙ ΞΑΝΑ ΑΝΟΙΞΕ ΤΟ-->
+                      <?php if($_SESSION['id']!=$row['user_id'])
+                        echo "<a id='messageBtn' href='../taskbuddynw/dashboard.php?message=true&receiverID=".$row['user_id']."&postID=".$row['id']."' class='btn btn-primary'>Message</a>";
+                        ?>
+                        <!-- <button id='readMoreBtn' class="btn btn-outline-primary">Read More</button>  ΦΤΙΑΞΕ ΤΟ ΚΑΙ ΞΑΝΑ ΑΝΟΙΞΕ ΤΟ-->
                     </div>
                   <h4 class="card-subtitle text-primary" id='price'><?php if($row['price']) echo $row['price'].'€'; else echo "No Price"?></h4>
                 </div>

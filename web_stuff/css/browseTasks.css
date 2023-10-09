@@ -472,6 +472,9 @@ div.location_category {
   position: relative;
   top: 2px;
 }
+.categoryCont .tags a.tag.radius::before {
+  border-radius: 50%;
+}
 
 .dribbble {
   position: absolute;

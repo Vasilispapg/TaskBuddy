@@ -139,5 +139,5 @@ document.addEventListener("DOMContentLoaded", function() {
             postID = activeCell.getAttribute("post");
             retrieveMessages(receiverID, postID);
         }
-    }, 5000); // Adjust the interval as needed
+    }, 3000); // Adjust the interval as needed
 });
