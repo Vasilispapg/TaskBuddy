@@ -34,9 +34,9 @@ else{
 <body>
 
 <?php include 'components/header.php';?>
+<button id='newPost' class="btn btn-primary"><a href="newPost.php">New Post</a></button>
+
 <div class="main">
-
-
             <?php
             include 'components/filters.php';
                 // Assuming you have a database connection established
