@@ -228,6 +228,9 @@
                 position: relative;
                 top: 2px
             }
+            &.radius::before {
+                border-radius: 50%;
+            }
         }
     }
 }
