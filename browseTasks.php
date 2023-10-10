@@ -67,16 +67,46 @@ else{
                         }
                       }
                     
-                    $query = 'SELECT posts.*,
-                                post_images.image_url,
-                                users.fullname AS user,
-                                users.image_path AS user_image,
-                                users.id AS user_id
-                                FROM users,posts,post_images 
-                                WHERE posts.status!="disabled" 
-                                AND post_images.post_id=posts.id 
-                                AND users.id=posts.user_id 
-                                ORDER BY posts.id DESC';
+                    $query = 'SELECT
+                    posts.id,
+                    posts.title,
+                    posts.description,
+                    posts.user_id,
+                    posts.price,
+                    posts.category,
+                    posts.status,
+                    posts.end_time,
+                    posts.location,
+                    posts.created_at,
+                    MAX(post_images.image_url) AS image_url,
+                    users.fullname AS user,
+                    users.image_path AS user_image,
+                    users.id AS user_id
+                FROM
+                    posts
+                INNER JOIN
+                    post_images ON post_images.post_id = posts.id
+                INNER JOIN
+                    users ON users.id = posts.user_id
+                WHERE
+                    posts.status != "disabled"
+                GROUP BY
+                    posts.id,
+                    posts.title,
+                    posts.description,
+                    posts.user_id,
+                    posts.price,
+                    posts.category,
+                    posts.status,
+                    posts.end_time,
+                    posts.location,
+                    posts.created_at,
+                    users.fullname,
+                    users.image_path,
+                    users.id
+                ORDER BY
+                    posts.id DESC;
+                ';
 
                     $result = mysqli_query($con, $query);
                     if (!$result) {

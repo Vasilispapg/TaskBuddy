@@ -7,7 +7,7 @@
   ?>
       <div class="tags price">
           <h5>Price</h5>
-          <?php include('./components/slider.php');?>
+          <?php include('./components/priceSlider.php');?>
       </div>
       <div class="tags date">
           <h5>Ημερομηνια</h5>
@@ -25,9 +25,9 @@
         
           <h5>Job Type</h5>
           <?php 
-            $query = 'SELECT DISTINCT posts.category,COUNT(posts.category) AS count
+            $query = 'SELECT category, COUNT(*) AS count
             FROM posts
-            where posts.status!="disabled"
+            WHERE status != "disabled"
             GROUP BY category';
 
             $result = mysqli_query($con, $query);
