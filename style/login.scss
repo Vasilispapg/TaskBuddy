@@ -26,8 +26,10 @@ body {
     .password,
     .passwordconfirm,
     .buddy,
+    .expiredate,
     .location,
     .singupwith,
+    .profileimages,
     .ordiv,
     .acc {
         transition: opacity 0.3s ease;
@@ -202,6 +204,13 @@ body {
 #erroremail,
 #errorpassword {
     color: red;
+}
+
+div.row.px-3.expiredate,
+.category {
+    display: flex;
+    flex-direction: column !important;
+    margin-bottom: 0.5em !important;
 }
 
 @import './components/buddyButton.scss';

@@ -176,6 +176,10 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
                     <div class="product-cell price">Price<button class="sort-button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
                     </button></div>
+                    <div class="product-cell price">Delete<button class="sort-button">
+                    </button></div>
+                    <div class="product-cell price">Edit<button class="sort-button">
+                    </button></div>
                 </div> 
                 <?php
                     // Assuming you have a database connection established
@@ -222,7 +226,16 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
                                     echo '<div class="product-cell status-cell disabled"><div class="product status pending ">' . ucfirst($row['status']) . '</div></div>';
                                 // echo '<div class="product-cell sales">' . $row['sales'] . '</div>';
                                 // echo '<div class="product-cell stock">' . $row['stock'] . '</div>';
-                                echo '<div class="product-cell price">€' . $row['price'] . '</div>';
+                                echo '<div class="product-cell price">' . $row['price'] . '€</div>';
+                                echo '<div class="product-cell action">
+                                            <form action="php/deletePost.php" method="GET">
+                                                        <input type="hidden" name="post_id" value='.$row['id'].'> 
+                                                        <button class="btn btn-danger" type="submit" name="delete_post">Delete Post</button>
+                                                    </form>
+                                                    </div>
+                                        <div class="product-cell action">
+                                            <button class="btn btn-warning" style="margin-left:1em;padding:0.15rem 0.5rem;" onclick="runWhenClick('.$row['id'].')">Edit</button>
+                                        </div>';
                                 echo '</div>';
                             }    
                             
@@ -343,14 +356,17 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
     </div>
 </main>
 
-    <?php include_once('./components/footer.php');?>
+    <?php 
+        include('./components/modalPostEdit.php');
+        include_once('./components/footer.php');
+    ?>
 
 </body>
 
 <script src='scripts/chat.js'></script>
 <script src='scripts/dashboardChange.js'></script>
 <script src='scripts/dashboard.js'></script>
-
+<script src='scripts/getPostDetails.js'></script>
 
 <script>
     function createChatElement(userId, postId, userName, imageUrl,post_title) {
@@ -391,8 +407,7 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
         
         return chatDiv;
     }
-    /* The above code is written in JavaScript and it is creating a chat element dynamically based on the
-provided parameters. */
+   
     document.addEventListener("DOMContentLoaded", function() {
     
         <?php if ($displayMessage): ?>

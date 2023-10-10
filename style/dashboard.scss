@@ -638,6 +638,11 @@ body {
     }
 }
 
+.btn-danger {
+    padding: .15rem .5rem !important;
+}
+
 @import './components/header.scss';
 @import './components/footer.scss';
 @import './components/chat.scss';
+@import './components/modal.scss';
