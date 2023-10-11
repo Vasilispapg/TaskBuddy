@@ -189,32 +189,35 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
                     } else {
                         // Fetch products data from the database (modify this query according to your database structure)
                         $data = array();
-                        $query = 'SELECT * FROM posts where user_id ='. $_SESSION["id"] ;
-                        $queryImages = 'SELECT post_images.image_url FROM posts,post_images WHERE posts.user_id ='. $_SESSION["id"] . " AND posts.id = post_images.post_id" ;
+                        $query = 'SELECT posts.*,post_images.image_url as image_url FROM posts,post_images where user_id ='. $_SESSION["id"] .' AND posts.id =post_images.post_id';
                         $result = mysqli_query($con, $query);
-                        $resultImages = mysqli_query($con, $queryImages);
-                        $rowImages=mysqli_fetch_assoc($resultImages);
-                        if(!$rowImages)
-                            $rowImages="assets/user_images/user_icon_df.png";
-                        else
-                            $rowImages=$rowImages['image_url'];
-
+                        
                         // Check if there are any products in the database
                         if (mysqli_num_rows($result) > 0) {
                             // Loop through the products and generate rows
                             
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            while ($row = mysqli_fetch_assoc($result) ) {
+                                // $rowImages=mysqli_fetch_assoc($resultImages);
                                 $data[] = $row;
-                                $description=$row['description'];
-                                if (strlen($description) > 95) {
-                                    // If it's longer, truncate it and add "..."
-                                    $shortDescription = substr($description, 0, 95) . "...";
-                                } else {
-                                    // If it's shorter, use the original description
-                                    $shortDescription = $description;
+                                if(!$row['image_url'])
+                                    $rowImage="assets/user_images/user_icon_df.png";
+                                else
+                                    $rowImage=ltrim($row['image_url'],'./');
+                                    
+                                if($row['description']){
+                                    $description=$row['description'];
+                                    if (strlen($description) > 95) {
+                                        $shortDescription = substr($description, 0, 95) . "...";
+                                    } else {
+                                        $shortDescription = $description;
+                                    }
                                 }
+                                else{
+                                    $shortDescription="No description";
+                                }
+                                
                                 echo '<div class="products-row">';
-                                echo '<div class="product-cell image"> <img src='.$rowImages.' alt="post"><span>' . ucfirst($row['title']) . '</span></div>'; 
+                                echo '<div class="product-cell image"> <img src='.$rowImage.' alt="post"><span>' . ucfirst($row['title']) . '</span></div>'; 
                                 echo '<div class="product-cell category">' . ucfirst($shortDescription) . '</div>';
                                 echo '<div class="product-cell category">' . ucfirst($row['category']) . '</div>';
                                 echo '<div class="product-cell category">' . ucfirst($row['location']) . '</div>';
@@ -224,8 +227,6 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
                                     echo '<div class="product-cell status-cell disabled"><div class="product status disabled ">' . ucfirst($row['status']) . '</div></div>';
                                 else if($row['status']==='pending')
                                     echo '<div class="product-cell status-cell disabled"><div class="product status pending ">' . ucfirst($row['status']) . '</div></div>';
-                                // echo '<div class="product-cell sales">' . $row['sales'] . '</div>';
-                                // echo '<div class="product-cell stock">' . $row['stock'] . '</div>';
                                 echo '<div class="product-cell price">' . $row['price'] . '€</div>';
                                 echo '<div class="product-cell action">
                                             <form action="php/deletePost.php" method="GET">
@@ -366,7 +367,6 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
 <script src='scripts/chat.js'></script>
 <script src='scripts/dashboardChange.js'></script>
 <script src='scripts/dashboard.js'></script>
-<script src='scripts/getPostDetails.js'></script>
 
 <script>
     function createChatElement(userId, postId, userName, imageUrl,post_title) {

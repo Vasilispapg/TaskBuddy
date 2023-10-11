@@ -5,13 +5,20 @@ function runWhenClick(postID) {
     fetch('php/get_post_details.php?post_id=' + postID)
         .then(response => response.json())
         .then(data => {
-            // Assuming you have form fields with IDs 'edit_title', 'edit_desc', 'edit_price', 'edit_category', 'edit_expireDate'
+
             document.getElementById('edit_title').value = data.title;
             document.getElementById('post_id').value = postID;
-            document.getElementById('edit_desc').value = data.description;
+            document.getElementById('edit_desc').innerText = data.description;
             document.getElementById('edit_price').value = data.price;
-            document.getElementById('edit_category').value = data.category;
-            document.getElementById('edit_expireDate').value = data.end_time;
+
+            document.querySelector('#edit_category option[value="' + data.category + '"]').selected = true;
+
+            dateValues = document.querySelector('.date').childNodes;
+            dataAttr = data.end_time.split(' ')[0].split('-').reverse();
+
+            document.querySelector('.date select:nth-child(1) option[value="' + parseInt(dataAttr[0]) + '"]').selected = true
+            document.querySelector('.date select:nth-child(2) option[value="' + parseInt(dataAttr[1]) + '"]').selected = true
+            document.querySelector('.date select:nth-child(3) option[value="' + parseInt(dataAttr[2]) + '"]').selected = true
 
             // Display the edit form (you can toggle a modal or a hidden div)
             document.getElementById('myModalEdit').style.display = 'block';

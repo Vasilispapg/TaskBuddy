@@ -144,7 +144,7 @@ else{
                                         <h6 class="mb-0">About</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" style='height:calc(3.5em + .75rem + 2px)' class="form-control" name='about' value='<?php if(isset($_SESSION['about'])) echo $_SESSION['about'];?>'>
+                                        <textarea type="text" style='height:calc(3.5em + .75rem + 2px)' class="form-control" name='about' value='<?php if(isset($_SESSION['about'])) echo $_SESSION['about'];?>'><?php if(isset($_SESSION['about'])) echo $_SESSION['about'];?></textarea>
                                     </div>
                                 </div>
                                 <div class="row" style='margin-left:30%'>

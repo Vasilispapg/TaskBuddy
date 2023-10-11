@@ -2,6 +2,21 @@
 session_name('user');
 session_start();
 
+function deleteMessages($conn,$post_id){
+    $deleteMessages="DELETE FROM messages WHERE post_id = ?";
+    $stmtDeleteMessages = $conn->prepare($deleteMessages);
+    $stmtDeleteMessages->bind_param("i", $post_id);
+    $stmtDeleteMessages->execute();
+    $stmtDeleteMessages->close();
+}
+function deleteMessagesIDPost($conn,$post_id){
+    $deleteMessages="DELETE FROM post_id_messages WHERE post_id = ?";
+    $stmtDeleteMessages = $conn->prepare($deleteMessages);
+    $stmtDeleteMessages->bind_param("i", $post_id);
+    $stmtDeleteMessages->execute();
+    $stmtDeleteMessages->close();
+}
+
 function deletePost($post_id) {
     // Replace these with your database connection details
     $db_host = "localhost";
@@ -29,6 +44,8 @@ function deletePost($post_id) {
     $stmtDeletePost->bind_param("i", $post_id);
     $stmtDeleteImages->bind_param("i", $post_id);
 
+    deleteMessagesIDPost($conn,$post_id);
+    deleteMessages($conn,$post_id);
     // Execute the statements
     $success =$stmtDeleteImages->execute() && $stmtDeletePost->execute() ;
 
