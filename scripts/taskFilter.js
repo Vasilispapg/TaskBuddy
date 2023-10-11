@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const activeFilters = {
         status: [], // Use an array to store active values
         category: [],
-        // Add more filter types here if needed
+        date: ['desc']
+            // Add more filter types here if needed
     };
 
     function applyFilters() {

@@ -137,7 +137,6 @@ else{
 </body>
 <script src='scripts/slider.js'></script>
 <script src='scripts/taskFilter.js'></script>
-<script src='scripts/imageSlider.js'></script>
 
 
 <script>

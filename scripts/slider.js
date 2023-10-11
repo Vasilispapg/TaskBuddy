@@ -22,8 +22,8 @@ function updateSliders() {
         maxPriceSlider.value = minPriceSlider.value;
     }
 
-    minPriceValue.textContent = `$${minPriceSlider.value}`;
-    maxPriceValue.textContent = `$${maxPriceSlider.value}`;
+    minPriceValue.textContent = `${minPriceSlider.value}€`;
+    maxPriceValue.textContent = `${maxPriceSlider.value}€`;
     filterPosts();
 }
 
@@ -52,11 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     minPriceSlider.setAttribute('min', min);
     minPriceSlider.setAttribute('max', max);
-    minPriceSlider.setAttribute('value', min);
+    minPriceSlider.value = min;
 
     maxPriceSlider.setAttribute('min', min);
     maxPriceSlider.setAttribute('max', max);
-    maxPriceSlider.setAttribute('value', max);
+    maxPriceSlider.value = max;
 
     updateSliders();
 });
