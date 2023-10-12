@@ -56,7 +56,7 @@ function connectToDatabase() {
 }
 
 function uploadImage($username) {
-    $uploadDirectory = '../assets/user_images/'; // Change this to your desired directory
+    $uploadDirectory = 'assets/user_images/'; // Change this to your desired directory
     $uploadedFileName = $_FILES['image']['name'];
 
     // Generate a unique filename based on the username

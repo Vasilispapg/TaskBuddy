@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_FILES['new_image']) && $_FILES['new_image']['error'] === UPLOAD_ERR_OK) {
 
         // Define the upload directory and file path
-        $uploadDirectory = '../assets/user_images/';
+        $uploadDirectory = 'assets/user_images/';
         $uploadedFileName = $_FILES['new_image']['name'];
         $username = $_SESSION['username'];
 
