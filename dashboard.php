@@ -59,8 +59,6 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
 
 ?>
 
-
-    
 <main class="main">
     <div class="app-container">
         <div class="sidebar">
@@ -104,255 +102,11 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
         </div>
     </div>
         <div class="app-content">
-            <div class="app-content-header" >
-                <h1 class="app-content-headerText">Dashboard</h1>
-                <button class="mode-switch" title="Switch Theme">
-                    <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-                    <defs></defs>
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-                </button>
-                <h1 class="app-content-headerButton style='font-size:18pt;display:inherit'">Wallet <?php echo $_SESSION['wallet'];?>€</h1>
-            </div>
-            <!-- <div class="app-content-actions">
-                <input class="search-bar" placeholder="Search..." type="text">
-                <div class="app-content-actions-wrapper">
-                    <div class="filter-button-wrapper">
-                    <button class="action-button filter jsFilter"><span>Filter</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
-                    <div class="filter-menu">
-                        <label>Category</label>
-                        <select>
-                        <option>All Categories</option>
-                        <option>Furniture</option>                     
-                        <option>Decoration</option>
-                        <option>Kitchen</option>
-                        <option>Bathroom</option>
-                        </select>
-                        <label>Status</label>
-                        <select>
-                        <option>All Status</option>
-                        <option>Active</option>
-                        <option>Pending</option>
-                        <option>Disabled</option>
-                        </select>
-                        <div class="filter-menu-buttons">
-                        <button class="filter-button reset">
-                            Reset
-                        </button>
-                        <button class="filter-button apply">
-                            Apply
-                        </button>
-                        </div>
-                    </div>
-                    </div>
-                    <button class="action-button list active" title="List View">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                    </button>
-                    <button class="action-button grid" title="Grid View">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                    </button>
-                </div>
-            </div> -->
-            <div class="products-area-wrapper tableView" id='Dashboard'>
-                <div class="products-header">
-                    <div class="product-cell image">
-                    Post
-                    <button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button>
-                    </div>
-                    <div class="product-cell category">Description<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                    <div class="product-cell category">Category<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                    <div class="product-cell category">Location<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                    <div class="product-cell status-cell">Status<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                    <div class="product-cell price">Price<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                    <div class="product-cell price">Delete<button class="sort-button">
-                    </button></div>
-                    <div class="product-cell price">Edit<button class="sort-button">
-                    </button></div>
-                </div> 
-                <?php
-                    // Assuming you have a database connection established
-                    $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-                    if (mysqli_connect_errno() || !$con) {
-                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                    } else {
-                        // Fetch products data from the database (modify this query according to your database structure)
-                        $data = array();
-                        $query = 'SELECT posts.*,post_images.image_url as image_url FROM posts,post_images where user_id ='. $_SESSION["id"] .' AND posts.id =post_images.post_id';
-                        $result = mysqli_query($con, $query);
-                        
-                        // Check if there are any products in the database
-                        if (mysqli_num_rows($result) > 0) {
-                            // Loop through the products and generate rows
-                            
-                            while ($row = mysqli_fetch_assoc($result) ) {
-                                // $rowImages=mysqli_fetch_assoc($resultImages);
-                                $data[] = $row;
-                                if(!$row['image_url'])
-                                    $rowImage="assets/user_images/user_icon_df.png";
-                                else
-                                    $rowImage=ltrim($row['image_url'],'./');
-                                    
-                                if($row['description']){
-                                    $description=$row['description'];
-                                    if (strlen($description) > 95) {
-                                        $shortDescription = substr($description, 0, 95) . "...";
-                                    } else {
-                                        $shortDescription = $description;
-                                    }
-                                }
-                                else{
-                                    $shortDescription="No description";
-                                }
-                                
-                                echo '<div class="products-row">';
-                                echo '<div class="product-cell image"> <img src='.$rowImage.' alt="post"><span>' . ucfirst($row['title']) . '</span></div>'; 
-                                echo '<div class="product-cell category">' . ucfirst($shortDescription) . '</div>';
-                                echo '<div class="product-cell category">' . ucfirst($row['category']) . '</div>';
-                                echo '<div class="product-cell category">' . ucfirst($row['location']) . '</div>';
-                                if(strcmp($row['status'],'active')==0) 
-                                    echo '<div class="product-cell status-cell active"><div class="product status active ">' . ucfirst($row['status']) . '</div></div>';
-                                else if($row['status']==='disabled')
-                                    echo '<div class="product-cell status-cell disabled"><div class="product status disabled ">' . ucfirst($row['status']) . '</div></div>';
-                                else if($row['status']==='pending')
-                                    echo '<div class="product-cell status-cell disabled"><div class="product status pending ">' . ucfirst($row['status']) . '</div></div>';
-                                echo '<div class="product-cell price">' . $row['price'] . '€</div>';
-                                echo '<div class="product-cell action">
-                                            <form action="php/deletePost.php" method="GET">
-                                                        <input type="hidden" name="post_id" value='.$row['id'].'> 
-                                                        <button class="btn btn-danger" type="submit" name="delete_post">Delete Post</button>
-                                                    </form>
-                                                    </div>
-                                        <div class="product-cell action">
-                                            <button class="btn btn-warning" style="margin-left:1em;padding:0.15rem 0.5rem;" onclick="runWhenClick('.$row['id'].')">Edit</button>
-                                        </div>';
-                                echo '</div>';
-                            }    
-                            
-                            // Convert the PHP array to JSON
-                            $jsonData = json_encode($data);
-
-                            // Store the JSON data in a session variable
-                            $_SESSION['json_data'] = $jsonData;
-
-                            echo '</div>';
-                            
-                        } else {
-                            echo '<div style="color:white">No products found.</div>';
-                        }
-                    }
-                    // Close the database connection
-                    mysqli_close($con);
-                ?>
-           
-                <div class="products-area-wrapper tableView tablechat" id='inbox' style='display:none'>
-                    <div class="spliter">
-                    <?php
-                        // Assuming you have a database connection established
-                        $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-                        if (mysqli_connect_errno() || !$con) {
-                            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                        } else {
-                                
-                                $sql = "SELECT
-                                MAX(pi.image_url) AS image_url,
-                                MAX(m.msg) AS message,
-                                MAX(m.created_at) AS created_at,
-                                pim.post_id AS post_id,
-                                MAX(pim.outgoing_id) AS user_id1,
-                                MAX(pim.incoming_id) AS user_id2,
-                                MAX(u.fullname) AS username1,
-                                MAX(u2.fullname) AS username2,
-                                MAX(p.title) AS post_title
-                            FROM
-                                post_id_messages AS pim
-                            
-                            INNER JOIN
-                                posts AS p ON pim.post_id = p.id
-                            LEFT JOIN
-                                post_images AS pi ON p.id = pi.post_id
-                            LEFT JOIN
-                                messages AS m ON (
-                                    (m.incoming_msg_id = pim.incoming_id AND m.outgoing_msg_id = pim.outgoing_id)
-                                    OR
-                                    (m.incoming_msg_id = pim.outgoing_id AND m.outgoing_msg_id = pim.incoming_id)
-                                )
-                            INNER JOIN
-                                users AS u ON u.id =pim.outgoing_id
-                            INNER JOIN
-                                users AS u2 ON u2.id =pim.incoming_id
-                            WHERE
-                                (pim.outgoing_id = ? OR pim.incoming_id = ?)
-                            GROUP BY
-                                pim.post_id
-                            ORDER BY
-                                MAX(m.created_at) DESC;
-                                ";
-
-                                //pata ston PANAGIWTA col=3o row=1o kai des ena error poy dn krataei to chatbox
-
-                                // Create a prepared statement
-                            $stmt = $con->prepare($sql);
-
-                            if ($stmt) {
-                                // Bind the parameter (user ID from the session)
-                                $stmt->bind_param("ii", $_SESSION['id'], $_SESSION['id']);
-
-                                // Execute the statement
-                                $stmt->execute();
-
-                                // Get the result set
-                                $result = $stmt->get_result();
-                                                              
-
-                                // Check if there are any products in the database
-                                if (mysqli_num_rows($result) > 0) {
-                                    // Loop through the products and generate rows
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        if (empty($row['image_url']))
-                                            $img_path = "assets/user_images/user_icon_df.png";
-                                        else
-                                            $img_path= $row['image_url'];  
-                           
-                                        // Add a unique identifier (e.g., user ID) to each product-cell
-                                        if($_SESSION['id']==$row['user_id1'] && $_SESSION['username']!=$row['username1']){
-                                            echo '<div class="products-row chat" id="senderUser" user="'.$row['user_id2'].'" post="'.$row['post_id'].'" >';
-                                            echo '<h6>'.ucfirst($row['username2']).'</h6>';
-                                        }
-                                        else{
-                                            echo '<div class="products-row chat" id="senderUser" user="'.$row['user_id1'].'" post="'.$row['post_id'].'" >';
-                                            echo '<h6>'.ucfirst($row['username1']).'</h6>';
-                                        }
-
-
-                                        echo '<div class="product-cell image"> <img src=' . $img_path . ' alt="post"><span class="user-name">' . ucfirst($row['post_title']) . '</span></div></div>';
-                                    }
-                                }
-                            }
-                        }
-                    ?>
-                    </div>
-                    <div class="chat-container">
-                        <div class="chat-messages" id="chat-messages"></div>
-                        <div class="chat-input">
-                            <input type="text" id="message-input" placeholder="Type your message">
-                            <button id="send-button">Send</button>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
+            <?php 
+                include('./components/dashboardTableHeader.php');
+                include('./components/dashboardTableView.php');
+                include('./components/chat.php');
+            ?>
         </div>
     </div>
 </main>
@@ -420,27 +174,33 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
 
             chats=document.querySelectorAll('.chat')
 
-            flag_create_new=true
+            create_new_chat=false
             last_one=chats[chats.length-1]
             its_last_one=false
+            flag_ACTIVE=false
 
+            if(chats.length==0) //for empty chat
+                create_new_chat=true
+
+           
             chats.forEach(chat => {
-                flag_create_new=chat.getAttribute('user') == user_id && chat.getAttribute('post') == post_id ? true : false
-                if(flag_create_new){
+                create_new_chat=chat.getAttribute('user') == user_id && chat.getAttribute('post') == post_id ? false : true
+
+                if(create_new_chat==false){
                     chat.classList.add('active') 
                     chat.click()
                     its_last_one = chat == last_one ? true : false
+                    flag_ACTIVE=true //an yparxei active chat
                 }
             });
 
-            if(flag_create_new && !its_last_one){
+            if(create_new_chat && !its_last_one && !flag_ACTIVE){
 
                 chat_box=document.querySelector('.spliter');
                 var customChatElement = createChatElement(user_id, post_id, userFullname, post_image,post_title);
 
                 // Get the first child element (if it exists)
                 var firstChild = chat_box.firstChild;
-
                 // Append the new element as the first child
                 chat_box.insertBefore(customChatElement, firstChild);
                 <?php endif; ?>
@@ -450,6 +210,8 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
                 firstChild.nextSibling.classList.add('active');
                 <?php endif; ?>
             }
+
+           
 
             dashboard.style.display = "none";
             inbox.style.display = "flex";
