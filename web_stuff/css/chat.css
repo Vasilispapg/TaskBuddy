@@ -13,6 +13,29 @@ body {
   color: var(--app-content-main-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.chat-container .chat-suggestions {
+  display: flex;
+  flex-direction: column-reverse;
+  max-height: 100px;
+  overflow-y: auto;
+  bottom: -68%;
+  position: relative;
+  flex-direction: row;
+}
+.chat-container .chat-suggestions .suggestion-bubble {
+  background-color: #f2f2f2;
+  color: #333;
+  border-radius: 15px;
+  padding: 4px 10px;
+  margin: 5px;
+  max-width: 70%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: auto;
+}
+.chat-container .chat-suggestions .suggestion-bubble:hover {
+  background-color: #d9d9d9;
+}
 
 .chat-messages {
   max-height: 27vh;
@@ -90,4 +113,8 @@ div.chat-input {
 
 .sender {
   cursor: pointer;
+}
+
+#header {
+  display: flex;
 }/*# sourceMappingURL=chat.css.map */

@@ -1,5 +1,6 @@
 <div class="app-content-header" >
                 <h1 class="app-content-headerText">Dashboard</h1>
+                <div id='header'>
                 <button class="mode-switch" title="Switch Theme">
                     <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
                     <defs></defs>
@@ -7,6 +8,8 @@
                     </svg>
                 </button>
                 <h1 class="app-content-headerButton style='font-size:18pt;display:inherit'">Wallet <?php echo $_SESSION['wallet'];?>€</h1>
+                </div>
+                
             </div>
             <!-- <div class="app-content-actions">
                 <input class="search-bar" placeholder="Search..." type="text">

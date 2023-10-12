@@ -85,10 +85,22 @@
                 </div>
                 <div class="chat-container">
                     <div class="chat-messages" id="chat-messages"></div>
+                    <div class="chat-suggestions"  style='display:none'>
+                        <?php
+                        // Example suggestion array (replace with your suggestions)
+                        $suggestions = array("Γειά!", "Πώς μπορώ να βοηθήσω;", "Πες μου περισσότερα.", "Ενδιαφέρον.");
+
+                        // Loop through suggestions and generate bubbles
+                        foreach ($suggestions as $suggestion) {
+                            echo '<div class="suggestion-bubble">' . $suggestion . '</div>';
+                        }
+                        ?>
+                    </div>
                     <div class="chat-input">
                         <input type="text" id="message-input" placeholder="Type your message">
                         <button id="send-button">Send</button>
                     </div>
                 </div>
-                
             </div>
+
+

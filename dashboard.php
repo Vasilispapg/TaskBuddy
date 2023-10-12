@@ -220,4 +220,33 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
     });
 </script>
 
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    chat_elements = document.querySelectorAll('.spliter #senderUser')
+    // Check if there are chat messages and the chat element has the "active" class
+    chat=undefined
+    chat_elements.forEach(chat_element => {
+        if (chat_element.classList.contains("active") ) {
+           chat=chat_element
+        } 
+    });
+    
+    // Check if chat messages are empty
+    isEmpty=document.querySelector('.chat-messages').hasChildNodes() ? false :  true;
+    
+    
+    const suggestions = document.querySelector(".chat-suggestions");
+
+    console.log(isEmpty)
+
+    if (chat!=undefined && isEmpty) {
+        suggestions.style.display = "flex";
+    } else {
+        suggestions.style.display = "none";
+    }
+    // FIX IT
+})
+</script>
+
 </html>
