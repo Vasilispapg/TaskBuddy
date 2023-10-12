@@ -105,7 +105,7 @@ if (isset($_GET['message']) && $_GET['message'] === 'true') {
             <?php 
                 include('./components/dashboardTableHeader.php');
                 include('./components/dashboardTableView.php');
-                include('./components/chat.php');
+                include('./components/dashboardTableChat.php');
             ?>
         </div>
     </div>
