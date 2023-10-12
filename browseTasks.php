@@ -45,27 +45,37 @@ else{
                     echo "Failed to connect to MySQL: " . mysqli_connect_error();
                 } 
                 else {
-                      function timeAgo($timestamp) {
+                    function timeDiff($timestamp, $isBefore) {
                         $currentTimestamp = time();
                         $timestamp = strtotime($timestamp);
-                        $timestampDiff = $currentTimestamp - $timestamp;
-
-                        if ($timestampDiff < 60) {
-                            return "Πριν " . $timestampDiff . " δευτερόλεπτα";
-                        } elseif ($timestampDiff < 3600) {
-                            $minutes = floor($timestampDiff / 60);
-                            return "Πριν " . $minutes . " λεπτά";
-                        } elseif ($timestampDiff < 86400) {
-                            $hours = floor($timestampDiff / 3600);
-                            return "Πριν " . $hours . " ώρες";
-                        } elseif ($timestampDiff < 604800) {
-                            $days = floor($timestampDiff / 86400);
-                            return "Πριν " . $days . " μέρες";
+                        if($isBefore)
+                            $timestampDiff = $currentTimestamp - $timestamp;
+                        else
+                            $timestampDiff = $timestamp - $currentTimestamp;
+                    
+                        if ($isBefore) {
+                            $prefix = "Πριν ";
                         } else {
-                            $weeks = floor($timestampDiff / 604800);
-                            return "Πριν " . $weeks . " εβδ.";
+                            $prefix = "Λήγει σε ";
                         }
-                      }
+                    
+                        if ($timestampDiff < 60) {
+                            return $prefix . $timestampDiff . " δευτερόλεπτα";
+                        } elseif ($timestampDiff < 3600) {
+                            $minutes = ceil($timestampDiff / 60);
+                            return $prefix . $minutes . " λεπτά";
+                        } elseif ($timestampDiff < 86400) {
+                            $hours = ceil($timestampDiff / 3600);
+                            return $prefix . $hours . " ώρες";
+                        } elseif ($timestampDiff < 604800) {
+                            $days = ceil($timestampDiff / 86400);
+                            return $prefix . $days . " μέρες";
+                        } else {
+                            $weeks = ceil($timestampDiff / 604800);
+                            return $prefix . $weeks . " εβδ.";
+                        }
+                    }
+                      
                     
                     $query = 'SELECT
                     posts.id,
@@ -90,6 +100,8 @@ else{
                     users ON users.id = posts.user_id
                 WHERE
                     posts.status != "disabled"
+                AND
+                    posts.end_time > NOW()
                 GROUP BY
                     posts.id,
                     posts.title,

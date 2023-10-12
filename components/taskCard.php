@@ -19,7 +19,9 @@
 
                   </div>
                   <h4 class="card-title text-primary" id='title'><?php if($row['title']) echo $row['title'];?></h4>
-                  <h6 class="card-subtitle text-muted" id='created_at' value='<?php echo $row['created_at']?>'><?php if($row['created_at']) echo timeAgo($row['created_at']);?></h6>
+                  <h6 class="card-subtitle text-muted" id='created_at' value='<?php echo $row['created_at']?>'><?php if($row['created_at']) echo timeDiff($row['created_at'],true);?> •
+                  <?php if($row['end_time']) echo timeDiff($row['end_time'],false); else echo "No Expiration";?>
+                </h6>
 
                   <h6 class="card-subtitle text-dark status-circle <?php echo $row['status'];?>" value='<?php echo $row['status'];?>' id='status'></h6>
                 

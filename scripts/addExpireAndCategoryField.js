@@ -1,6 +1,10 @@
 function generateExpirationDateSelector() {
     const container = document.createElement('div');
-    container.classList.add('row', 'px-3', 'expiredate');
+    if (document.querySelector('.card2'))
+
+        container.classList.add('row', 'px-3', 'expiredate');
+    else if (document.querySelector('.form-group'))
+        container.classList.add('row', 'expiredate');
 
     const label = document.createElement('label');
     label.classList.add('mb-1');

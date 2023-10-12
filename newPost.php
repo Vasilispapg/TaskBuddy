@@ -29,8 +29,9 @@ else{
 <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto" >
         <div class="card card0 border-0">
             <div class="row d-flex">
+               
                 <form id='postform' action='php/createPost.php' enctype="multipart/form-data" method="post" class="col-lg-6">
-                    <div class="card2 card border-0 px-4 py-5">
+                    <div class="card2 card border-0 px-4 py-5" >
 
                         <div class="row px-3 title">
                             <label class="mb-1"><h6 class="mb-0 text">Τίτλος</h6></label>
@@ -58,8 +59,11 @@ else{
                         </div>
                     </div>
                 </form>
+                
             </div>
+            <img src="assets/painter2.png" alt="" style='width: 50%;position: absolute;right: 0;'>
         </div>
+      
     </div>
 
 <?php include 'components/footer.php';?>
