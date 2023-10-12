@@ -4,10 +4,10 @@
     <ul class="nav-list">
         <li><a href="browseTasks.php">Browse Tasks</a></li>
         <?php
-        if (isset($_SESSION["username"])) {
+        if (isset($_SESSION["id"])) {
             // User is logged in, display their username and a link to their profile or dashboard
             echo '<li><a href="profile.php" id="profile" >Welcome ' . $_SESSION["fullname"] . '</a></li>';
-            if($_SESSION['isBuddy'] || $_SESSION['isAdmin'])
+            if($_SESSION['id'])
                 echo '<li><a href="dashboard.php">Dashboard</a></li>';
             echo '<li><a href="php/logout.php">Logout</a></li>';
 
