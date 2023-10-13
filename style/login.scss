@@ -216,3 +216,8 @@ div.row.px-3.expiredate,
 @import './components/buddyButton.scss';
 @import './components/footer.scss';
 @import './components/select.scss';
+@media screen and (max-width: 1400px) {
+    .container-fluid.px-1 {
+        width: 80% !important;
+    }
+}
