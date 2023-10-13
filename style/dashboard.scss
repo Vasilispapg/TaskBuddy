@@ -120,11 +120,45 @@ body {
             }
         }
     }
-    @media screen and (max-width: 1024px) {
-        & {
-            display: none;
-        }
-    }
+    // @media screen and (max-width: 1024px) {
+    //     & {
+    //         display: none;
+    //     }
+    // }
+}
+
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-icon i {
+    font-size: 24px;
+}
+
+svg {
+    fill: #ffffff;
+    z-index: 2;
+    position: relative;
+}
+
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    background-color: #2869ff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    position: absolute;
+    top: -6px;
+    left: 8px;
+    width: 1%;
+    z-index: 1;
 }
 
 .mode-switch {

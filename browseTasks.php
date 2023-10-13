@@ -149,7 +149,7 @@ else{
 </body>
 <script src='scripts/slider.js'></script>
 <script src='scripts/taskFilter.js'></script>
-
+<script src='scripts/sendNotify.js'></script>
 
 <script>
   // Get the modal elements and buttons
