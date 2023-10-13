@@ -39,15 +39,20 @@
                   ?>
 
                 </div>
+                <div id="confirmation-message" style="display: none;"></div>
                 <div class="card-footer" >
                     <div>
-                      <?php if($_SESSION['id']!=$row['user_id'])
+                      <?php 
+                      if($_SESSION['id']!=$row['user_id']){
                         echo "<a id='messageBtn' href='../taskbuddynw/dashboard.php?message=true&receiverID=".$row['user_id']."&postID=".$row['id']."' class='btn btn-primary'>Message</a>";
-                        ?>
-                        <!-- <button id='readMoreBtn' class="btn btn-outline-primary">Read More</button>  ΦΤΙΑΞΕ ΤΟ ΚΑΙ ΞΑΝΑ ΑΝΟΙΞΕ ΤΟ-->
+                        echo "<button style='margin-left:5px' id='takeTheJob' class=\"btn btn-outline-primary\" data-user-id=".$row['user_id']." data-post-id=".$row['id'].">Take the job</button>";
+                      }?>
+                        <!-- <button id='takeTheJob' class="btn btn-outline-primary" data-user-id=>Take the job</button> -->
                     </div>
+
                   <h4 class="card-subtitle text-primary" id='price'><?php if($row['price']) echo $row['price'].'€'; else echo "No Price"?></h4>
                 </div>
+               
               </div>
             </div>
         </div>
