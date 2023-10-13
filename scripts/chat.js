@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-
     // Event listener for sending a message
     sendButton.addEventListener("click", function() {
         const activeCell = document.querySelector(".products-row.active");
@@ -102,26 +101,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Add a click event listener to product-cells
-    const productCells = document.querySelectorAll(".products-row.chat");
-    productCells.forEach((cell) => {
-        cell.addEventListener("click", function() {
-            // Remove the "active" class from all product-cells
-            productCells.forEach((cell) => {
-                cell.classList.remove("active");
+    productCells = document.querySelectorAll(".products-row.chat");
+
+    function messageActive() {
+        productCells.forEach((cell) => {
+            cell.addEventListener("click", function() {
+                // Remove the "active" class from all product-cells
+                productCells.forEach((cell) => {
+                    cell.classList.remove("active");
+                });
+
+                // Add the "active" class to the clicked product-cell
+                cell.classList.add("active");
+
+                // Retrieve and display chat messages for the selected user
+                senderUserID = cell.getAttribute("user");
+                postID = cell.getAttribute("post");
+                retrieveMessages(senderUserID, postID);
             });
-
-            // Add the "active" class to the clicked product-cell
-            cell.classList.add("active");
-
-            // Retrieve and display chat messages for the selected user
-            senderUserID = cell.getAttribute("user");
-            postID = cell.getAttribute("post");
-            retrieveMessages(senderUserID, postID);
         });
-    });
+    }
+    messageActive()
 
     // Retrieve and display chat messages for the initially active user (if any)
-    const initiallyActiveCell = document.querySelector("#inbox .active");
+    initiallyActiveCell = document.querySelector("#inbox .active");
     if (initiallyActiveCell) {
         const userId = initiallyActiveCell.closest(".chat");
         if (userId) {
@@ -133,11 +136,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Poll for new messages at regular intervals (e.g., every 5 seconds)
     setInterval(() => {
-        const activeCell = document.querySelector("#inbox .active");
+        activeCell = document.querySelector("#inbox .active");
+        initiallyActiveCell = document.querySelector("#inbox .active");
+        productCells = document.querySelectorAll(".products-row.chat");
+        messageActive()
+
         if (activeCell) {
             receiverID = activeCell.getAttribute("user");
             postID = activeCell.getAttribute("post");
             retrieveMessages(receiverID, postID);
         }
-    }, 3000); // Adjust the interval as needed
+    }, 2000); // Adjust the interval as needed
 });
