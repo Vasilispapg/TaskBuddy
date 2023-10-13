@@ -1,6 +1,12 @@
 <header class="header">
     <menu class="menu">
     <div class="logo"><a class="logo" href="index.php">TaskBuddy</a></div>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </label>
     <ul class="nav-list">
         <li><a href="browseTasks.php">Browse Tasks</a></li>
         <?php
@@ -20,3 +26,13 @@
         </ul>
     </menu>
 </header>
+
+<script>
+    // JavaScript for handling the hamburger menu toggle
+    const menuToggle = document.getElementById("menu-toggle");
+    const navList = document.querySelector(".nav-list");
+
+    menuToggle.addEventListener("click", () => {
+        navList.classList.toggle("active");
+    });
+</script>

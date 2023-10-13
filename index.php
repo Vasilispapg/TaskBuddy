@@ -48,7 +48,7 @@ if ($justRegistered) {
                 </form>
             </section>
         </section>
-        <section class="download_app">
+        <section class="download_app" style='display:none'>
             <div class="app-store-links">
                 <a data-behavior="app-link-clicked" data-source="desktop-social-proof" href="https://apps.apple.com/app/id374165361" data-registered="">
                     <img alt="Download app from Apple Store" height="60" src="https://assets.taskrabbit.com/v3/assets/web/en-US/appstore_badge-86c9954e1457d27db013c1f10a96ffaba845e5af7765c4ef9df4ac1549e47d67.svg">

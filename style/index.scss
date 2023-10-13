@@ -104,3 +104,94 @@ button[type="submit"]:hover {
 @import './components/taskers.scss';
 // taskers
 @import './components/footer.scss';
+@media screen and (max-width: 1400px) {
+    .jobs .title {
+        margin: 21% 0 5% 20%;
+        padding: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width:612px) {
+    .jobs .title {
+        padding: 10% 0;
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .search-field img {
+        height: auto;
+        /* Allow the image to scale proportionally */
+        max-width: 100%;
+        margin: 0;
+    }
+    .search-text {
+        width: 100%;
+        /* Full width on small screens */
+        padding: 10px;
+        top: 0;
+        left: 0;
+    }
+    .download_app {
+        padding: 1em;
+        /* Adjust the padding */
+        top: -140px;
+        /* Position the download_app section accordingly */
+    }
+    .download_app a:nth-child(1) {
+        left: 0;
+        /* Adjust the position of the first link */
+    }
+    .box-container-row {
+        padding: 0em;
+        /* Remove horizontal padding */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .taskers_preview {
+        display: none;
+    }
+    h1 {
+        font-size: 24px;
+        /* Increase font size */
+        margin-top: 10px;
+    }
+    h4 {
+        font-size: 16px;
+        /* Adjust font size */
+        margin-top: 5px;
+    }
+    input[type="text"] {
+        padding: 8px;
+        /* Reduce padding */
+        width: 100%;
+        /* Full width */
+        margin-right: 0;
+        /* Remove margin */
+    }
+    button[type="submit"] {
+        font-size: 18px;
+        /* Increase font size */
+        padding: 10px 15px;
+        /* Adjust padding */
+    }
+    .flip-box p {
+        font-size: 16px;
+        /* Adjust font size */
+        line-height: 1.4em;
+        /* Adjust line height */
+    }
+    .flip-box-button {
+        font-size: 16px;
+        /* Adjust font size */
+        margin-top: 15px;
+        /* Increase top margin */
+        padding: 10px 15px;
+        /* Adjust padding */
+    }
+}
