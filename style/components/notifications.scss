@@ -1,4 +1,12 @@
 #notification {
+    button a {
+        text-decoration: none;
+        color: #28a745;
+    }
+    button a:hover {
+        text-decoration: none;
+        color: #ffffff;
+    }
     margin: 20px -1em;
     img {
         object-fit: cover;

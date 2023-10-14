@@ -77,7 +77,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         response.forEach(function(notification) {
                             const message = notification.message;
-                            // const image_url = notification.image_url;
+                            const userID = notification.userID;
+                            const postID = notification.postID;
                             const userFullname = notification.fullname;
                             const user_image = notification.image_path;
                             const type = notification.type;
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                         </div>
                                         <span class="ml-auto mb-auto">
                                             <div class="btn-group">
-                                            <button type="button" style='margin-right:2em'class="btn btn-outline-success btn-sm">${buttonMessage}</button>
+                                            <button type="button" style='margin-right:2em'class="btn btn-outline-success btn-sm"><a href='../taskbuddynw/dashboard.php?message=true&receiverID=${userID}&postID=${postID}'>${buttonMessage}</a></button>
                                                 <button type="button" class="btn btn-light btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 ${seentext}
                                                 </button>
@@ -143,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                         </div>
                                         <span class="ml-auto mb-auto">
                                             <div class="btn-group">
-                                            <button type="button" style='margin-right:2em'class="btn btn-outline-success btn-sm">${buttonMessage}</button>
+                                            <button type="button" style='margin-right:2em'class="btn btn-outline-success btn-sm"><a href='../taskbuddynw/dashboard.php?message=true&receiverID=${userID}&postID=${postID}'>${buttonMessage}</a></button>
                                                 <button type="button" class="btn btn-light btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="mdi mdi-dots-vertical">${''}</i>
                                                 </button>

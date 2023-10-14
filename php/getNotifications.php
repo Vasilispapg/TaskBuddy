@@ -11,26 +11,26 @@ if (mysqli_connect_errno() || !$con) {
         $toUserID = $_SESSION['id'];
         $newNotificationsquery = "SELECT notifications.*,
                             posts.title,
-                            post_images.image_url,
+                            posts.id as postID,
                             users.fullname,
+                            users.id as userID,
                             users.image_path
-                FROM notifications, post_images, users,posts
+                FROM notifications, users,posts
                 WHERE to_user_id = $toUserID
                 AND posts.id = notifications.postID
                 AND seen = 'false'
-                AND post_images.post_id = notifications.postID
                 AND users.id = notifications.from_user_id
                 ORDER BY notifications.created_at DESC";
                 
         $oldNotificationsquery = "SELECT notifications.*,
-                    posts.title,
-                    post_images.image_url,
-                    users.fullname,
-                    users.image_path
-        FROM notifications, post_images, users,posts
+                            posts.title,
+                            posts.id as postID,
+                            users.fullname,
+                            users.id as userID,
+                            users.image_path
+        FROM notifications, users,posts
         WHERE to_user_id = $toUserID
         AND posts.id = notifications.postID
-        AND post_images.post_id = notifications.postID
         AND users.id = notifications.from_user_id
         AND seen = 'true'
         ORDER BY notifications.created_at DESC
