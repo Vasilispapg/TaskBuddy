@@ -1,0 +1,37 @@
+#notification {
+    margin: 20px -1em;
+    img {
+        object-fit: cover;
+    }
+    .username {
+        font-size: 0.8em;
+        position: relative;
+        left: -5px;
+    }
+    .post {
+        background-color: rgba(245, 39, 39, 0.1) !important
+    }
+    .job {
+        background-color: rgba(78, 127, 242, 0.1) !important
+    }
+    .message {
+        background-color: rgba(22, 102, 27, 0.13) !important
+    }
+    .dropdown-menu {
+        top: -100%
+    }
+    .dropdown-list-image {
+        position: relative;
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+    .dropdown-list-image img {
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+    .btn-light {
+        color: #2cdd9b;
+        background-color: #e5f7f0;
+        border-color: #d8f7eb;
+    }
+}

@@ -20,7 +20,8 @@ else{
     <link rel="stylesheet" href="web_stuff/css/dashboard.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+
 </head>
 <body>
 <?php 
@@ -74,6 +75,7 @@ else{
             include('./components/dashboardTableNotifications.php');
         ?>
         </div>
+
     </div>
 </main>
 
@@ -87,7 +89,6 @@ else{
 <script src='scripts/chat.js'></script>
 <script src='scripts/dashboardChange.js'></script>
 <script src='scripts/dashboard.js'></script>
-
 <script>
     function createChatElement(userId, postId, userName, imageUrl,post_title) {
         // Create a new div element
@@ -183,15 +184,14 @@ else{
             inbox.style.display = "flex";
             dashboardButton.classList.remove("active");
             inboxButton.classList.add("active");
-    });
-</script>
+    });</script>
 
 <script src='./scripts/suggestionBubbles.js'>
 
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
 
-    bubleHide()
-})
-</script>
+        bubleHide()
+    })</script>
+
 
 </html>

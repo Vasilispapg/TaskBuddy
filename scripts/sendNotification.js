@@ -6,10 +6,11 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener("click", function() {
             const userID = button.getAttribute("data-user-id");
             const postID = button.getAttribute("data-post-id");
+            const type = button.getAttribute("type");
             const message = "Ενδιαφέρομαι για την δουλειά";
 
             const xhr = new XMLHttpRequest();
-            xhr.open("POST", "php/notify_user.php", true);
+            xhr.open("POST", "php/sendNotification.php", true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
             xhr.onreadystatechange = function() {
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             };
 
-            const data = "to_user_id=" + userID + "&postID=" + postID + "&message=" + message;
+            const data = "to_user_id=" + userID + "&postID=" + postID + "&message=" + message + "&type=" + type;
             xhr.send(data);
         });
     });
