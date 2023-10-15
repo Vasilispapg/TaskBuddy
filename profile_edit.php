@@ -43,7 +43,7 @@ else{
                                     <div class="profile-pic">
                                         <img src="<?php if(isset($_SESSION['fullname'])) echo ltrim($_SESSION['image_path'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
                                         <div class="overlay">
-                                        <form enctype="multipart/form-data" method="post" action="php/uploadProfileImage.php" id="imageUploadForm">
+                                        <form enctype="multipart/form-data" method="post" action="php/user/uploadProfileImage.php" id="imageUploadForm">
                                             <label for="fileInput" class="btn btn-info">Pick Photo</label>
                                             <input type="file" id="fileInput" name="new_image" accept="image/*" style="display: none;">
                                             <button type="submit" class="btn btn-info" id="uploadButton" style="display: none;"></button>
@@ -85,7 +85,7 @@ else{
                             </ul>
                         </div>
                     </div>                 
-                    <form class="col-lg-8" method=post action='php/update_profile.php'>            
+                    <form class="col-lg-8" method=post action='php/user/update_profile.php'>            
                         <div class="card">
                             <div class="card-body">
                                 <div class="row mb-3">
@@ -168,8 +168,8 @@ else{
 
 </body>
 
-<script src='scripts/checker.js'></script>
-<script src='scripts/locations.js'></script>
+<script src='scripts/checker/checker.js'></script>
+<script src='scripts/client/locations.js'></script>
 <script>
     document.getElementById("fileInput").addEventListener("change", function() {
     // When a file is selected, show the "Upload New Picture" button and submit the form

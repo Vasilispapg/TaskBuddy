@@ -5,7 +5,7 @@ session_start();
 // Check if the user is already logged in with a valid session
 if (isset($_SESSION["id"])) {
     // User is already logged in, redirect them to the index page or their dashboard
-    header("location:../index.php");
+    header("location:../../index.php");
     exit();
 }
 
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!$result_active) {
                 echo "Error executing the query: " . mysqli_error($con);
                 mysqli_close($con);
-                // header("location:../login.php");
+                // header("location:../../login.php");
                 exit();
             }
 
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set a cookie to remember the user (optional)
             $expire = time() + 86400 * 30; // 30 days
             setcookie("user", $row['id'], $expire, "/");
-            header("location:../index.php");
+            header("location:../../index.php");
             exit();
         }
     }
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If login is not successful, set an error session variable
     $_SESSION['error'] = "Invalid username or password";
     mysqli_close($con);
-    header("location:../login.php");
+    header("location:../../login.php");
     exit();
 }
 

@@ -137,9 +137,19 @@ body {
 }
 
 svg {
-    fill: #ffffff;
+    fill: var(--app-content-main-color);
     z-index: 2;
     position: relative;
+}
+
+button {
+    color: var(--app-content-main-color) !important;
+    &.btn-warning {
+        background-color: #ec871b !important
+    }
+    &.btn-warning:hover {
+        background-color: #da7e1c !important
+    }
 }
 
 .badge {

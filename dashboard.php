@@ -86,9 +86,9 @@ else{
 
 </body>
 
-<script src='scripts/chat.js'></script>
-<script src='scripts/dashboardChange.js'></script>
-<script src='scripts/dashboard.js'></script>
+<script src='scripts/chat/chat.js'></script>
+<script src='scripts/client/dashboardChange.js'></script>
+<script src='scripts/client/dashboard.js'></script>
 <script>
     function createChatElement(userId, postId, userName, imageUrl,post_title) {
         // Create a new div element
@@ -186,7 +186,7 @@ else{
             inboxButton.classList.add("active");
     });</script>
 
-<script src='./scripts/suggestionBubbles.js'>
+<script src='./scripts/client/suggestionBubbles.js'>
 
     document.addEventListener("DOMContentLoaded", function() {
 

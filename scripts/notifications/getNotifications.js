@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
 
             // Send the message to the server using a POST request
-            fetch('php/sendNotificationSeen.php', {
+            fetch('php/notifications/sendNotificationSeen.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function fetchNotifications() {
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "php/getNotifications.php", true);
+        xhr.open("POST", "php/notifications/getNotifications.php", true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
         xhr.onreadystatechange = function() {

@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <form id='form' action='php/sign-up.php' enctype="multipart/form-data" method="post" class="col-lg-6">
+                <form id='form' action='php/user/sign-up.php' enctype="multipart/form-data" method="post" class="col-lg-6">
                     <div class="card2 card border-0 px-4 py-5">
                         <div class="row mb-4 px-3 singupwith">
                             <h6 class="mb-0 mr-4 mt-2">Sign up with</h6>
@@ -115,8 +115,8 @@
     </div>
     <?php include_once('./components/footer.php');?>
 </body>
-<script src='scripts/locations.js'></script>
-<script src='scripts/checker.js'></script>
-<script src='scripts/showhideElements.js'></script>
-<script src='scripts/passwordSame.js'></script>
+<script src='scripts/client/locations.js'></script>
+<script src='scripts/checker/checker.js'></script>
+<script src='scripts/client/showhideElements.js'></script>
+<script src='scripts/user/passwordSame.js'></script>
 </html>

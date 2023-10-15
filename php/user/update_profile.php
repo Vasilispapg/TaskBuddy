@@ -21,7 +21,7 @@ $row = mysqli_fetch_assoc($result);
 if (mysqli_num_rows($result) > 0 and $row['id'] != $_SESSION['id']) {
     // A user with the same username, phone, or email already exists
     echo "Error: Another user with the same username, phone, or email already exists.";
-    header('location:../profile.php?changed=false');
+    header('location:../../profile.php?changed=false');
 } else {
     $sql = "UPDATE users SET email='$email', phone='$phone', job='$job', about='$about',
         fullname='$fullname', username='$username', location='$location' WHERE id='{$_SESSION['id']}'";
@@ -38,12 +38,12 @@ if (mysqli_num_rows($result) > 0 and $row['id'] != $_SESSION['id']) {
         $_SESSION["phone"] = $phone;
         $_SESSION["job"] = $job;
 
-        header('location:../profile.php?changed=true');
+        header('location:../../profile.php?changed=true');
 
 
     } else {
         echo "Error updating record: " . mysqli_error($con);
-        header('location:../profile.php?changed=false');
+        header('location:../../profile.php?changed=false');
     }
 }
 

@@ -30,7 +30,7 @@ else{
         <div class="card card0 border-0">
             <div class="row d-flex">
                
-                <form id='postform' action='php/createPost.php' enctype="multipart/form-data" method="post" class="col-lg-6">
+                <form id='postform' action='php/post/createPost.php' enctype="multipart/form-data" method="post" class="col-lg-6">
                     <div class="card2 card border-0 px-4 py-5" >
 
                         <div class="row px-3 title">
@@ -70,4 +70,4 @@ else{
 </body>
 </html>
 
-<script src='./scripts/addExpireAndCategoryField.js'></script>
+<script src='./scripts/client/addExpireAndCategoryField.js'></script>

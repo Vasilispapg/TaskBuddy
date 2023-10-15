@@ -81,6 +81,73 @@ a.actionbutton:hover {
   color: #064ba0;
 }
 
+/* Hamburger Menu Styles */
+.menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  margin: 0 50px;
+  right: 0;
+  top: 0;
+}
+
+.bar {
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Media Query for Small Screens (e.g., phones) */
+@media screen and (max-width: 1400px) {
+  .logo {
+    margin-left: 5px;
+  }
+  .menu-icon {
+    display: block;
+  }
+  .menu-toggle:checked + .menu-icon .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  .menu-toggle:checked + .menu-icon .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle:checked + .menu-icon .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+  .menu-toggle:checked + .menu-icon ~ .nav-list {
+    display: flex;
+  }
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #064ba0;
+    z-index: 5;
+    width: 100%;
+  }
+  .nav-list li {
+    margin: 1.5em 0;
+  }
+}
+@media screen and (max-width: 700px) {
+  .menu,
+  .navbar-brand {
+    padding: 20px 0 !important;
+  }
+}
 .card-custom {
   overflow: hidden;
   min-height: 450px;
@@ -161,6 +228,12 @@ div.location_category {
 
 #description {
   margin-top: 0.3em;
+}
+
+#confirmation-message {
+  padding: 1em;
+  background: #0069d9;
+  color: white;
 }
 
 /* Style for the footer section */

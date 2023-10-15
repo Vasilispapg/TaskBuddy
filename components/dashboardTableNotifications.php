@@ -22,7 +22,7 @@
         </div>
     </div>
 
-<script src='scripts/getNotifications.js'></script>
+<script src='scripts/notifications/getNotifications.js'></script>
 
 <script>
     // ARGOTERA DES TO EINAI GIA TA DELETE BUTTOn

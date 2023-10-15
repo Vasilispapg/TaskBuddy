@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 message: message
             };
             // Send the message to the server using a POST request
-            fetch('php/sendMessage.php', {
+            fetch('php/chat/sendMessage.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function retrieveMessages(receiverID, postID) {
         // Make an AJAX request to retrieve chat messages
-        fetch(`php/getMessages.php?receiverID=${receiverID}&postID=${postID}`)
+        fetch(`php/chat/getMessages.php?receiverID=${receiverID}&postID=${postID}`)
             .then(response => response.json())
             .then(data => {
                 // Display the retrieved messages

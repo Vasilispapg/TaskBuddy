@@ -16,7 +16,7 @@
         
 
         <!-- Add your edit form here -->
-        <form action="php/updatePost.php" method="POST" enctype="multipart/form-data">
+        <form action="php/post/updatePost.php" method="POST" enctype="multipart/form-data">
           <!-- Your edit form fields go here -->
           <div class="form-group">
             <input  hidden id="post_id" name="post_id" required>
@@ -51,5 +51,5 @@
     document.querySelector('#myModalEdit').style.display='none';
   })
 </script>
-<script src='scripts/addExpireAndCategoryField.js'></script>
-<script src='scripts/getPostDetails.js'></script>
+<script src='scripts/client/addExpireAndCategoryField.js'></script>
+<script src='scripts/post/getPostDetails.js'></script>

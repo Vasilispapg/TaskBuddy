@@ -3,7 +3,7 @@ session_name('user');
 session_start();
 
 function uploadImage($username,$post_id) {
-    $uploadDirectory = 'assets/post_images/'; // Change this to your desired directory
+    $uploadDirectory = '../../assets/post_images/'; // Change this to your desired directory
     $uploadedFileName = $_FILES['image']['name'];
 
     // Generate a unique filename based on the username
@@ -62,7 +62,7 @@ if (mysqli_connect_errno() || !$conn) {
                 $stmt->execute();
                 $stmt->close();
                 $conn->close();
-                header("Location: ../browseTasks.php");
+                header("Location: ../../browseTasks.php");
             }
             exit();
         } else {

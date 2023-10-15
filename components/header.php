@@ -1,6 +1,6 @@
 <header class="header">
     <menu class="menu">
-    <div class="logo"><a class="logo" href="index.php">TaskBuddy</a></div>
+    <div class="logo"><a class="logo" href="index.php">Taskify</a></div>
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <label for="menu-toggle" class="menu-icon">
             <div class="bar"></div>
@@ -15,14 +15,17 @@
             echo '<li><a href="profile.php" id="profile" >Welcome ' . $_SESSION["fullname"] . '</a></li>';
             if($_SESSION['id'])
                 echo '<li><a href="dashboard.php">Dashboard</a></li>';
-            echo '<li><a href="php/logout.php">Logout</a></li>';
+            echo '<li><a href="php/user/logout.php">Logout</a></li>';
+            echo '<li><a class="actionbutton" href="https://buy.stripe.com/test_9AQ9E9bLp7dka0U145">Deposit</a></li>';
+
 
         } else {
             // User is not logged in, display the "Sign Up / Login" link
             echo '<li><a href="login.php">Sign Up / Login</a></li>';
-            echo '<li><a class="actionbutton" href="#">Become a Buddy</a></li>';
             }
+
             ?>
+            
         </ul>
     </menu>
 </header>

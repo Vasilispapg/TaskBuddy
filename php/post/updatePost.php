@@ -1,7 +1,7 @@
 <?php
 
 function uploadImage($username,$post_id) {
-    $uploadDirectory = 'assets/post_images/'; // Change this to your desired directory
+    $uploadDirectory = '../../assets/post_images/'; // Change this to your desired directory
     $uploadedFileName = $_FILES['image']['name'];
 
     // Generate a unique filename based on the username
@@ -61,7 +61,7 @@ if (mysqli_connect_errno() || !$conn) {
         }
         if ($stmt->execute() ) {
             echo json_encode(array("success" => "Post updated successfully"));
-            header("Location: ../dashboard.php");
+            header("Location: ../../dashboard.php");
         } else {
             echo json_encode(array("error" => "Error updating the post: " . $stmt->error));
         }

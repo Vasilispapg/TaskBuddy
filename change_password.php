@@ -78,7 +78,7 @@ else{
                         </ul>
                     </div>
                 </div>                 
-                <form class="col-lg-8" method=post action='php/uploadNewPassword.php'>            
+                <form class="col-lg-8" method=post action='php/user/uploadNewPassword.php'>            
                     <div class="card">
                         <div class="card-body">
                         <div class="row mb-3">
@@ -129,6 +129,6 @@ else{
         <?php include_once('./components/footer.php');?>
 
 </body>
-<script src='scripts/passwordSame.js'></script>
+<script src='scripts/user/passwordSame.js'></script>
 
 </html>

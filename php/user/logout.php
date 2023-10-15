@@ -34,5 +34,5 @@ if (isset($_SESSION['id'])) {
 mysqli_close($con);
 
 // Redirect to the login page or any other page after logout
-header("location: ../index.php");
+header("location: ../../index.php");
 ?>

@@ -2,11 +2,12 @@
 // and populate the form fields with these details
 // Example: Fetch post details using AJAX and populate the form
 function runWhenClick(postID) {
-    fetch('php/get_post_details.php?post_id=' + postID)
+    fetch('php/post/get_post_details.php?post_id=' + postID)
         .then(response => response.json())
         .then(data => {
 
             document.getElementById('edit_title').value = data.title;
+            console.log(postID)
             document.getElementById('post_id').value = postID;
             document.getElementById('edit_desc').innerText = data.description;
             document.getElementById('edit_price').value = data.price;

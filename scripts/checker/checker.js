@@ -18,7 +18,7 @@
                  }
              }
          };
-         xmlhttp.open('GET', 'php/check-' + fieldName + '.php?' + fieldName + '=' + field.value, true);
+         xmlhttp.open('GET', 'php/checker/check-' + fieldName + '.php?' + fieldName + '=' + field.value, true);
          xmlhttp.send();
      });
  }

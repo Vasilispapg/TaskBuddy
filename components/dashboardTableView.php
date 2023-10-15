@@ -74,7 +74,7 @@
                                     echo '<div class="product-cell status-cell disabled"><div class="product status pending ">' . ucfirst($row['status']) . '</div></div>';
                                 echo '<div class="product-cell price">' . $row['price'] . '€</div>';
                                 echo '<div class="product-cell action">
-                                            <form action="php/deletePost.php" method="GET">
+                                            <form action="php/post/deletePost.php" method="GET">
                                                         <input type="hidden" name="post_id" value='.$row['id'].'> 
                                                         <button class="btn btn-danger" type="submit" name="delete_post">Delete Post</button>
                                                     </form>

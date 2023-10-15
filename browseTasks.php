@@ -147,9 +147,9 @@ else{
 <?php include 'components/footer.php';?>
     
 </body>
-<script src='scripts/slider.js'></script>
-<script src='scripts/taskFilter.js'></script>
-<script src='scripts/sendNotification.js'></script>
+<script src='scripts/client/slider.js'></script>
+<script src='scripts/client/taskFilter.js'></script>
+<script src='scripts/notifications/sendNotification.js'></script>
 
 <script>
   // Get the modal elements and buttons

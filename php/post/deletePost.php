@@ -64,7 +64,7 @@ if (isset($_GET['post_id'])) {
     // Attempt to delete the post
     if (deletePost($post_id)) {
         // Post deletion was successful
-        header("Location: ../dashboard.php");
+        header("Location: ../../dashboard.php");
         exit();
     } else {
         // Post deletion failed

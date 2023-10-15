@@ -18,7 +18,7 @@ if (password_verify($currentpassword, $hash)) {
     echo 'Password is valid!';
 } else {
     echo 'Invalid password.';
-    header('location:../profile.php?changed=false');
+    header('location:../../profile.php?changed=false');
     exit();
 }
 
@@ -33,9 +33,9 @@ $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash t
 $sql = "UPDATE users SET password_hash='$hashedPassword' WHERE id='{$_SESSION['id']}'";
 
 if (mysqli_query($con, $sql)) {
-    header('location:../profile.php?changed=true'); // Pass a query parameter to indicate password change success
+    header('location:../../profile.php?changed=true'); // Pass a query parameter to indicate password change success
 } else {
-    header('location:../profile.php?changed=false');
+    header('location:../../profile.php?changed=false');
 }
 
 mysqli_close($con);
