@@ -17,7 +17,8 @@
                 echo '<li><a href="dashboard.php">Dashboard</a></li>';
             echo '<li><a href="php/user/logout.php">Logout</a></li>';
             echo '<li><a class="actionbutton" href="https://buy.stripe.com/test_9AQ9E9bLp7dka0U145">Deposit</a></li>';
-
+            if($_SESSION['role']=='admin')
+                echo '<li><a  href="users.php">Users</a></li>';
 
         } else {
             // User is not logged in, display the "Sign Up / Login" link
