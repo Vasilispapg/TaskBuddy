@@ -72,6 +72,10 @@ else{
                             
                             while ($row = mysqli_fetch_assoc($result) ) {
 
+                                if(!$row['image_path']=='empty')
+                                    $rowImage="assets/user_images/user_icon_df.png";
+                                else
+                                    $rowImage=ltrim($row['image_path'],'./');
                                 foreach ($row as $key => $value) {
                                     // Check if the value is null or empty and set a default value
                                     if (is_null($value) || $value === '') {
@@ -80,32 +84,26 @@ else{
                                 }
                                 // $rowImages=mysqli_fetch_assoc($resultImages);
                                 $data[] = $row;
-                                if(!$row['image_path'])
-                                    $rowImage="assets/user_images/user_icon_df.png";
-                                else
-                                    $rowImage=ltrim($row['image_path'],'./');
+                               
 
-                                    
-                                
                                 echo '<div class="products-row">';
-                                echo '<div class="product-cell image"> <img src='.$rowImage.' alt="post"><span>' . ucfirst($row['id']) . '</span></div>'; 
-                                echo '<div class="product-cell category">' . ucfirst($row['username']) . '</div>';
-                                echo '<div class="product-cell category" style="font-size:0.45em">' . ucfirst($row['email']) . '</div>';
-                                echo '<div class="product-cell category">' . ucfirst($row['phone']) . '</div>';
-                                echo '<div class="product-cell category">' . ucfirst($row['status']) . '</div>';
-                                echo '<div class="product-cell category">' . ucfirst($row['role']) . '</div>';
-                                echo '<div class="product-cell category">' . ucfirst($row['job']) . '</div>';
-                                echo '<div class="product-cell category">' . ucfirst($row['created_at']) . '</div>';
-                                echo '<div class="product-cell category">' . ucfirst($row['bdate']) . '</div>';
-                                echo '<div class="product-cell category">' . $row['location'] . '</div>';
-                                echo '<div class="product-cell action">
-                                            <form action="php/post/deletePost.php" method="GET">
-                                                        <input type="hidden" name="post_id" value='.$row['id'].'> 
-                                                        <button class="btn btn-danger" type="submit" name="delete_post">Delete Post</button>
-                                                    </form>
-                                                    </div>
-                                                    
-                                </div>';  
+                                    echo '<div class="product-cell image"> <img src='.$rowImage.' alt="user"><span>' . ucfirst($row['id']) . '</span></div>'; 
+                                    echo '<div class="product-cell category">' . ucfirst($row['username']) . '</div>';
+                                    echo '<div class="product-cell category" style="font-size:0.45em">' . ucfirst($row['email']) . '</div>';
+                                    echo '<div class="product-cell category">' . ucfirst($row['phone']) . '</div>';
+                                    echo '<div class="product-cell category">' . ucfirst($row['status']) . '</div>';
+                                    echo '<div class="product-cell category">' . ucfirst($row['role']) . '</div>';
+                                    echo '<div class="product-cell category">' . ucfirst($row['job']) . '</div>';
+                                    echo '<div class="product-cell category">' . ucfirst($row['created_at']) . '</div>';
+                                    echo '<div class="product-cell category">' . ucfirst($row['bdate']) . '</div>';
+                                    echo '<div class="product-cell category">' . ucfirst($row['location']) . '</div>';
+                                    echo '<div class="product-cell action">
+                                                <form action="php/user/deleteUser.php" method="GET">
+                                                    <input type="hidden" name="user_id" value='.$row['id'].'> 
+                                                    <button class="btn btn-danger" type="submit" name="delete_post">Delete</button>
+                                                </form>
+                                            </div>      
+                                        </div>';  
                                 }    
                             
                             // Convert the PHP array to JSON
