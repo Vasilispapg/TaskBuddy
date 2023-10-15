@@ -1,5 +1,4 @@
 
-
 <div class="container">
         <div class="row pt-4 m-auto">
             <div class="col-md-6 col-lg-10 pb-3">
@@ -9,6 +8,9 @@
                 <div class="card-custom-img" style="background-image: url(<?php if($row['image_url']) echo ltrim($row['image_url'], './'); else echo 'assets/user_images/user_icon_df.png"';?>);"></div>
                 <div class="card-custom-avatar">
                   <img src="<?php if($row['user_image']) echo ltrim($row['user_image'], './'); else {echo 'assets/user_images/user_icon_df.png"'; echo 'style="object-fit:contain !important"';} ?>" alt="Admin" class="rounded-circle">
+                  <svg style='left:7em;position:absolute' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="<?php if($row['user_status']=='offline') echo "#ea4343e5"; else echo '#6cec32e5'; ?>" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                    <circle cx="8" cy="8" r="8"/>
+                  </svg>
                 </div>
                 <div class="card-body" style="overflow-y: auto">
                   <h5 class="card-subtitle text-dark" id='username'><?php if($row['user']) echo $row['user']; else echo "No Username"?></h5>
@@ -40,7 +42,7 @@
 
                 </div>
                 <div id="confirmation-message" style="display: none;"></div>
-                <div class="card-footer" >
+                <div class="card-footer">
                     <div>
                       <?php 
                       if($_SESSION['id']!=$row['user_id']){

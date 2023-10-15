@@ -91,7 +91,8 @@ else{
                     MAX(post_images.image_url) AS image_url,
                     users.fullname AS user,
                     users.image_path AS user_image,
-                    users.id AS user_id
+                    users.id AS user_id,
+                    users.status AS user_status
                 FROM
                     posts
                 INNER JOIN
