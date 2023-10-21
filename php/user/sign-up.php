@@ -56,7 +56,13 @@ function connectToDatabase() {
 }
 
 function uploadImage($username) {
-    $uploadDirectory = 'assets/user_images/'; // Change this to your desired directory
+    $uploadDirectory = '../../assets/user_images/'; // Change this to your desired directory
+    if(!file_exists($uploadDirectory)){
+        mkdir($uploadDirectory, 0777, true);
+    }
+    if(!isset($_FILES['image']) || !is_uploaded_file($_FILES['image']['tmp_name'])){
+        return null;
+    }
     $uploadedFileName = $_FILES['image']['name'];
 
     // Generate a unique filename based on the username
@@ -107,7 +113,7 @@ function registerUser() {
         $imagePath = uploadImage($username);
 
         if ($imagePath === null) {
-            echo "Failed to upload the image.";
+            $imagePath='../../assets/user_images/default.png'; // Set the default image path here
         }
 
         $conn = connectToDatabase();
@@ -124,6 +130,8 @@ function registerUser() {
         $stmt->bind_param("ssssssssss", $username, $email, $hashedPassword, $bdate, $role, $created_at, $fullname, $imagePath, $phone,$location);
 
         if ($stmt->execute()) {
+            $id = $stmt->insert_id; // Get the user's ID
+            include_once "../confirmation/sendEmail.php";
             $_SESSION['justRegistered'] = true; // Set the flag before redirecting
             include "usrlogin.php"; // Redirect to login page
             exit();

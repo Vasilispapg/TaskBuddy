@@ -51,6 +51,7 @@ else{
                     <div class="product-cell price">Since</div>
                     <div class="product-cell price">Bdate</div>
                     <div class="product-cell price">Location</div>
+                    <div class="product-cell price">Valid Email</div>
                     <div class="product-cell price">Delete</div>
                 </div> 
                 <?php
@@ -97,6 +98,7 @@ else{
                                     echo '<div class="product-cell category">' . ucfirst($row['created_at']) . '</div>';
                                     echo '<div class="product-cell category">' . ucfirst($row['bdate']) . '</div>';
                                     echo '<div class="product-cell category">' . ucfirst($row['location']) . '</div>';
+                                    echo '<div class="product-cell category">' . ucfirst($row['valid_email']) . '</div>';
                                     echo '<div class="product-cell action">
                                                 <form action="php/user/deleteUser.php" method="GET">
                                                     <input type="hidden" name="user_id" value='.$row['id'].'> 

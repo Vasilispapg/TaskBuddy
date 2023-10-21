@@ -1,3 +1,5 @@
 assets
 *.css
 *.css.map
+PHPMailer
+MailHog*

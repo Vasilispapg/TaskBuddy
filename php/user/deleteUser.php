@@ -27,10 +27,10 @@ function deleteUser($userID) {
     }
     $stmtDeletePost->close();
 
-    
     @include_once 'php/post/deletePost.php?post_id='.$userID;
-
+    
     // Prepare the SQL statement to delete the post and its associated images
+    deleteAuthEmail($userID,$conn);
     $deleteUserSQL = "DELETE FROM users WHERE id = ?";
     $deleteMessageSQL = "DELETE FROM messages WHERE (incoming_msg_id = ? OR outgoing_msg_id = ?)";
     $deletePostIdMessageSQL = "DELETE FROM post_id_messages WHERE (incoming_id = ? OR outgoing_id = ?)";
@@ -60,6 +60,14 @@ function deleteUser($userID) {
     $conn->close();
 
     return $success;
+}
+
+function deleteAuthEmail($id,$conn){
+    $sqlDeleteAuth="DELETE FROM conf WHERE user_id = ?";
+    $stmtDeleteAuth = $conn->prepare($sqlDeleteAuth);
+    $stmtDeleteAuth->bind_param("i", $id);
+    $stmtDeleteAuth->execute();
+    $stmtDeleteAuth->close();
 }
 
 // Check if a post ID was provided through a GET request
