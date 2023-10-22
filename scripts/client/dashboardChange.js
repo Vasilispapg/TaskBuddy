@@ -74,7 +74,7 @@
      jobs.style.display = "none";
      notification.style.display = "none";
 
-     inbox.style.display = (width > 600) ? "flex" : 'grid';
+     inbox.style.display = (width > 600) ? "flex" : 'inline';
 
      notificationButton.classList.remove("active");
      dashboardButton.classList.remove("active");

@@ -1,8 +1,6 @@
 <div class="products-area-wrapper tableView tablechat" id='inbox' style='display:none'>
                 <div class="spliter">
                 <?php
-                
-                        
                         $sql = "SELECT
                         MAX(pi.image_url) AS image_url,
                         MAX(m.msg) AS message,
@@ -57,7 +55,7 @@
                             // Loop through the products and generate rows
                             while ($row = mysqli_fetch_assoc($result)) {
                                 if (empty($row['image_url']))
-                                    $img_path = "assets/user_images/user_icon_df.png";
+                                    $img_path = "../assets/user_images/user_icon_df.png";
                                 else
                                     $img_path= $row['image_url'];  
                     
@@ -97,3 +95,18 @@
                     </div>
                 </div>
             </div>
+
+            <style>
+
+                    @media screen and (max-width: 700px) {
+                        #message-input{
+                                width: 90%;
+                            }
+                        .spliter{
+                            margin-bottom: 10px;
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr;
+                        }
+                    }
+
+            </style>

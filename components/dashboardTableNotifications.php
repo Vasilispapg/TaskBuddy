@@ -22,6 +22,22 @@
         </div>
     </div>
 
+    <style>
+        .btn.btn-light.btn-sm.rounded{
+            display: none;
+        }
+        .btn-group{
+            width: 150%;
+        }
+        .text-right.text-muted.pt-1{
+            font-size: 0.7em;
+        }
+        .products-area-wrapper{
+            width: 109%;
+            overflow: hidden;
+        }
+    </style>
+
 <script src='scripts/notifications/getNotifications.js'></script>
 
 <script>

@@ -102,6 +102,10 @@ a.actionbutton:hover {
   transition: 0.4s;
 }
 
+body {
+  overflow: scroll;
+}
+
 .nav-list {
   list-style: none;
   display: flex;
@@ -599,7 +603,7 @@ div.location_category {
 }
 @media screen and (max-width: 768px) {
   .taskCard {
-    left: 15%;
+    width: 100%;
     grid-template-columns: 1fr;
   }
 }/*# sourceMappingURL=browseTasks.css.map */

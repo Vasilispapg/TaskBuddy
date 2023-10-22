@@ -105,6 +105,10 @@ a.actionbutton:hover {
     transition: 0.4s;
 }
 
+body {
+    overflow: scroll;
+}
+
 .nav-list {
     list-style: none;
     display: flex;

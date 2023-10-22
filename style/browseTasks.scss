@@ -287,7 +287,8 @@
 
 @media screen and (max-width: 768px) {
     .taskCard {
-        left: 15%;
+        // left: 15%;
+        width: 100%;
         grid-template-columns: 1fr;
     }
 }

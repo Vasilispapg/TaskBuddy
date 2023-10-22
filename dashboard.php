@@ -194,16 +194,16 @@ else if(window.innerHeight<1100){
                 chat_box.insertBefore(customChatElement, firstChild);
                 <?php endif; ?>
                 <?php if (!$displayMessage): ?>
-                chat_box=document.querySelector('.spliter');
-                firstChild=chat_box.firstChild;
-                firstChild.nextSibling.classList.add('active');
+                    chat_box=document.querySelector('.spliter');
+                    firstChild=chat_box.firstChild;
+                    firstChild.nextSibling.classList.add('active');
                 <?php endif; ?>
             }
 
            
 
             dashboard.style.display = "none";
-            inbox.style.display = "flex";
+            inbox.style.display = (width > 600) ? "flex" : 'inline';
             dashboardButton.classList.remove("active");
             inboxButton.classList.add("active");
     });</script>
