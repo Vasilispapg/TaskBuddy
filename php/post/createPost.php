@@ -53,8 +53,9 @@ include_once '../connection.php';
             $imagePath = uploadImage($_SESSION['username'],$post_id);
             if ($imagePath === null) {
                 echo "Failed to upload the image.";
+                $imagePath='';
             }
-            else{
+
                  // Check if 'image' was uploaded
                 $sqlImage="INSERT INTO post_images (post_id,image_url) VALUES ('$post_id','$imagePath')";
                 $stmt = $conn->prepare($sqlImage);
@@ -62,7 +63,7 @@ include_once '../connection.php';
                 $stmt->close();
                 $conn->close();
                 header("Location: ../../browseTasks.php");
-            }
+
             exit();
         } else {
             echo "Error: " . $stmt->error;

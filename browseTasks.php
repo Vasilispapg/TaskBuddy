@@ -92,7 +92,7 @@ else{
                     users.status AS user_status
                 FROM
                     posts
-                INNER JOIN
+                LEFT JOIN
                     post_images ON post_images.post_id = posts.id
                 INNER JOIN
                     users ON users.id = posts.user_id
