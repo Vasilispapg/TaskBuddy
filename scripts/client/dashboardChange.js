@@ -1,4 +1,8 @@
  // Get references to sidebar buttons and content sections
+ const width = window.innerWidth;
+ const height = window.innerHeight;
+ console.log(width, height)
+
  const dashboard = document.getElementById("Dashboard");
  const dashboardButton = document.getElementById("dashboardButton");
 
@@ -22,7 +26,7 @@
      dashboard.style.display = "none";
      header.style.display = "none";
      jobs.style.display = "none";
-     inbox.style.display = "flex";
+     inbox.style.display = (width > 600) ? "flex" : 'grid';
 
      dashboardButton.classList.remove("active");
      jobsButton.classList.remove("active");
@@ -31,11 +35,11 @@
 
  dashboardButton.addEventListener("click", () => {
      // Hide all content sections
-     dashboard.style.display = "block";
      inbox.style.display = "none";
      jobs.style.display = "none";
      notification.style.display = "none";
-     header.style.display = "flex";
+     dashboard.style.display = (width > 600) ? "block" : 'grid';
+     header.style.display = (width > 600) ? "flex" : 'grid';
 
      inboxButton.classList.remove("active");
      jobsButton.classList.remove("active");
@@ -51,7 +55,7 @@
      inbox.style.display = "none";
      header.style.display = "none";
 
-     jobs.style.display = "block";
+     jobs.style.display = (width > 600) ? "block" : 'grid';
 
      inboxButton.classList.remove("active");
      dashboardButton.classList.remove("active");
@@ -68,12 +72,11 @@
      dashboard.style.display = "none";
      header.style.display = "none";
      jobs.style.display = "none";
-
-     inbox.style.display = "flex";
-
      notification.style.display = "none";
-     notificationButton.classList.remove("active");
 
+     inbox.style.display = (width > 600) ? "flex" : 'grid';
+
+     notificationButton.classList.remove("active");
      dashboardButton.classList.remove("active");
      jobsButton.classList.remove("active");
 
@@ -89,9 +92,9 @@
      jobs.style.display = "none";
      inbox.style.display = "none";
 
-     appContainer.style.width = '50em'
+     appContainer.style.width = (width > 600) ? '50em' : '100%'
 
-     notification.style.display = "block";
+     notification.style.display = (width > 600) ? "flex" : 'grid';
 
      inboxButton.classList.remove("active");
      dashboardButton.classList.remove("active");

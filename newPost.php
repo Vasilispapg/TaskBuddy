@@ -68,6 +68,17 @@ else{
 
 <?php include 'components/footer.php';?>
 </body>
+
+<style>
+    @media screen and (max-width: 768px) {
+        img{
+            display: none;
+        }
+        .row,.form-group{
+            margin-top:5px;
+        }
+    }
+</style>
 </html>
 
 <script src='./scripts/client/addExpireAndCategoryField.js'></script>

@@ -3,7 +3,7 @@
 @import './components/footer.scss';
 .taskCard {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(34em, 1fr));
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
     justify-items: center;
     width: 70%;
@@ -16,14 +16,6 @@
     border-radius: 10px;
     text-align: left;
     /* Add any other styling for the task card here */
-}
-
-@media screen and (max-width: 768px) {
-    .taskCard {
-        width: 100%;
-        left: 0;
-        grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
-    }
 }
 
 .productModal {
@@ -267,12 +259,13 @@
 @media screen and (max-width: 1768px) {
     .main {
         flex-direction: column;
+        width: 100%;
     }
     .categoryCont {
         display: none;
     }
     .taskCard {
-        width: 100%;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -280,4 +273,21 @@
     display: none !important;
 }
 
-.slider--container {}
+@media screen and (min-width: 500px) and (max-width: 1000px) {
+    .taskCard .container {
+        width: 200%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1768px) {
+    .taskCard {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .taskCard {
+        left: 15%;
+        grid-template-columns: 1fr;
+    }
+}

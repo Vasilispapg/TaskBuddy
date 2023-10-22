@@ -5,7 +5,7 @@
 }
 
 .main {
-  min-height: 85%;
+  min-height: 100%;
 }
 
 :root {
@@ -1146,4 +1146,38 @@ div.chat-input {
   color: #2cdd9b;
   background-color: #e5f7f0;
   border-color: #d8f7eb;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    flex-direction: row;
+    max-width: none;
+    flex-basis: 100%;
+  }
+  .sidebar-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+  .account-info {
+    display: none;
+  }
+  .app-container {
+    flex-direction: column;
+  }
+  .products-header {
+    flex-direction: column;
+    display: none !important;
+  }
+  .products-row {
+    margin-bottom: 15px;
+    flex-direction: column;
+  }
+  #Dashboard,
+  #jobs {
+    display: grid;
+    overflow-y: scroll;
+    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-rows: 1fr;
+  }
 }/*# sourceMappingURL=dashboard.css.map */
