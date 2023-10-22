@@ -127,9 +127,11 @@ else{
                         // Check if there are any products in the database
                         if (mysqli_num_rows($result) > 0) {
                             echo '<div class="taskCard">';
+                            $count=0;
                             while ($row = mysqli_fetch_assoc($result)) {
                                 include 'components/taskCard.php';
                                 include 'product.php';
+                                $count++;
 
                             }
                             echo '</div>';
@@ -146,8 +148,8 @@ else{
     
 </body>
 <script src='scripts/client/slider.js'></script>
-<script src='scripts/client/taskFilter.js'></script>
 <script src='scripts/notifications/sendNotification.js'></script>
+<script src='scripts/client/taskFilter.js'></script>
 
 <script>
   // Get the modal elements and buttons

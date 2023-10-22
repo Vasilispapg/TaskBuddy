@@ -47,7 +47,7 @@
                       <?php 
                       if($_SESSION['id']!=$row['user_id']){
                         echo "<a id='messageBtn' href='../taskbuddynw/dashboard.php?message=true&receiverID=".$row['user_id']."&postID=".$row['id']."' class='btn btn-primary'>Message</a>";
-                        echo "<button style='margin-left:5px' id='takeTheJob' class=\"btn btn-outline-primary\" data-user-id=".$row['user_id']." type='job' data-post-id=".$row['id'].">Take the job</button>";
+                        echo "<button style='margin-left:5px' index='$count'  id='takeTheJob' class=\"btn btn-outline-primary\" data-user-id=".$row['user_id']." type='job' data-post-id=".$row['id'].">Take the job</button>";
                       }?>
                         <!-- <button id='takeTheJob' class="btn btn-outline-primary" data-user-id=>Take the job</button> -->
                     </div>

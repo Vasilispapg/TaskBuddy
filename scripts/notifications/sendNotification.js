@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const takeJobButtons = document.querySelectorAll("#takeTheJob");
     const confirmationMessage = document.querySelectorAll('#confirmation-message')
 
-    takeJobButtons.forEach(function(button, index) {
+    takeJobButtons.forEach(function(button) {
         button.addEventListener("click", function() {
             const userID = button.getAttribute("data-user-id");
             const postID = button.getAttribute("data-post-id");
@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         const response = xhr.responseText;
 
                         // Display the confirmation message
-                        const confM = confirmationMessage[index]
+                        console.log(button)
+                        const confM = confirmationMessage[button.getAttribute("index")]
 
                         confM.textContent = response;
                         confM.style.display = "block";
