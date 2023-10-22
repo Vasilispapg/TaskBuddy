@@ -2,12 +2,8 @@
 session_name('user');
 session_start(); // Make sure the session is started
 
-// Your database connection code here
-$mysqli = new mysqli("localhost", "root", "", "taskbuddynw");
+include_once '../connection.php'; 
 
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $toUserID = $_POST['to_user_id'];
@@ -18,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert the notification into the database
     $sql = "INSERT INTO notifications (to_user_id, message, created_at,from_user_id,postID,seen,type) VALUES (?, ?, NOW(),?,?,?,?)";
-    $stmt = $mysqli->prepare($sql);
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("isiiss", $toUserID, $message,$_SESSION['id'],$postID,$seen,$type);
     // echo $stmt->$argv;
 
@@ -32,6 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Close the database connection
     $stmt->close();
-    $mysqli->close();
+    $conn->close();
 }
 ?>

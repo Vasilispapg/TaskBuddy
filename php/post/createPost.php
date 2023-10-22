@@ -25,10 +25,9 @@ function uploadImage($username,$post_id) {
 }
 
 
-$conn = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-if (mysqli_connect_errno() || !$conn) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-} else {
+include_once '../connection.php'; 
+
+
     if ($_SERVER["REQUEST_METHOD"] === "POST") 
     {
         $title = $_POST['title'];
@@ -74,6 +73,5 @@ if (mysqli_connect_errno() || !$conn) {
 
     }
 
-}
 
 ?>

@@ -2,8 +2,9 @@
 session_name('user');
 session_start();
 
-$con = mysqli_connect('localhost', 'root', '') or die("Connection failed: " . mysqli_connect_error());
-mysqli_select_db($con, "taskbuddynw");
+include_once '../connection.php'; 
+
+
 
 $password = $_POST['password'];
 $confpassword = $_POST['confirmpassowrd'];
@@ -32,12 +33,12 @@ $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash t
 
 $sql = "UPDATE users SET password_hash='$hashedPassword' WHERE id='{$_SESSION['id']}'";
 
-if (mysqli_query($con, $sql)) {
+if (mysqli_query($conn, $sql)) {
     header('location:../../profile.php?changed=true'); // Pass a query parameter to indicate password change success
 } else {
     header('location:../../profile.php?changed=false');
 }
 
-mysqli_close($con);
+mysqli_close($conn);
 
 ?>

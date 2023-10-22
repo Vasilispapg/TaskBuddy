@@ -1,7 +1,9 @@
 <?php
 
 function emailExists($email) {
-    $conn = connectToDatabase();
+    include_once '../connection.php'; 
+
+
     $sql = "SELECT COUNT(*) as count FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -15,7 +17,9 @@ function emailExists($email) {
 }
 
 function phoneExists($phone) {
-    $conn = connectToDatabase();
+    include_once '../connection.php'; 
+
+
     $sql = "SELECT COUNT(*) as count FROM users WHERE phone = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $phone);
@@ -29,7 +33,9 @@ function phoneExists($phone) {
 }
 
 function usernameExists($username) {
-    $conn = connectToDatabase();
+    include_once '../connection.php'; 
+
+
     $sql = "SELECT COUNT(*) as count FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -40,19 +46,6 @@ function usernameExists($username) {
     $stmt->close();
     $conn->close();
     return $count > 0;
-}
-
-function connectToDatabase() {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "taskbuddynw";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    return $conn;
 }
 
 function uploadImage($username) {
@@ -116,7 +109,9 @@ function registerUser() {
             $imagePath='../../assets/user_images/default.png'; // Set the default image path here
         }
 
-        $conn = connectToDatabase();
+        include_once '../connection.php'; 
+
+
 
         $role = isset($_POST['checkbox']) && $_POST['checkbox'] == 'buddy' ? 'taskbuddy' : 'user';
         $created_at = date("Y-m-d H:i:s");

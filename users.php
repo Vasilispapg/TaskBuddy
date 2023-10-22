@@ -58,14 +58,12 @@ else{
                             // include('./components/dashboardTableHeader.php');
 
                     // Assuming you have a database connection established
-                    $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-                    if (mysqli_connect_errno() || !$con) {
-                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                    } else {
+                        include_once './php/connection.php'; 
+
                         // Fetch products data from the database (modify this query according to your database structure)
                         $data = array();
                         $query = 'SELECT * from users;';
-                        $result = mysqli_query($con, $query);
+                        $result = mysqli_query($conn, $query);
                         
                         // Check if there are any products in the database
                         if (mysqli_num_rows($result) > 0) {
@@ -119,9 +117,8 @@ else{
                         } else {
                             echo '<div style="color:white;margin-left:5px">No products found.</div></div>';
                         }
-                    }
                     // Close the database connection
-                    mysqli_close($con);
+                    mysqli_close($conn);
                 ?>
 
     </div>

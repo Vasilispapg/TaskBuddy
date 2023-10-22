@@ -1,9 +1,7 @@
 <div class="categoryCont">
 <?php 
-          $con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-          if (mysqli_connect_errno() || !$con) {
-              echo "Failed to connect to MySQL: " . mysqli_connect_error();
-          } 
+         include_once './php/connection.php'; 
+
   ?>
       <div class="tags price">
           <h5>Price</h5>
@@ -30,9 +28,9 @@
             WHERE status != "disabled"
             GROUP BY category';
 
-            $result = mysqli_query($con, $query);
+            $result = mysqli_query($conn, $query);
             if (!$result) {
-              echo "Could not successfully run query ($query) from DB: " . mysqli_error($con);
+              echo "Could not successfully run query ($query) from DB: " . mysqli_error($conn);
               exit;
             }
 

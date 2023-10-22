@@ -2,10 +2,8 @@
 session_name('user');
 session_start();
 
-$con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-if (mysqli_connect_errno() || !$con) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-} else {
+include_once '../connection.php'; 
+
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $toUserID = $_SESSION['id'];
@@ -36,7 +34,7 @@ if (mysqli_connect_errno() || !$con) {
         ORDER BY notifications.created_at DESC
         LIMIT 5";
         
-        $result = mysqli_query($con, $newNotificationsquery);
+        $result = mysqli_query($conn, $newNotificationsquery);
 
         $notifications = [];
 
@@ -46,7 +44,7 @@ if (mysqli_connect_errno() || !$con) {
             }
         }
         
-        $result=mysqli_query($con, $oldNotificationsquery);
+        $result=mysqli_query($conn, $oldNotificationsquery);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $notifications[] = $row;
@@ -55,4 +53,3 @@ if (mysqli_connect_errno() || !$con) {
 
         echo json_encode($notifications);
     }
-}

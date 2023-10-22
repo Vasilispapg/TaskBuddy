@@ -2,18 +2,15 @@
 session_name('user');
 session_start();
 
-$con = mysqli_connect("localhost", "root", "", "taskbuddynw");
+include_once '../connection.php'; 
 
-if (!$con) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 
 // Check if the user is logged in
 if (isset($_SESSION['id'])) {
     // Mark the user as 'offline' in the database
     $userId = $_SESSION['id'];
     $sql = "UPDATE users SET status='offline' WHERE id=$userId";
-    mysqli_query($con, $sql);
+    mysqli_query($conn, $sql);
 
     // Unset and destroy the session
     session_unset();
@@ -31,7 +28,7 @@ if (isset($_SESSION['id'])) {
 
 }
 
-mysqli_close($con);
+mysqli_close($conn);
 
 // Redirect to the login page or any other page after logout
 header("location: ../../index.php");

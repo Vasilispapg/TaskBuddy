@@ -5,13 +5,14 @@
         <span class="close">&times;</span>
         <div class="productModal">
             <?php 
-                $mysqli2 = new mysqli("localhost", "root", "", "taskbuddynw");
+                include_once './php/connection.php'; 
 
-                if ($mysqli2->connect_error) {
-                    die("Connection failed: " . $mysqli2->connect_error);
+
+                if ($conn2->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
                 }
                 $sqlUser = "SELECT * FROM users WHERE id = {$row['user_id']}";
-                $resultUser = $mysqli2->query($sqlUser);
+                $resultUser = $conn->query($sqlUser);
                 if ($resultUser->num_rows > 0) {
                     while($rowUser = $resultUser->fetch_assoc()) {
                         @include('./components/product_modal.php');

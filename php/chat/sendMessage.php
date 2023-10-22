@@ -2,17 +2,14 @@
 session_name('user');
 session_start(); // Make sure the session is started
 
-// Your database connection code here
-$mysqli = new mysqli("localhost", "root", "", "taskbuddynw");
+include_once '../connection.php'; 
 
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
+
 
 // Function to check if a row already exists in post_id_messages
-function doesRowExist($mysqli, $incoming_id, $outgoing_id, $post_id) {
+function doesRowExist($conn, $incoming_id, $outgoing_id, $post_id) {
     $query = "SELECT id FROM post_id_messages WHERE ((incoming_id = ? AND outgoing_id = ?) OR (incoming_id = ? AND outgoing_id = ?)) AND post_id = ?";
-    $stmt = $mysqli->prepare($query);
+    $stmt = $conn->prepare($query);
     $stmt->bind_param("sssss", $incoming_id, $outgoing_id, $outgoing_id, $incoming_id, $post_id);
     $stmt->execute();
     $stmt->store_result();
@@ -29,14 +26,14 @@ $inputData = json_decode($inputJSON);
 if ($inputData) {
     $incomingMsgId = $inputData->receiverID; // ID of the recipient user
     $postID = $inputData->postID; // ID of the post
-    $message = mysqli_real_escape_string($mysqli, $inputData->message);
+    $message = mysqli_real_escape_string($conn, $inputData->message);
 
     // Get the sender's user ID from the session (you may need to adjust this)
     $senderID = $_SESSION['id'];
 
     // Insert the message into the database (messages table)
     $query = "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg, post_id, created_at) VALUES (?,?,?,?,?)";
-    $stmt = $mysqli->prepare($query);
+    $stmt = $conn->prepare($query);
 
     // Use prepared statements to prevent SQL injection
     $stmt->bind_param("sssss", $incomingMsgId, $senderID, $message, $postID, $formattedDate);
@@ -49,10 +46,10 @@ if ($inputData) {
         // Message sent successfully to messages table
 
         // Check if the row already exists in post_id_messages
-        if (!doesRowExist($mysqli, $incomingMsgId, $senderID, $postID)) {
+        if (!doesRowExist($conn, $incomingMsgId, $senderID, $postID)) {
             // The row does not exist, proceed with the insertion
             $query2 = "INSERT INTO post_id_messages (incoming_id, outgoing_id, post_id) VALUES (?, ?, ?)";
-            $stmt2 = $mysqli->prepare($query2);
+            $stmt2 = $conn->prepare($query2);
 
             // Use prepared statements to prevent SQL injection
             $stmt2->bind_param("sss", $senderID, $incomingMsgId, $postID);
@@ -80,5 +77,5 @@ if ($inputData) {
     echo json_encode(["status" => "error", "message" => "Error getting data"]);
 }
 
-$mysqli->close();
+$conn->close();
 ?>

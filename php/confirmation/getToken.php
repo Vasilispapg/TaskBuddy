@@ -1,10 +1,8 @@
 <?php
 
+include_once '../connection.php'; 
 
-$conn = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-if (mysqli_connect_errno() || !$conn) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-} else {
+
     $token = $_GET['token'];
 
     // Check if the token exists in the database and hasn't expired
@@ -36,7 +34,7 @@ if (mysqli_connect_errno() || !$conn) {
        $conf=false;
        $stmt->close();
     }
-}
+
 
 
 ?>

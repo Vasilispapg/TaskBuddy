@@ -19,18 +19,9 @@ function deleteMessagesIDPost($conn,$post_id){
 
 function deletePost($post_id) {
     // Replace these with your database connection details
-    $db_host = "localhost";
-    $db_user = "root";
-    $db_pass = "";
-    $db_name = "taskbuddynw";
+    include_once '../connection.php'; 
 
-    // Create a database connection
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Prepare the SQL statement to delete the post and its associated images
     $deletePostSQL = "DELETE FROM posts WHERE id = ?";

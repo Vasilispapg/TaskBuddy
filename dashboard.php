@@ -25,18 +25,14 @@ else{
 </head>
 <body>
 <?php 
+    include_once './php/connection.php'; 
+
     include_once('./components/header.php');
 
     if (isset($_GET['message']) && $_GET['message'] === 'true') {
         $displayMessage = true;
         $post_id=$_GET['postID'];
         $user_id=$_GET['receiverID'];
-
-        $con = mysqli_connect("localhost", "root", "", "taskbuddynw");
-
-        if (!$con) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
 
         $query="SELECT post_images.image_url,
         users.fullname,
@@ -45,7 +41,7 @@ else{
         WHERE users.id = $user_id 
         AND posts.id=$post_id
         AND post_images.post_id = $post_id";
-        $result=mysqli_query($con, $query);
+        $result=mysqli_query($conn, $query);
         if(mysqli_num_rows($result) > 0){
             $row = mysqli_fetch_assoc($result);
             if($row){
@@ -54,7 +50,6 @@ else{
                 $userFullname=$row['fullname'];
             }
         }
-        mysqli_close($con);
     } else {
         $displayMessage = false;
     }

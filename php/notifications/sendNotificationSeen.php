@@ -35,11 +35,9 @@ function sendNotificationSeen($notification_ids, $db_connection) {
 session_name('user');
 session_start();
 
-$conn = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
+    include_once '../connection.php'; 
 
-if (mysqli_connect_errno() || !$conn) {
-    echo json_encode(array("error" => "Failed to connect to MySQL: " . mysqli_connect_error()));
-} else {
+
     // Get JSON data from the request body
     $inputJSON = file_get_contents("php://input");
     $inputData = json_decode($inputJSON);
@@ -48,7 +46,7 @@ if (mysqli_connect_errno() || !$conn) {
     } else {
         echo json_encode(["status" => "error", "message" => "Invalid input data"]);
     }
-}
+
 
 $conn->close();
 

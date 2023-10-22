@@ -1,13 +1,12 @@
 <?php
 $user = $_GET['name'];
 
-$con = mysqli_connect("localhost", "root", "", "taskbuddynw") or die("Could not connect to the database");
-if (mysqli_connect_errno() || !$con) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-} else {
+include_once '../connection.php'; 
+
+
     // Use prepared statement to avoid SQL injection
     $sql = "SELECT username FROM users WHERE username=?";
-    $stmt = mysqli_prepare($con, $sql);
+    $stmt = mysqli_prepare($conn, $sql);
 
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "s", $user);
@@ -20,9 +19,9 @@ if (mysqli_connect_errno() || !$con) {
 
         mysqli_stmt_close($stmt);
     } else {
-        echo "Error preparing the SQL statement: " . mysqli_error($con);
+        echo "Error preparing the SQL statement: " . mysqli_error($conn);
     }
 
-    mysqli_close($con);
-}
+    mysqli_close($conn);
+
 ?>

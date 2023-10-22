@@ -2,11 +2,9 @@
     session_name('user');
     session_start(); // Make sure the session is started
 
-    $mysqli = new mysqli("localhost", "root", "", "taskbuddynw");
+    include_once '../connection.php'; 
 
-    if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
-    }
+
 
     // Get data from the GET request
     $userID = $_SESSION['id']; // ID of the logged-in user
@@ -25,7 +23,7 @@
             AND m.post_id = '$postID'
             ORDER BY m.created_at ASC";
 
-    $result = mysqli_query($mysqli, $query);
+    $result = mysqli_query($conn, $query);
 
     $messages = [];
 
@@ -36,10 +34,10 @@
         mysqli_free_result($result);
     } else {
         // Handle the error
-        echo "Error: " . mysqli_error($mysqli);
+        echo "Error: " . mysqli_error($conn);
     }
 
-    $mysqli->close();
+    $conn->close();
 
     header('Content-Type: application/json');
     echo json_encode($messages);
