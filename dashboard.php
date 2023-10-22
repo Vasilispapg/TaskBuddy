@@ -83,30 +83,30 @@ else{
 
 <script>
 
-// style for dashboard in case of small screen
-const d=document.querySelector('#Dashboard')
-const j=document.querySelector('#jobs')
-if(window.innerHeight<670){    
-    d.style.height='300px'
-    j.style.height='300px'
-        
-}
-else if(window.innerHeight<761){
-    d.style.height='420px'
-    j.style.height='420px'
-}
-else if(window.innerHeight<890){
-    d.style.height='500px'
-    j.style.height='500px'
-}
-else if(window.innerHeight<990){
-    d.style.height='580px'
-    j.style.height='580px'
-}
-else if(window.innerHeight<1100){
-    d.style.height='700px'
-    j.style.height='700px'
-}
+    // style for dashboard in case of small screen
+    const d=document.querySelector('#Dashboard')
+    const j=document.querySelector('#jobs')
+    if(window.innerHeight<670){    
+        d.style.height='300px'
+        j.style.height='300px'
+            
+    }
+    else if(window.innerHeight<761){
+        d.style.height='420px'
+        j.style.height='420px'
+    }
+    else if(window.innerHeight<890){
+        d.style.height='500px'
+        j.style.height='500px'
+    }
+    else if(window.innerHeight<990){
+        d.style.height='580px'
+        j.style.height='580px'
+    }
+    else if(window.innerHeight<1100){
+        d.style.height='700px'
+        j.style.height='700px'
+    }
 </script>
 <script src='scripts/chat/chat.js'></script>
 <script src='scripts/client/dashboardChange.js'></script>
@@ -207,6 +207,7 @@ else if(window.innerHeight<1100){
             dashboardButton.classList.remove("active");
             inboxButton.classList.add("active");
     });</script>
+
 
 <script src='./scripts/client/suggestionBubbles.js'>
 

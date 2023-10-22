@@ -92,7 +92,7 @@
      jobs.style.display = "none";
      inbox.style.display = "none";
 
-     appContainer.style.width = (width > 600) ? '50em' : '100%'
+     appContainer.style.width = (width > 600) ? '100%' : '100%'
 
      notification.style.display = (width > 600) ? "flex" : 'grid';
 
