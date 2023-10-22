@@ -10,7 +10,12 @@
       <div class="tags date">
           <h5>Ημερομηνια</h5>
             <a href="#" data-filter-type='date' data-filter-value='asc' class="tag radius">Αύξουσα</a>
-            <a href="#" data-filter-type='date' data-filter-value='desc' class="tag radius">Φθίνουσα</a>
+            <a href="#" data-filter-type='date' data-filter-value='desc' class="tag radius active">Φθίνουσα</a>
+      </div>
+      <div class="tags price_b">
+          <h5>Τιμή</h5>
+            <a href="#" data-filter-type='price' data-filter-value='asc' class="tag radius">Αύξουσα</a>
+            <a href="#" data-filter-type='price' data-filter-value='desc' class="tag radius">Φθίνουσα</a>
       </div>
 
       <div class="tags status">
@@ -26,6 +31,7 @@
             $query = 'SELECT category, COUNT(*) AS count
             FROM posts
             WHERE status != "disabled"
+            AND end_time > NOW()
             GROUP BY category';
 
             $result = mysqli_query($conn, $query);
