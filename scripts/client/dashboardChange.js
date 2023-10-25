@@ -1,7 +1,6 @@
  // Get references to sidebar buttons and content sections
  const width = window.innerWidth;
  const height = window.innerHeight;
- console.log(width, height)
 
  const dashboard = document.getElementById("Dashboard");
  const dashboardButton = document.getElementById("dashboardButton");

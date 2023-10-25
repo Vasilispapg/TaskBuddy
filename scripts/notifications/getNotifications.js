@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             const userID = notification.userID;
                             const postID = notification.postID;
                             const userFullname = notification.fullname;
-                            const user_image = notification.image_path;
+                            const user_image = notification.image_path.split('../').filter(Boolean)[0]
                             const type = notification.type;
                             const created_at = notification.created_at;
                             const seen = notification.seen;
